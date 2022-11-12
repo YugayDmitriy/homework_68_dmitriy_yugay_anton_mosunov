@@ -1,4 +1,5 @@
 from django.urls import path
+from vacancies.views.base import VacanciesIndexView
 # from posts.views.posts import PostCreateView, PostLikeView, CommentCreateView, PostView, PostUpdateView, PostDeleteView
 # from posts.views.base import PostsIndexView
 

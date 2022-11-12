@@ -6,14 +6,20 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="{% url 'index' %}"><img id="panelpic" src="{% static 'images/hh-logo.png' %}" alt="instagram logo on nav-bar " style="width:53px; height:30px;margin-top:5px;margin-left:26px;border-right:1px solid;padding-right: 23px; "></a>
+      <a class="navbar-brand" href="{% url 'register' %}"><img id="panelpic" src="{% static 'images/hh-logo.png' %}" alt="instagram logo on nav-bar " style="width:53px; height:30px;margin-top:5px;margin-left:26px;border-right:1px solid;padding-right: 23px; "></a>
 
 
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
             <li class="nav-item" >
-                <a class="nav-link" href="{% url 'profile' user.pk %}">Регистрация</a>
+                <a class="nav-link" href="{% url 'register' %}">Регистрация</a>
+            </li>
+            <li class="nav-item" >
+                <a class="nav-link" href="{% url 'logout' %}">Выход</a>
+            </li>
+            <li class="nav-item" >
+                <a class="nav-link" href="{% url 'login' %}">Вход</a>
             </li>
         </ul>
       </div>
