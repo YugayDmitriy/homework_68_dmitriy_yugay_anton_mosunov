@@ -62,8 +62,10 @@ class RegisterView(CreateView):
     # success_url = '/'
 
     def post(self, request, *args, **kwargs):
+        print('sdfgdsbdfndfngdhgdhj')
         form = self.form_class(request.POST, request.FILES)
         if form.is_valid():
+            print('111111111111111')
             account = form.save()
             login(request, account)
             return redirect('profile', pk=account.pk)
