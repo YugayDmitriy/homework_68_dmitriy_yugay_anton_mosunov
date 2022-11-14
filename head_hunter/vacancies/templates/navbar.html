@@ -27,7 +27,8 @@
             {% if user.is_authenticated %}
               <li class="nav-item" >
                   <a class="nav-link" href="{% url 'profile' user.pk %}">
-                      <i class="material-icons" style="font-size:25px;">account_circle</i>
+                      <img style="width: 40px; height: 40px" src="{{request.user.avatar.url}}">
+
                   </a>
               </li>
           {% endif %}
