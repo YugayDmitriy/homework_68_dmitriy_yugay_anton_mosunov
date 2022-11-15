@@ -6,6 +6,14 @@ from django.utils.deconstruct import deconstructible
 
 
 class Course(models.Model):
+    resume = models.ForeignKey(
+        verbose_name='Резюме',
+        to='resumes.Resume',
+        related_name='cources',
+        null=True,
+        blank=False,
+        on_delete=models.CASCADE
+    )
     course_name = models.CharField(
         verbose_name='Полученная специальность',
         max_length=200,

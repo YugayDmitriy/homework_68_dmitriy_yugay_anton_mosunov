@@ -5,7 +5,7 @@ from resumes.models import Resume, Profession, Experience, Education, Course
 
 class ResumeForm(forms.ModelForm):
     profession = forms.ModelChoiceField(
-        label='Пол',
+        label='Выберите профессию',
         queryset=Profession.objects.all(),
     )
 
@@ -36,8 +36,8 @@ class EducationForm(forms.ModelForm):
         label='Информация о себе',
         widget=forms.Textarea(attrs={'name': 'body', 'rows': 5, 'cols': 21})
     )
-    education_begin = forms.DateField(label='Начало работы', widget=forms.SelectDateWidget)
-    education_end = forms.DateField(label='Окончание работы', widget=forms.SelectDateWidget)
+    education_begin = forms.DateField(label='Начало обучения', widget=forms.SelectDateWidget)
+    education_end = forms.DateField(label='Окончание обучения', widget=forms.SelectDateWidget)
 
     class Meta:
         model = Education

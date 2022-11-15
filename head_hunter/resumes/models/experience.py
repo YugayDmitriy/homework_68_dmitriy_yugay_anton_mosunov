@@ -6,6 +6,14 @@ from django.utils.deconstruct import deconstructible
 
 
 class Experience(models.Model):
+    resume = models.ForeignKey(
+        verbose_name='Резюме',
+        to='resumes.Resume',
+        related_name='experience',
+        null=True,
+        blank=False,
+        on_delete=models.CASCADE
+    )
     work_begin = models.DateField(
         verbose_name='Начало работы',
         max_length=200,

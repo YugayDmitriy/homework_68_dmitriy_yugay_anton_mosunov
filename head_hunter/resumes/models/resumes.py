@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
@@ -6,14 +7,21 @@ from django.utils.deconstruct import deconstructible
 
 
 class Resume(models.Model):
+    author = models.ForeignKey(
+        verbose_name='Автор резюме',
+        to=get_user_model(),
+        related_name='resumes',
+        null=True,
+        blank=False,
+        on_delete=models.CASCADE
+    )
     profession = models.ForeignKey(
         to='resumes.Profession',
         verbose_name='Профессия',
         related_name='resumes',
         null=True,
         blank=False,
-        on_delete=models.CASCADE,
-        validators=[MinLengthValidator(0)],
+        on_delete=models.CASCADE
     )
     job_title = models.CharField(
         verbose_name='Должность',
@@ -59,27 +67,6 @@ class Resume(models.Model):
         max_length=200,
         null=True,
         blank=False
-    )
-    place_of_work = models.ForeignKey(
-        to='resumes.Experience',
-        verbose_name='Место работы',
-        related_name='resumes',
-        null=True,
-        on_delete=models.CASCADE
-    )
-    educational_institution = models.ForeignKey(
-        to='resumes.Education',
-        verbose_name='Учебное заведение',
-        related_name='resumes',
-        null=True,
-        on_delete=models.CASCADE
-    )
-    courses = models.ForeignKey(
-        to='resumes.Course',
-        verbose_name='Курсы',
-        related_name='resumes',
-        null=True,
-        on_delete=models.CASCADE
     )
     is_deleted = models.BooleanField(verbose_name='Удалено', default=False, null=False)
     created_at = models.DateTimeField(verbose_name='Дата создания', auto_now_add=True)

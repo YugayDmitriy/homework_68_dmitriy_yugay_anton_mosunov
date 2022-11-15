@@ -6,6 +6,14 @@ from django.utils.deconstruct import deconstructible
 
 
 class Education(models.Model):
+    resume = models.ForeignKey(
+        verbose_name='Резюме',
+        to='resumes.Resume',
+        related_name='education',
+        null=True,
+        blank=False,
+        on_delete=models.CASCADE
+    )
     education_begin = models.DateField(
         verbose_name='Начало обучения',
         max_length=200,
