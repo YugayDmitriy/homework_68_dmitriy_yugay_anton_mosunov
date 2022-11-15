@@ -13,6 +13,8 @@ from accounts.forms import CustomUserCreationForm, UserChangeForm, PasswordChang
 
 from accounts.models import Account
 
+from resumes.models import Resume
+
 
 # from accounts.forms import UserChangeForm
 # from posts.models import Post
@@ -81,8 +83,9 @@ class ProfileView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # reviews = Review.objects.filter(is_deleted=False, author=self.request.user)
-        # context['reviews'] = reviews
+        account = self.object
+        resumes = Resume.objects.filter(author=account)
+        context['resumes'] = resumes
         return context
 
 

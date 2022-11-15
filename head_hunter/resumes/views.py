@@ -1,6 +1,6 @@
 from django.shortcuts import redirect
 from django.urls import reverse
-from django.views.generic import CreateView
+from django.views.generic import CreateView, TemplateView
 
 from resumes.forms import ResumeForm
 
@@ -26,18 +26,19 @@ class ResumeCreateView(CreateView):
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST, request.FILES)
+        print(request.POST)
         if form.is_valid():
-            resume = Resume.objects.update(profession=request.POST['profession'],
-                                           job_title=request.POST['job_title'],
-                                           salary_level=request.POST['salary_level'],
-                                           about_user=request.POST['about_user'],
-            email=request.POST['email'],
-            phone=request.POST['phone'],
-            telegram_link=request.POST['telegram_link'],
-            linkedin_link=request.POST['linkedin_link'],
-            facebook_link=request.POST['facebook_link'])
-            # form.instance.author_id = self.kwargs['pk']
-            # form.save()
+            resume = Resume.objects.last()
+            resume.profession_id = request.POST['profession']
+            resume.job_title = request.POST['job_title']
+            resume.salary_level = request.POST['salary_level']
+            resume.about_user = request.POST['about_user']
+            resume.email = request.POST['email']
+            resume.phone = request.POST['phone']
+            resume.telegram_link = request.POST['telegram_link']
+            resume.linkedin_link = request.POST['linkedin_link']
+            resume.facebook_link = request.POST['facebook_link']
+            resume.save()
             return redirect('profile', pk=self.kwargs['pk'])
         context = {}
         context['form'] = form
@@ -102,3 +103,14 @@ class ResumeCreateCourseView(CreateView):
         Course.objects.create(resume=resume, course_name=course_name)
         context = {}
         return self.render_to_response(context)
+
+
+# class ResumeUpdateDateView(TemplateView):
+#     model = Resume
+#
+#     def post(self, request, *args, **kwargs):
+#         course_name = request.POST['course_name']
+#         resume = Resume.objects.last()
+#         Course.objects.update(resume=resume, course_name=course_name)
+#         context = {}
+#         return self.render_to_response(context)

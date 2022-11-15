@@ -38,6 +38,33 @@
                   </div>
                  <hr>
 
+<!--                <div class="row justify-content-between">-->
+<!--                    {% for resume in resumes %}-->
+<!--                        <div class="col-sm-6">-->
+<!--                            <div class="card">-->
+<!--                                <div class="card-body">-->
+<!--                                    <h5 class="card-title">{{ resume.job_title }}</h5>-->
+<!--                                    <p class="card-text">{{ resume.changed_at }}</p>-->
+<!--                                    <form action="{% url 'resume_date_update' resume.pk %}" method="POST" enctype="multipart/form-data">-->
+<!--                                        {% csrf_token %}-->
+<!--                                        {resume.pk}-->
+<!--                                        <div id="container">-->
+<!--                                            <button type="button" class="btn btn-primary">Обновить</button>-->
+<!--                                        </div>-->
+<!--                                    </form>-->
+
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    {% endfor %}-->
+<!--              </div>-->
+
+
+
+      </div>
+
+  </div>
+
 
 
 {% endblock %}

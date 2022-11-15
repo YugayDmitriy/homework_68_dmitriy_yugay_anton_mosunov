@@ -76,6 +76,5 @@ class Resume(models.Model):
 
     def __str__(self):
         return f'{self.profession} {self.job_title} {self.salary_level} {self.about_user} {self.email} ' \
-               f'{self.telegram_link} {self.Linkedin_link} {self.facebook_link} ' \
-               f'{self.place_of_work} {self.educational_institution}'
+               f'{self.telegram_link} {self.linkedin_link} {self.facebook_link} '
 
