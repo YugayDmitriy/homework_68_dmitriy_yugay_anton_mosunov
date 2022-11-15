@@ -1,7 +1,7 @@
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.generic import CreateView, TemplateView
-
+from datetime import datetime
 from resumes.forms import ResumeForm
 
 from resumes.models import Resume
@@ -109,8 +109,19 @@ class ResumeCreateCourseView(CreateView):
 #     model = Resume
 #
 #     def post(self, request, *args, **kwargs):
-#         course_name = request.POST['course_name']
-#         resume = Resume.objects.last()
-#         Course.objects.update(resume=resume, course_name=course_name)
-#         context = {}
-#         return self.render_to_response(context)
+#         resume = Resume.objects.get(id=kwargs['pk'])
+#         resume.changed_at = datetime.now()
+#         return redirect('profile', pk=request.user.pk)
+
+
+class ResumePublicView(TemplateView):
+    model = Resume
+
+    def post(self, request, *args, **kwargs):
+        resume = Resume.objects.get(id=kwargs['pk'])
+        if resume.is_public:
+            resume.is_public = False
+        else:
+            resume.is_public = True
+            resume.save()
+        return redirect('profile', pk=request.user.pk)
