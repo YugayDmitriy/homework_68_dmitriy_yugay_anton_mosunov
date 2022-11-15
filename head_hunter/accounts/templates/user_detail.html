@@ -40,13 +40,18 @@
 
                 <div class="row justify-content-between">
                     {% for resume in resumes %}
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ resume.profession }}</h5>
                                     <p class="card-text">{{ resume.job_title }}</p>
                                     <p class="card-text">{{ resume.changed_at }}</p>
-<!---->
+                                    <form action="{% url 'resume_date_update' resume.pk %}" method="POST">
+                                        {% csrf_token %}
+                                        <div id="container">
+                                            <button type="submit" class="btn btn-primary">Обновить</button>
+                                        </div>
+                                    </form>
 
                                     <form action="{% url 'resume_public' resume.pk %}" method="POST">
                                         {% csrf_token %}

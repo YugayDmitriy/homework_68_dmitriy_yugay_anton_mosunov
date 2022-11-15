@@ -105,13 +105,14 @@ class ResumeCreateCourseView(CreateView):
         return self.render_to_response(context)
 
 
-# class ResumeUpdateDateView(TemplateView):
-#     model = Resume
-#
-#     def post(self, request, *args, **kwargs):
-#         resume = Resume.objects.get(id=kwargs['pk'])
-#         resume.changed_at = datetime.now()
-#         return redirect('profile', pk=request.user.pk)
+class ResumeUpdateDateView(TemplateView):
+    model = Resume
+
+    def post(self, request, *args, **kwargs):
+        resume = Resume.objects.get(id=kwargs['pk'])
+        resume.changed_at = datetime.now()
+        resume.save()
+        return redirect('profile', pk=request.user.pk)
 
 
 class ResumePublicView(TemplateView):
