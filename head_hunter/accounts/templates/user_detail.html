@@ -40,25 +40,37 @@
 
                 <div class="row justify-content-between">
                     {% for resume in resumes %}
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ resume.profession }}</h5>
                                     <p class="card-text">{{ resume.job_title }}</p>
                                     <p class="card-text">{{ resume.changed_at }}</p>
-                                    <form action="{% url 'resume_date_update' resume.pk %}" method="POST">
-                                        {% csrf_token %}
-                                        <div id="container">
-                                            <button type="submit" class="btn btn-primary">Обновить</button>
-                                        </div>
-                                    </form>
 
-                                    <form action="{% url 'resume_public' resume.pk %}" method="POST">
-                                        {% csrf_token %}
-                                        <div id="container">
-                                            <button type="submit" class="btn btn-primary">Не публиковать</button>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <form action="{% url 'resume_date_update' resume.pk %}" method="POST">
+                                                {% csrf_token %}
+                                                <div id="container">
+                                                    <button type="submit" class="btn btn-primary">Обновить</button>
+                                                </div>
+                                            </form>
                                         </div>
-                                    </form>
+                                        <div class="col-4">
+                                            <form action="{% url 'resume_public' resume.pk %}" method="POST">
+                                                {% csrf_token %}
+                                                <div id="container">
+                                                    {% if resume.is_public %}
+                                                    <button type="submit" id="public" class="btn btn-primary">Не публиковать</button>
+                                                    {% else%}
+                                                    <button type="submit" id="publicP" class="btn btn-primary">Опубликовать</button>
+                                                    {% endif %}
+                                                </div>
+                                            </form>
+                                        </div>
+
+
+                                    </div>
 
                                 </div>
                             </div>
@@ -72,6 +84,6 @@
 
   </div>
 
-
+<script type="text/javascript" src="{% static 'js/user-detail-switch_button.js' %}"></script>
 
 {% endblock %}

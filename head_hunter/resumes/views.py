@@ -120,9 +120,14 @@ class ResumePublicView(TemplateView):
 
     def post(self, request, *args, **kwargs):
         resume = Resume.objects.get(id=kwargs['pk'])
+        print(f'было {resume.is_public}')
         if resume.is_public:
             resume.is_public = False
-        else:
+            print(f'стало {resume.is_public}')
+            resume.save()
+            return redirect('profile', pk=request.user.pk)
+        if not resume.is_public:
             resume.is_public = True
+            print(f'стало {resume.is_public}')
             resume.save()
         return redirect('profile', pk=request.user.pk)
