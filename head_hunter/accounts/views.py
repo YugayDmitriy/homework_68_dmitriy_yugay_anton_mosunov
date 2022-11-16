@@ -96,9 +96,11 @@ class UserChangeView(UpdateView):
     context_object_name = 'user_obj'
 
     def get_context_data(self, **kwargs):
-        if 'profile_form' not in kwargs:
-            kwargs['profile_form'] = self.get_profile_form()
-        return super().get_context_data()
+        # if 'profile_form' not in kwargs:
+        #     kwargs['profile_form'] = self.get_profile_form()
+        context = super(UserChangeView, self).get_context_data(**kwargs)
+        context['form'] = UserChangeForm(instance=self.object)
+        return context
 
     def get_profile_form(self):
         form_kwargs = {'instance': self.object}

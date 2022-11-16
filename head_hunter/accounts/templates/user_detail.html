@@ -40,7 +40,7 @@
 
                 <div class="row justify-content-between">
                     {% for resume in resumes %}
-                        <div class="col-sm-6">
+                        <div class="col-sm-6" style="margin-top: 20px">
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ resume.profession }}</h5>
@@ -69,9 +69,15 @@
                                             </form>
                                         </div>
 
-
+                                        <div class="col-4">
+                                            <form action="{% url 'resume_edit' resume.pk %}" method="POST">
+                                                {% csrf_token %}
+                                                <div id="container">
+                                                    <button type="submit" class="btn btn-primary">Редактировать</button>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>

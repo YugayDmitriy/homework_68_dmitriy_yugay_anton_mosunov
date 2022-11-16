@@ -19,8 +19,10 @@ class ResumeForm(forms.ModelForm):
 
 
 class ExperienceForm(forms.ModelForm):
+    company = forms.CharField(label='Название компании', required=False)
+    job_title = forms.CharField(label='Позиция', required=False, )
     responsibilities = forms.CharField(
-        label='Рабочие обязанности',
+        label='Рабочие обязанности', required=False,
         widget=forms.Textarea(attrs={'name': 'body', 'rows': 5, 'cols': 21})
     )
     work_begin = forms.DateField(label='Начало работы', widget=forms.SelectDateWidget)

@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+    <h2 style="margin: 30px auto">Создание резюме</h2><div>
+    <div id="resume" style="display: none">{{ resume.pk }}</div>
+    {{ resume.pk }}
+    <form action="{% url 'resume_edit' resume.pk %}" method="POST" enctype="multipart/form-data">
+     {% csrf_token %}
+        <div class="form" >
+            <div id="container">
+                <input id="add-modal-work" type="button" value="добавить опыт работы">
+            </div>
+
+            <div id="myModal" class="modal" style="display: none; width: 100%; height: 100%; background-color: #bbbbbb; z-index: 1; overflow: auto">
+                <div class="modal-content" style="background-color: white; margin: 10% auto; padding: 20px; width: 80%; border: 1px solid#888">
+                    <h2 style="margin: 30px auto">Место работы</h2><div>
+
+                        <form action="" method="POST" enctype="multipart/form-data">
+                         {% csrf_token %}
+                            <div class="form" id="form-work">
+                                {% bootstrap_form experience_form %}
+                                <button id="save-work" type="button" class="btn btn-primary">Сохранить</button>
+                            </div>
+                            <div id="container">
+                                <input id="btn-close-work" type="button" value="Закрыть">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="container">
+                <input id="add-modal-education" type="button" value="добавить инфо об образовании">
+            </div>
+
+            <div id="myModalEducation" class="modal" style="display: none; width: 100%; height: 100%; background-color: #bbbbbb; z-index: 1; overflow: auto">
+                <div class="modal-content" style="background-color: white; margin: 10% auto; padding: 20px; width: 80%; border: 1px solid#888">
+                    <h2 style="margin: 30px auto">Образование</h2><div>
+                        <form action="" method="POST" enctype="multipart/form-data">
+                         {% csrf_token %}
+                            <div class="form" id="form-education">
+                                {% bootstrap_form education_form %}
+                                <button id="save-education" type="button" class="btn btn-primary">Сохранить</button>
+                            </div>
+                            <div id="container">
+                                <input id="btn-close-education" type="button" value="Закрыть">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="container">
+                <input id="add-modal-courses" type="button" value="добавить инфо о доп. курсах">
+            </div>
+
+            <div id="myModalCourse" class="modal" style="display: none; width: 100%; height: 100%; background-color: #bbbbbb; z-index: 1; overflow: auto">
+                <div class="modal-content" style="background-color: white; margin: 10% auto; padding: 20px; width: 80%; border: 1px solid#888">
+                    <h2 style="margin: 30px auto">Дополнительные курсы</h2><div>
+                        <form action="" method="POST" enctype="multipart/form-data">
+                         {% csrf_token %}
+                            <div class="form" id="form-course" >
+                                {% bootstrap_form course_form %}
+                                <button id="save-course" type="button" class="btn btn-primary">Сохранить</button>
+                            </div>
+                            <div id="container">
+                                <input id="btn-close-course" type="button" value="Закрыть">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+            {% bootstrap_form form %}
+            {% bootstrap_button button_type="submit" content='Создать резюме' %}
+        </div>
+    </form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.js"></script>
+<script type="text/javascript" src="{% static 'js/add-resume-forms-modal.js' %}"></script>
+
+
+{% endblock %}

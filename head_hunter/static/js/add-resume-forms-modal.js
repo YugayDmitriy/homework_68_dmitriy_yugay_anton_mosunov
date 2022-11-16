@@ -5,9 +5,11 @@ window.addEventListener('load', function() {
     buttonWork.on('click', function(evt) {
         modalWork[0].style.display = "block";
     });
-
+    let pk = $("#resume").text();
     let buttonSaveWorkForm= $('#save-work');
     buttonSaveWorkForm.on('click', function(evt) {
+
+        console.log($("#resume").text())
         modalWork[0].style.display = "none";
         evt.preventDefault();
         $.ajax({
@@ -24,7 +26,7 @@ window.addEventListener('load', function() {
             },
             success: function(data) {
 
-                alert('A book has been create!')
+                alert('Опыт работы добавлен!')
             }
         })
     });
@@ -61,7 +63,7 @@ window.addEventListener('load', function() {
             },
             success: function(data) {
 
-                alert('A book has been create!')
+                alert('Сведения об образовании добавлены!')
             }
         })
     });
@@ -95,7 +97,7 @@ window.addEventListener('load', function() {
             },
             success: function(data) {
 
-                alert('A book has been create!')
+                alert('Сведения о курсах добавлены!')
             }
         })
     });
