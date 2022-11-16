@@ -6,6 +6,7 @@
 <br>
 <br>
 <article class="media">
+                {% if user_obj.user_category == 'employer' %}
                   <div class="row justify-content-center ">
                       <div class="col-3">
                           <div class="photo-avatar" style="width: 200px; height: 200px;">
@@ -14,14 +15,42 @@
 
                           </div>
                        </div>
-
                       <div class="col-7">
                           <div class="row ">
                               <div class="col-3">
                                   <h1 class="user-header" style="font-weight: normal;">
                                       {{ user_obj.username }}</h1>
                               </div>
+                              {% if request.user == user_obj %}
+                                  <div class="col-3 ">
+                                      <form action="{% url 'change' user_obj.pk %}" method="POST">
+                                          {% csrf_token %}
+                                          {% bootstrap_button button_type="submit" content='Редактировать профиль' %}
+                                      </form>
+                                  </div>
+                              {% endif %}
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-2 text-center">
+                      <a href="{% url 'create_vacancy' user_obj.pk %}"><button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Создать вакансию</button></a>
+                  </div>
+                 <hr>
+                {% elif user_obj.user_category == 'applicant' %}
+                <div class="row justify-content-center ">
+                      <div class="col-3">
+                          <div class="photo-avatar" style="width: 200px; height: 200px;">
 
+                              <img class="is-rounded" style="display: block; max-width: 100%;" src="{{ user_obj.avatar.url }}">
+
+                          </div>
+                       </div>
+                      <div class="col-7">
+                          <div class="row ">
+                              <div class="col-3">
+                                  <h1 class="user-header" style="font-weight: normal;">
+                                      {{ user_obj.username }}</h1>
+                              </div>
                               {% if request.user == user_obj %}
                                   <div class="col-3 ">
                                       <form action="{% url 'change' user_obj.pk %}" method="POST">
@@ -37,8 +66,31 @@
                       <a href="{% url 'resume_create' user_obj.pk %}"><button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Создать резюме</button></a>
                   </div>
                  <hr>
-
+                {% endif %}
                 <div class="row justify-content-between">
+                
+                
+                
+                
+                
+                    {% for vacancy in vacancies %}
+                        <div class="col-sm-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ vacancy.title }}</h5>
+                                    <p class="card-text">{{ vacancy.salary_level }}</p>
+                                    <p class="card-text">{{ vacancy.changed_at }}</p>
+                                    <form action="{% url 'resume_date_update' vacancy.pk %}" method="POST">
+                                        {% csrf_token %}
+                                        <div id="container">
+                                            <button type="submit" class="btn btn-primary">Обновить</button>
+                                        </div>
+                                    </form>
+
+                                    <form action="{% url 'resume_public' vacancy.pk %}" method="POST">
+                                        {% csrf_token %}
+                                        <div id="container">
+                                            <button type="submit" class="btn btn-primary">Не публиковать</button>
                     {% for resume in resumes %}
                         <div class="col-sm-6" style="margin-top: 20px">
                             <div class="card">
@@ -67,6 +119,12 @@
                                                     {% endif %}
                                                 </div>
                                             </form>
+
+
+
+
+
+
                                         </div>
 
                                         <div class="col-4">
