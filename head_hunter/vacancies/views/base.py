@@ -55,7 +55,7 @@ class ResumesIndexView(ListView):
         return None
 
     def get_queryset(self):
-        queryset = super().get_queryset().exclude(is_deleted=True).order_by('-created_at')
+        queryset = super().get_queryset().exclude(is_deleted=True).exclude(is_public=False).order_by('-created_at')
         if self.search_value:
             queryset = Resume.objects.filter(Q(title_job__icontains=self.search_value).order_by('-created_at'))
         return queryset
