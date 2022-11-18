@@ -5,6 +5,8 @@ from accounts.models import Account
 from vacancies.models.vacancies import Vacancy
 from vacancies.forms import VacancyForm
 
+from resumes.models import Resume
+
 
 # from django.db.models import Q
 # from posts.models import Post
@@ -22,10 +24,14 @@ class VacanciesIndexView(ListView):
     model = Account
     context_object_name = 'vacancies'
 
-    def get_context_data(self, *, object_list=None, **kwargs):
+    def get_context_data(self, *, request, object_list=None, **kwargs):
         context = super(VacanciesIndexView, self).get_context_data(object_list=object_list, **kwargs)
-        vacancies = Account.objects.all().order_by('-created_at')
-        context['vacancies'] = vacancies
+        if request.user.user_category == 'emoloyer':
+            vacancies = Vacancy.objects.all().order_by('-created_at')
+            context['vacancies'] = vacancies
+        elif request.user.user_category == 'applicant':
+            resumes = Resume.objects.all().order_by('-created_at')
+            context['resumes'] = resumes
         return context
 
 

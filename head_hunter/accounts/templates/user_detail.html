@@ -91,6 +91,13 @@
                                         {% csrf_token %}
                                         <div id="container">
                                             <button type="submit" class="btn btn-primary">Не публиковать</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
                     {% for resume in resumes %}
                         <div class="col-sm-6" style="margin-top: 20px">
                             <div class="card">
@@ -119,12 +126,6 @@
                                                     {% endif %}
                                                 </div>
                                             </form>
-
-
-
-
-
-
                                         </div>
 
                                         <div class="col-4">
