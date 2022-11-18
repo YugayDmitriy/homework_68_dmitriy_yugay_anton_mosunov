@@ -2,8 +2,10 @@ from django.urls import path
 from resumes.views import ResumeCreateView, ResumeCreateExperienceView, ResumeCreateEducationView, \
     ResumeCreateCourseView, ResumePublicView, ResumeUpdateDateView, ResumeEditView
 
+from vacancies.views.base import ResumesIndexView
 
 urlpatterns = [
+    path('resumes/<int:pk>', ResumesIndexView.as_view(), name='index_resumes'),
     path('<int:pk>/create', ResumeCreateView.as_view(), name='resume_create'),
     path('<int:pk>/create/experience/', ResumeCreateExperienceView.as_view(), name='resume_experience_create'),
     path('<int:pk>/create/education/', ResumeCreateEducationView.as_view(), name='resume_education_create'),

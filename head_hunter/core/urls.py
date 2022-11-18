@@ -7,7 +7,7 @@ from django.conf import settings
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include('vacancies.urls')),
-    path("resumes/", include('resumes.urls')),
+    path("", include('resumes.urls')),
     path("auth/", include('accounts.urls')),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
