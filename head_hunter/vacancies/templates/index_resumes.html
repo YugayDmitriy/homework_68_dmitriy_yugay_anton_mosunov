@@ -13,9 +13,8 @@
                 <h5 class="card-header">{{ resume.job_title }}</h5>
                     <div class="card-body">
                         <h5 class="card-title">{{ resume.salary_level }}</h5>
-                        <p class="card-text">{{ vacancy.text }}</p>
-                        <p class="card-text">{{ vacancy.changed_at }}</p>
-                    <a href="#" class="btn btn-primary">Подробности</a>
+                        <p class="card-text">{{ resume.changed_at }}</p>
+                    <a href="{% url 'resume_detail' resume.pk %}" class="btn btn-primary">Подробности</a>
                     <a href="#">{{ resume.author }}</a>
                 </div>
             </div>

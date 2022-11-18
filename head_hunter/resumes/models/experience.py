@@ -50,5 +50,5 @@ class Experience(models.Model):
     changed_at = models.DateTimeField(verbose_name='Дата изменения', auto_now=True)
 
     def __str__(self):
-        return f'{self.company} {self.profession} {self.job_title} {self.salary_level} {self.work_begin} ' \
+        return f'{self.company}{self.job_title} {self.work_begin} ' \
                f'{self.work_end} {self.responsibilities}'

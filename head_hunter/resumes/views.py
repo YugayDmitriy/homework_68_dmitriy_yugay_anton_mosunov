@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse
-from django.views.generic import CreateView, TemplateView, UpdateView
+from django.views.generic import CreateView, TemplateView, UpdateView, DetailView
 from datetime import datetime
 
 from resumes.models import Resume, Experience, Education, Course
@@ -139,3 +139,20 @@ class ResumeEditView(UpdateView):
 
     def get_success_url(self, request):
         return reverse('profile', kwargs={'pk': self.object.author})
+
+
+class ResumeDetailView(DetailView):
+    template_name = 'resume_detail.html'
+    model = Resume
+    context_object_name = 'resume'
+
+    def get_context_data(self,  **kwargs):
+        context = super(ResumeDetailView, self).get_context_data(**kwargs)
+        experiences = Experience.objects.filter(resume_id=self.object.pk)
+        education = Education.objects.filter(resume_id=self.object.pk)
+        courses = Course.objects.filter(resume_id=self.object.pk)
+        # context['comment_form'] = CommentForm()
+        context['experiences'] = experiences
+        context['education'] = education
+        context['courses'] = courses
+        return context

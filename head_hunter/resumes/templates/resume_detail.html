@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static%}
+{% load django_bootstrap5 %}
+{% block content %}
+{{block.super}}
+    {% if request.user.is_authenticated %}
+        <h2>{{ resume.job_title }}</h2>
+        <h3>{{ resume.author.username }}</h3>
+        <h3>{{ resume.profession }}</h3>
+        <p>{{ resume.phone }}</p>
+        <p>{{ resume.telegram_link }}</p>
+        <p>{{ resume.linkedin_link }}</p>
+        <p>{{ resume.facebook_link }}</p>
+
+        <h2>Опыт работы</h2>
+        {% for experience in experiences %}
+            {{ experience.company}}
+        {% endfor %}
+
+        <h2>Образование</h2>
+        {% for educ in education %}
+            {{ educ.educational_institution_name}}
+        {% endfor %}
+        <h2>Образовательные курсы</h2>
+        {% for course in courses %}
+            {{ course.course_name}}
+        {% endfor %}
+    <p></p>
+    {% endif %}
+{% endblock %}
