@@ -22,12 +22,17 @@ from resumes.models import Resume
 class VacanciesIndexView(ListView):
     template_name = 'index.html'
     model = Vacancy
+    model = Resume
     context_object_name = 'vacancies'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(VacanciesIndexView, self).get_context_data(object_list=object_list, **kwargs)
-        vacancies = Vacancy.objects.all().order_by('-created_at')
-        context['vacancies'] = vacancies
+        if self.request.user.user_category == 'applicant':
+            vacancies = Vacancy.objects.all().order_by('-created_at')
+            context['vacancies'] = vacancies
+        elif self.request.user.user_category == 'employer':
+            resumes = Resume.objects.all().order_by('-created_at')
+            context['resumes'] = resumes
         return context
 
 
