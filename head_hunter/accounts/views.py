@@ -15,6 +15,8 @@ from accounts.models import Account
 
 from resumes.models import Resume
 
+from vacancies.models.vacancies import Vacancy
+
 
 # from accounts.forms import UserChangeForm
 # from posts.models import Post
@@ -85,7 +87,9 @@ class ProfileView(LoginRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
         account = self.object
         resumes = Resume.objects.filter(author=account)
+        vacancies = Vacancy.objects.filter(author=account)
         context['resumes'] = resumes
+        context['vacancies'] = vacancies
         return context
 
 

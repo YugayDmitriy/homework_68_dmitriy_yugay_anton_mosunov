@@ -27,3 +27,7 @@ class VacancyForm(forms.ModelForm):
     class Meta:
         model = Vacancy
         fields = ('title', 'salary_level', 'text', 'experience', 'specialization')
+
+
+class SearchForm(forms.Form):
+    search = forms.CharField(max_length=100, required=False, label='Найти')

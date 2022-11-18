@@ -6,6 +6,12 @@
 
 {% if request.user.is_authenticated %}
 
+    <div class="row justify-content-center">
+        <div class="col-5 search-form">
+            {% include 'partials/search.html' %}
+        </div>
+    </div>
+
     {% if request.user.user_category == 'applicant' %}
         <h2 style="margin: 50px; text-align: center">Список вакансий</h2>
         {% for vacancy in vacancies %}
@@ -15,8 +21,8 @@
                         <h5 class="card-title">{{ vacancy.salary_level }}</h5>
                         <p class="card-text">{{ vacancy.text }}</p>
                         <p class="card-text">{{ vacancy.changed_at }}</p>
-                    <a href="#" class="btn btn-primary">Подробности</a>
-                    <a href="#">{{ vacancy.author }}</a>
+                    <a href="#" class="btn btn-primary">Подробности о вакансии</a>
+                    <a href="#">Подробнее о {{ vacancy.author.username }}</a>
                 </div>
             </div>
         {% endfor %}

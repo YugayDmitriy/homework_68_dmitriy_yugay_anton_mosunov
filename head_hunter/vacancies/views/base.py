@@ -1,23 +1,13 @@
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.generic import ListView, CreateView
-from accounts.models import Account
-from vacancies.models.vacancies import Vacancy
-from vacancies.forms import VacancyForm
+from django.db.models import Q
+from urllib.parse import urlencode
 
 from resumes.models import Resume
+from vacancies.models.vacancies import Vacancy
+from vacancies.forms import VacancyForm, SearchForm
 
-
-# from django.db.models import Q
-# from posts.models import Post
-#
-# from accounts.forms import SearchForm
-#
-# from accounts.models import Account
-#
-# from accounts.forms import CommentForm
-#
-# from posts.models import Comment
 
 class VacanciesIndexView(ListView):
     template_name = 'index_vacancy.html'
@@ -28,13 +18,24 @@ class VacanciesIndexView(ListView):
         if self.request.user.user_category == 'employer' or self.request.user == 'root':
             return redirect('index_resumes', pk=self.request.user.pk)
         else:
-            return super().get(request, *args, **kwargs)
+            self.form = SearchForm(self.request.GET)
+            self.search_value = self.get_search_value()
+        return super().get(request, *args, **kwargs)
+
+    def get_search_value(self):
+        if self.form.is_valid():
+            return self.form.cleaned_data.get('search')
+        return None
+
+    def get_queryset(self):
+        queryset = super().get_queryset().exclude(is_deleted=True)
+        if self.search_value:
+            queryset = Vacancy.objects.filter(title__icontains=self.search_value)
+        return queryset
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(VacanciesIndexView, self).get_context_data(object_list=object_list, **kwargs)
-        if self.request.user.user_category == 'applicant':
-            vacancies = Vacancy.objects.all().order_by('-created_at')
-            context['vacancies'] = vacancies
+        context['form'] = self.form
         return context
 
 
@@ -43,11 +44,25 @@ class ResumesIndexView(ListView):
     model = Resume
     context_object_name = 'resumes'
 
+    def get(self, request, *args, **kwargs):
+        self.form = SearchForm(self.request.GET)
+        self.search_value = self.get_search_value()
+        return super().get(request, *args, **kwargs)
+
+    def get_search_value(self):
+        if self.form.is_valid():
+            return self.form.cleaned_data.get('search')
+        return None
+
+    def get_queryset(self):
+        queryset = super().get_queryset().exclude(is_deleted=True).order_by('-created_at')
+        if self.search_value:
+            queryset = Resume.objects.filter(Q(title_job__icontains=self.search_value).order_by('-created_at'))
+        return queryset
+
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ResumesIndexView, self).get_context_data(object_list=object_list, **kwargs)
-        if self.request.user.user_category == 'employer':
-            resumes = Resume.objects.all().order_by('-created_at')
-            context['resumes'] = resumes
+        context['form'] = self.form
         return context
 
 
