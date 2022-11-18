@@ -75,21 +75,12 @@ class VacancyCreateView(CreateView):
         form = self.form_class(request.POST, request.FILES)
         print(request.POST)
         if form.is_valid():
-            vacancy = Vacancy.objects.last()
-            vacancy.title = request.POST['title']
-            vacancy.salary_level = request.POST['salary_level']
-            vacancy.text = request.POST['text']
-            vacancy.experience_id = request.POST['experience']
-            vacancy.specialization_id = request.POST['specialization']
-            vacancy.save()
+            form.instance.author_id = self.kwargs['pk']
+            post = form.save()
             return redirect('profile', pk=self.kwargs['pk'])
         context = {}
         context['form'] = form
         return self.render_to_response(context)
-
-    def get(self, request, *args, **kwargs):
-        Vacancy.objects.create(author=request.user)
-        return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(VacancyCreateView, self).get_context_data(**kwargs)
