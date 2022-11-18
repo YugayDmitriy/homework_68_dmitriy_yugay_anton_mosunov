@@ -1,0 +1,51 @@
+<nav aria-label="...">
+    <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li class="page-item active">
+                <a class="page-link" href="?{% if query %}{{ query }}{% endif %}" tabindex="-1">Начало</a>
+            </li>
+
+            <li class="page-item active">
+                <a class="page-link" href="?{% if query %}{{ query }}{% endif %}&page={{ page_obj.previous_page_number }}" tabindex="-1">Назад</a>
+            </li>
+        {% else %}
+            <li class="page-item">
+                <a class="page-link" href="#" tabindex="-1">Начало</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#" tabindex="-1">Назад</a>
+            </li>
+        {% endif %}
+
+        {% for p in paginator.page_range %}
+            {% if page_obj.number == p %}
+                <li class="page-item active">
+                    <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+                </li>
+
+            {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li class="page-item active">
+                <a class="page-link" href="?{% if query %}{{ query }}{% endif %}page={{ page_obj.next_page_number }}">Далее</a>
+            </li>
+            <li class="page-item active">
+                <a class="page-link" href="?{% if query %}{{ query }}{% endif %}page={{ page_obj.paginator.num_pages }}" >Конец</a>
+            </li>
+        {% else %}
+            <li class="page-item ">
+                <a class="page-link" href="#">Далее</a>
+            </li>
+            <li class="page-item ">
+                <a class="page-link" href="#">Конец</a>
+            </li>
+        {% endif %}
+
+
+  </ul>
+</nav>

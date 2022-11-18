@@ -20,17 +20,32 @@ from resumes.models import Resume
 # from posts.models import Comment
 
 class VacanciesIndexView(ListView):
-    template_name = 'index.html'
+    template_name = 'index_vacancy.html'
     model = Vacancy
-    model = Resume
     context_object_name = 'vacancies'
+
+    def get(self, request, *args, **kwargs):
+        if self.request.user.user_category == 'employer' or self.request.user == 'root':
+            return redirect('index_resumes', pk=self.request.user.pk)
+        else:
+            return super().get(request, *args, **kwargs)
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(VacanciesIndexView, self).get_context_data(object_list=object_list, **kwargs)
         if self.request.user.user_category == 'applicant':
             vacancies = Vacancy.objects.all().order_by('-created_at')
             context['vacancies'] = vacancies
-        elif self.request.user.user_category == 'employer':
+        return context
+
+
+class ResumesIndexView(ListView):
+    template_name = 'index_resumes.html'
+    model = Resume
+    context_object_name = 'resumes'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ResumesIndexView, self).get_context_data(object_list=object_list, **kwargs)
+        if self.request.user.user_category == 'employer':
             resumes = Resume.objects.all().order_by('-created_at')
             context['resumes'] = resumes
         return context
