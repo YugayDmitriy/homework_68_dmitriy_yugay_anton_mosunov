@@ -1,9 +1,8 @@
+from datetime import datetime
 from django.shortcuts import redirect
 from django.urls import reverse
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, TemplateView, UpdateView, DetailView
 from django.db.models import Q
-from urllib.parse import urlencode
-
 from resumes.models import Resume
 from vacancies.models.vacancies import Vacancy
 from vacancies.forms import VacancyForm, SearchForm
@@ -92,3 +91,49 @@ class VacancyCreateView(CreateView):
 
     def get_success_url(self):
         return reverse('profile', kwargs={'pk': self.object.pk})
+
+
+class VacancyPublicView(TemplateView):
+    model = Vacancy
+
+    def post(self, request, *args, **kwargs):
+        vacancy = Vacancy.objects.get(id=kwargs['pk'])
+        if vacancy.is_public:
+            vacancy.is_public = False
+            vacancy.save()
+            return redirect('profile', pk=request.user.pk)
+        if not vacancy.is_public:
+            vacancy.is_public = True
+            vacancy.save()
+        return redirect('profile', pk=request.user.pk)
+
+
+class VacancyUpdateDateView(TemplateView):
+    model = Vacancy
+
+    def post(self, request, *args, **kwargs):
+        vacancy = Vacancy.objects.get(id=kwargs['pk'])
+        vacancy.changed_at = datetime.now()
+        vacancy.save()
+        return redirect('profile', pk=request.user.pk)
+
+
+class VacancyEditView(UpdateView):
+    template_name = 'vacancy_edit.html'
+    form_class = VacancyForm
+    model = Vacancy
+    context_object_name = 'vacancy'
+
+    def get_context_data(self, **kwargs):
+        context = super(VacancyEditView, self).get_context_data(**kwargs)
+        context['form'] = VacancyForm(instance=self.object)
+        return context
+
+    def get_success_url(self, request):
+        return redirect('profile', pk=self.request.user.pk)
+
+
+class VacancyDetailView(DetailView):
+    template_name = 'vacancy_detail.html'
+    model = Vacancy
+    context_object_name = 'vacancy'
