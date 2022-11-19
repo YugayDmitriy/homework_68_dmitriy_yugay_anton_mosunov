@@ -22,6 +22,11 @@ class VacanciesIndexView(ListView):
             self.search_value = self.get_search_value()
         return super().get(request, *args, **kwargs)
 
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect('login')
+        return super().dispatch(request, *args, **kwargs)
+
     def get_search_value(self):
         if self.form.is_valid():
             return self.form.cleaned_data.get('search')
@@ -73,7 +78,6 @@ class VacancyCreateView(CreateView):
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST, request.FILES)
-        print(request.POST)
         if form.is_valid():
             form.instance.author_id = self.kwargs['pk']
             post = form.save()

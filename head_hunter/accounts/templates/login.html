@@ -21,8 +21,13 @@
                         <button type="submit" class="btn btn-secondary btn-block">Войти</button>
                     </div>
                 </div>
+
             </div>
         </form>
+        <p>Если нет аккаунта, то зарегистрируйтесь</p>
+        <div class="col-2 text-center">
+            <a href="{% url 'register' %}"><button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Зарегистрироваться</button></a>
+        </div>
 
 
 {% endblock %}

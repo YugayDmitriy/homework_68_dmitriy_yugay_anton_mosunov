@@ -51,3 +51,14 @@ class CourseForm(forms.ModelForm):
     class Meta:
         model = Course
         fields = ('course_name', )
+
+
+class ResponseForm(forms.Form):
+    message = forms.CharField(max_length=3000, required=True, label='Сообщение',
+                              widget=forms.Textarea(attrs={'name': 'body', 'rows': 5, 'cols': 21}))
+
+    class Meta:
+        widgets = {
+            'message': forms.Textarea(attrs={'cols': 21, 'rows': 5}),
+        }
+        fields = ('message',)
