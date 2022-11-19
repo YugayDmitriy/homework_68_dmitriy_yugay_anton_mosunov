@@ -100,12 +100,7 @@
                                         {% endif%}
                                     </div>
                                 </form>
-                                <form action="{% url 'vacancy_edit' vacancy.pk %}" method="POST">
-                                    {% csrf_token %}
-                                    <div id="container">
-                                        <button type="submit" class="btn btn-primary">Редактировать</button>
-                                    </div>
-                                </form>
+                                <a href="{% url 'vacancy_edit' vacancy.pk %}"><button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Редактировать</button></a>
                             </div>
                         </div>
                     </div>
@@ -140,15 +135,8 @@
                                                 </div>
                                             </form>
                                         </div>
+                                        <a href="{% url 'resume_edit' resume.pk %}"><button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Редактировать</button></a>
 
-                                        <div class="col-4">
-                                            <form action="{% url 'resume_edit' resume.pk %}" method="POST">
-                                                {% csrf_token %}
-                                                <div id="container">
-                                                    <button type="submit" class="btn btn-primary">Редактировать</button>
-                                                </div>
-                                            </form>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

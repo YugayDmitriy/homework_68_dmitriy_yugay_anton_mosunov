@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse
-from django.views.generic import CreateView, TemplateView, UpdateView, DetailView
+from django.views.generic import CreateView, TemplateView, UpdateView, DetailView, ListView
 from datetime import datetime
 
 from resumes.models import Resume, Experience, Education, Course, Response
@@ -163,28 +163,27 @@ class ResumeAddResponseView(CreateView):
 
     def post(self, request, *args, **kwargs):
         message = request.POST['message']
-        print(message)
         resume = Resume.objects.get(pk=kwargs['pk'])
-        print(resume)
         author = request.user
-        print(author)
         Response.objects.create(resume=resume, author=author, message=message)
         return HttpResponse('success')
 
 
-    # def post(self, request, *args, **kwargs):
-    #     form = self.form_class(request.POST, request.FILES)
-    #     if form.is_valid():
-    #         form.instance.author_id = self.kwargs['pk']
-    #         post = form.save()
-    #         return redirect('resume_detail', pk=self.kwargs['pk'])
-    #     context = {}
-    #     context['form'] = form
-    #     return self.render_to_response(context)
-    #
-    # def get_context_data(self, **kwargs):
-    #     context = super(ResumeAddResponseView, self).get_context_data(**kwargs)
-    #     return context
-    #
-    # def get_success_url(self):
-    #     return reverse('resume_detail', kwargs={'pk': self.object.pk})
+class ResumesResponsesView(ListView):
+    template_name = 'resumes_responses.html'
+    model = Resume
+
+    def get(self, request, *args, **kwargs):
+        self.form = ResponseForm()
+        return super().get(request, *args, **kwargs)
+
+    def get_queryset(self):
+        queryset = super().get_queryset().exclude(is_deleted=True).exclude(is_public=False).order_by('-created_at')
+        if self.search_value:
+            queryset = Resume.objects.filter(Q(title_job__icontains=self.search_value).order_by('-created_at'))
+        return queryset
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ResumesResponsesView, self).get_context_data(object_list=object_list, **kwargs)
+        context['response_form'] = self.form
+        return context

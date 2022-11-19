@@ -115,7 +115,7 @@ class VacancyUpdateDateView(TemplateView):
         vacancy = Vacancy.objects.get(id=kwargs['pk'])
         vacancy.changed_at = datetime.now()
         vacancy.save()
-        return redirect('profile', pk=request.user.pk)
+        return reverse('index')
 
 
 class VacancyEditView(UpdateView):
@@ -129,11 +129,13 @@ class VacancyEditView(UpdateView):
         context['form'] = VacancyForm(instance=self.object)
         return context
 
-    def get_success_url(self, request):
-        return redirect('profile', pk=self.request.user.pk)
+    def get_success_url(self):
+        return reverse('vacancy_detail', kwargs={'pk': self.object.pk})
 
 
 class VacancyDetailView(DetailView):
     template_name = 'vacancy_detail.html'
     model = Vacancy
     context_object_name = 'vacancy'
+
+
