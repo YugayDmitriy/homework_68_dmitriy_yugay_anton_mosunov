@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static%}
+{% load django_bootstrap5 %}
+{% block content %}
+{{block.super}}
+    {% if request.user.is_authenticated %}
+        <h2>{{ vacancy.author.username }}</h2>
+        <h3>{{ vacancy.author.title }}</h3>
+        <h3>{{ vacancy.salary_level }}</h3>
+        <p>{{ vacancy.text }}</p>
+        <p>{{ vacancy.experience }}</p>
+        <p>{{ vacancy.specialization }}</p>
+        <p>{{ vacancy.changed_at }}</p>
+    <p></p>
+    {% endif %}
+{% endblock %}

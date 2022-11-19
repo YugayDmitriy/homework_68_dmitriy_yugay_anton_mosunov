@@ -83,18 +83,27 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ vacancy.title }}</h5>
                                 <p class="card-text">{{ vacancy.salary_level }}</p>
-                                <p class="card-text">{{ vacancy.changed_at }}</p>
-                                <form action="{% url 'resume_date_update' vacancy.pk %}" method="POST">
+                                <p class="card-text">{{ vacancy.created_at }}</p>
+                                <form action="{% url 'vacancy_date_update' vacancy.pk %}" method="POST">
                                     {% csrf_token %}
                                     <div id="container">
                                         <button type="submit" class="btn btn-primary">Обновить</button>
                                     </div>
                                 </form>
-
-                                <form action="{% url 'resume_public' vacancy.pk %}" method="POST">
+                                <form action="{% url 'vacancy_public' vacancy.pk %}" method="POST">
                                     {% csrf_token %}
                                     <div id="container">
+                                        {% if vacancy.is_public %}
                                         <button type="submit" class="btn btn-primary">Не публиковать</button>
+                                        {% else%}
+                                        <button type="submit" class="btn btn-primary">Oпубликовать</button>
+                                        {% endif%}
+                                    </div>
+                                </form>
+                                <form action="{% url 'vacancy_edit' vacancy.pk %}" method="POST">
+                                    {% csrf_token %}
+                                    <div id="container">
+                                        <button type="submit" class="btn btn-primary">Редактировать</button>
                                     </div>
                                 </form>
                             </div>

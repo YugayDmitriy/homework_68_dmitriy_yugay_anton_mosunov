@@ -15,22 +15,23 @@
     {% if request.user.user_category == 'applicant' %}
         <h2 style="margin: 50px; text-align: center">Список вакансий</h2>
         {% for vacancy in vacancies %}
+            {% if vacancy.is_public %}
             <div class="card" style="margin: 20px">
                 <h5 class="card-header">{{ vacancy.title }}</h5>
                     <div class="card-body">
                         <h5 class="card-title">{{ vacancy.salary_level }}</h5>
                         <p class="card-text">{{ vacancy.text }}</p>
                         <p class="card-text">{{ vacancy.changed_at }}</p>
-                    <a href="#" class="btn btn-primary">Подробности о вакансии</a>
-                    <a href="#">Подробнее о {{ vacancy.author.username }}</a>
+                        <p class="card-text">{{ vacancy.is_public }}</p>
+                    <a href="{% url 'vacancy_detail' vacancy.pk %}" class="btn btn-primary">Подробности о вакансии</a>
+                    <a href="{% url 'profile' vacancy.pk %}">Подробнее о {{ vacancy.author.username }}</a>
                 </div>
             </div>
+            {% else%}
+            <p>Вакансии не опубликованы</p>
+            {% endif %}
         {% endfor %}
-    {% endif %}
-
-{% else %}
-<p>You must be authenticated</p>
-{% endif %}
+        {% endif %}
     <div class="row justify-content-center">
         <div class="col-5">
             {% if is_paginated %}
@@ -38,4 +39,5 @@
             {% endif %}
         </div>
     </div>
+    {% endif %}
 {% endblock %}

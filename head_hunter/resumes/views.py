@@ -106,7 +106,6 @@ class ResumeEditView(UpdateView):
     model = Resume
     context_object_name = 'resume'
 
-
     def get_context_data(self, **kwargs):
         context = super(ResumeEditView, self).get_context_data(**kwargs)
         context['form'] = ResumeForm(instance=self.object)
