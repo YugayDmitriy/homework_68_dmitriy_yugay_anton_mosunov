@@ -6,7 +6,7 @@ class Response(models.Model):
     author = models.ForeignKey(verbose_name='Автор отклика', to=get_user_model(), related_name='responses', null=False,
                                blank=False,
                                on_delete=models.CASCADE)
-    resume = models.ForeignKey(verbose_name='Резюме', to='resumes.Резюме', related_name='responses', null=False,
+    resume = models.ForeignKey(verbose_name='Резюме', to='resumes.Resume', related_name='responses', null=False,
                              blank=False, on_delete=models.CASCADE)
     message = models.TextField(verbose_name='Сообщение', null=False, blank=True, max_length=3000)
     is_deleted = models.BooleanField(

@@ -25,6 +25,34 @@
         {% for course in courses %}
             {{ course.course_name}}
         {% endfor %}
-    <p></p>
+
     {% endif %}
+
+    <div class="col-2 text-center">
+        <button id="btn-response" class="btn btn-secondary btn-block" style="margin-top: 20px;">Откликнуться и отправить сообщение</button>
+    </div>
+
+    <div class="col-2">
+        <p><a class="btn btn-primary" href="{% url 'index_resumes' request.user.pk %}">Вернуться к списку резюме</a></p>
+    </div>
+
+    <div id="modalResponse" class="modal" style="display: none; width: 100%; height: 100%; background-color: #bbbbbb; z-index: 1; overflow: auto">
+        <div class="modal-content" style="background-color: white; margin: 10% auto; padding: 20px; width: 80%; border: 1px solid#888">
+            <h2 style="margin: 30px auto">Можете оставить сообщение</h2><div>
+                <form action="" method="POST" enctype="multipart/form-data">
+                 {% csrf_token %}
+                    <div class="form" id="form-course" >
+                        {% bootstrap_form response_form %}
+                        <button id="save-response" type="button" class="btn btn-primary">Сохранить</button>
+                        <button id="btn-close-response" type="button" class="btn btn-primary">Закрыть</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.js"></script>
+<script type="text/javascript" src="{% static 'js/add-response-to-resume.js' %}"></script>
+
 {% endblock %}
