@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+    <h2 style="margin: 30px auto">Редактировать вакансию</h2><div>
+    <form action="{% url 'vacancy_edit' vacancy.pk %}" method="POST" enctype="multipart/form-data">
+     {% csrf_token %}
+     {% bootstrap_form form %}
+     {% bootstrap_button button_type="submit" content='Изменить вакансию' %}
+    </form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.js"></script>
+<script type="text/javascript" src="{% static 'js/add-resume-forms-modal.js' %}"></script>
+{% endblock %}
