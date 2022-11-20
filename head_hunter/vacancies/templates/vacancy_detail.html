@@ -4,6 +4,7 @@
 {% block content %}
 {{block.super}}
     {% if request.user.is_authenticated %}
+        <h2>{{ vacancy.title }}</h2>
         <h2>{{ vacancy.author.username }}</h2>
         <h3>{{ vacancy.author.title }}</h3>
         <h3>{{ vacancy.salary_level }}</h3>

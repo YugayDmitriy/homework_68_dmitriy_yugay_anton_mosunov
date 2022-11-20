@@ -12,6 +12,10 @@ from vacancies.models import VacancyResponse
 
 from vacancies.forms import VacancyResponseForm
 
+from vacancies.forms import VacancyChatForm
+
+from vacancies.models import VacancyChat
+
 
 class VacanciesIndexView(ListView):
     template_name = 'index_vacancy.html'
@@ -161,5 +165,38 @@ class VacancyAddResponseView(CreateView):
         resume = request.POST['resume']
         VacancyResponse.objects.create(resume_id=resume, author=author, hello_message=hello_message, vacancy=vacancy)
         return HttpResponse('success')
+
+
+class ToVacanciesResponsesView(ListView):
+    template_name = 'vacancies_response.html'
+    model = Vacancy
+    context_object_name = 'vacancies'
+
+    def get(self, request, *args, **kwargs):
+        print(self.template_name)
+        self.form = VacancyChatForm()
+        return super().get(request, *args, **kwargs)
+
+    def get_queryset(self):
+        queryset = super().get_queryset().exclude(is_deleted=True).order_by('-created_at')
+        return queryset
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ToVacanciesResponsesView, self).get_context_data(object_list=object_list, **kwargs)
+        context['vacancy_chat_form'] = self.form
+        return context
+
+
+class VacancyAddChatMessageView(CreateView):
+    model = VacancyChat
+    form_class = VacancyChatForm
+
+    def post(self, request, *args, **kwargs):
+        response = VacancyResponse.objects.get(id=kwargs['pk'])
+        message = request.POST['message']
+        author = self.request.user
+        print(author)
+        VacancyChat.objects.create(response=response, message=message, author=author)
+        return redirect('to_vacancies_responses', pk=self.request.user.pk)
 
 

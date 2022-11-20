@@ -71,10 +71,16 @@
                       </div>
                   </div>
                   <div class="col-2 text-center">
-                      <a href="{% url 'resume_create' user_obj.pk %}"><button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Создать резюме</button></a>
+                      <a href="{% url 'resume_create' user_obj.pk %}">
+                          <button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Создать резюме</button></a>
                   </div>
                   <div class="col-2 text-center">
-                      <a href="{% url 'responses' user_obj.pk %}"><button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Посмотреть отклики на мои резюме</button></a>
+                      <a href="{% url 'responses' user_obj.pk %}">
+                          <button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Посмотреть отклики на мои резюме</button></a>
+                  </div>
+                  <div class="col-2 text-center">
+                      <a href="{% url 'to_vacancies_responses' user_obj.pk %}">
+                          <button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Посмотреть мои отклики на вакансии</button></a>
                   </div>
                  <hr>
                 {% endif %}

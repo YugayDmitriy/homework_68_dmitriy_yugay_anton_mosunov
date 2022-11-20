@@ -62,3 +62,8 @@ class ChatForm(forms.Form):
     message = forms.CharField(max_length=3000, required=False, label='',
                               widget=forms.Textarea(attrs={'name': 'body', 'rows': 3, 'cols': 21}))
 
+
+class VacancyChatForm(forms.Form):
+    message = forms.CharField(max_length=3000, required=False, label='',
+                              widget=forms.Textarea(attrs={'name': 'body', 'rows': 3, 'cols': 21}))
+

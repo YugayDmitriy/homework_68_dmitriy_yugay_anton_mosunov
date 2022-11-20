@@ -10,7 +10,7 @@ from resumes.forms import ExperienceForm, EducationForm, CourseForm, ResumeForm,
 
 from vacancies.models import Vacancy
 
-
+from vacancies.forms import VacancyChatForm
 
 
 class ResumeCreateView(CreateView):
@@ -208,3 +208,5 @@ class ResumeAddChatMessageView(CreateView):
         author = self.request.user
         Chat.objects.create(response=response, message=message, author=author)
         return redirect('responses', pk=self.request.user.pk)
+
+
