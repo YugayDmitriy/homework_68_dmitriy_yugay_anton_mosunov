@@ -6,41 +6,43 @@
     {% for resume in resumes %}
         {% if resume.responses.all.count > 0 %}
             {% for response in resume.responses.all %}
-                <div class="card" style="width: 30rem;">
-                    <img  src="{{ response.resume.author.avatar.url }}" style="height: 40px; width: 40px; margin: 15px" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Резюме: {{ response.resume.job_title }}</h5>
-                                    <span>Отклик от:</span>
-                                    <img src="{{ response.author.avatar.url }}" style="height: 30px; width: 30px" alt="signuplogo ">
-                                    <a href="{% url 'profile' response.author.pk %}"><strong> {{ response.vacancy.author.username }} </strong></a>
-                                    <div>
-                                        <span>Вакансия:</span><a href="{% url 'vacancy_detail' response.vacancy.pk %}"><strong> {{ response.vacancy.title }} </strong></a>
-                                    </div>
-
-                                    <div>
-
-                                        <p style="margin-top: 25px">Чат с представителем компании:</p>
-                                    </div>
-
-
-                                        <hr>
+                {% if response.author == request.user or response.resume.author == request.user %}
+                    <div class="card" style="width: 30rem;">
+                        <img  src="{{ response.resume.author.avatar.url }}" style="height: 40px; width: 40px; margin: 15px" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Резюме: {{ response.resume.job_title }}</h5>
+                                        <span>Отклик от:</span>
+                                        <img src="{{ response.author.avatar.url }}" style="height: 30px; width: 30px" alt="signuplogo ">
+                                        <a href="{% url 'profile' response.author.pk %}"><strong> {{ response.vacancy.author.username }} </strong></a>
                                         <div>
-                                            <p><img src="{{ response.author.avatar.url }}" style="height: 30px; width: 30px" alt="signuplogo "> {{ response.hello_message }}</p>
+                                            <span>Вакансия:</span><a href="{% url 'vacancy_detail' response.vacancy.pk %}"><strong> {{ response.vacancy.title }} </strong></a>
                                         </div>
-                                    {% for chat in response.chats.all %}
-                                            <p><img src="{{ chat.author.avatar.url }}" style="height: 25px; width: 25px" alt="signuplogo "> {{ chat.message }}</p>
-                                    {% endfor %}
 
-                                    <div class='commentsection'>
-                                        <form class="comment" action="{% url 'add_chat_message' response.pk %}" method="POST">
-                                            {% csrf_token %}
-                                            {% bootstrap_form chat_form %}
-                                            {% bootstrap_button button_type="submit" content='Ответить' %}
-                                        </form>
-                                    </div>
+                                        <div>
 
-                        </div>
-                </div>
+                                            <p style="margin-top: 25px">Чат с представителем компании:</p>
+                                        </div>
+
+
+                                            <hr>
+                                            <div>
+                                                <p><img src="{{ response.author.avatar.url }}" style="height: 30px; width: 30px" alt="signuplogo "> {{ response.hello_message }}</p>
+                                            </div>
+                                        {% for chat in response.chats.all %}
+                                                <p><img src="{{ chat.author.avatar.url }}" style="height: 25px; width: 25px" alt="signuplogo "> {{ chat.message }}</p>
+                                        {% endfor %}
+
+                                        <div class='commentsection'>
+                                            <form class="comment" action="{% url 'add_chat_message' response.pk %}" method="POST">
+                                                {% csrf_token %}
+                                                {% bootstrap_form chat_form %}
+                                                {% bootstrap_button button_type="submit" content='Ответить' %}
+                                            </form>
+                                        </div>
+
+                            </div>
+                    </div>
+                {% endif %}
             {% endfor %}
         {% endif %}
     {% endfor %}

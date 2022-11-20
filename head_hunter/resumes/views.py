@@ -157,7 +157,7 @@ class ResumeDetailView(DetailView):
         courses = Course.objects.filter(resume_id=self.object.pk)
         vacancies = Vacancy.objects.exclude(is_deleted=True).exclude(is_public=False)
         context['vacancies'] = vacancies
-        context['response_form'] = ResponseForm()
+        context['response_form'] = ResponseForm(current_user=self.request.user)
         context['experiences'] = experiences
         context['education'] = education
         context['courses'] = courses

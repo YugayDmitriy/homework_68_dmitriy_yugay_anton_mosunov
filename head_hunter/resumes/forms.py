@@ -58,6 +58,11 @@ class CourseForm(forms.ModelForm):
 
 
 class ResponseForm(forms.ModelForm):
+
+    def __init__(self, current_user, *args, **kwargs):
+        super(ResponseForm, self).__init__(*args, **kwargs)
+        self.fields['vacancy'].queryset = self.fields['vacancy'].queryset.filter(author=current_user.pk)
+
     hello_message = forms.CharField(max_length=3000, required=True, label='Приветственное сообщение',
                               widget=forms.Textarea(attrs={'name': 'body', 'rows': 5, 'cols': 21}))
     vacancy = forms.ModelChoiceField(

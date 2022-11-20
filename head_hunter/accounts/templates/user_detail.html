@@ -28,6 +28,10 @@
                                           {% bootstrap_button button_type="submit" content='Редактировать профиль' %}
                                       </form>
                                   </div>
+
+                                  <div class="col-2 text-center">
+                                      <a href="{% url 'responses' user_obj.pk %}"><button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Посмотреть отклики на резюме</button></a>
+                                  </div>
                               {% endif %}
                           </div>
                       </div>
@@ -70,7 +74,7 @@
                       <a href="{% url 'resume_create' user_obj.pk %}"><button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Создать резюме</button></a>
                   </div>
                   <div class="col-2 text-center">
-                      <a href="{% url 'responses' user_obj.pk %}"><button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Посмотреть отклики</button></a>
+                      <a href="{% url 'responses' user_obj.pk %}"><button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Посмотреть отклики на мои резюме</button></a>
                   </div>
                  <hr>
                 {% endif %}
