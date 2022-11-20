@@ -8,7 +8,16 @@ class Response(models.Model):
                                on_delete=models.CASCADE)
     resume = models.ForeignKey(verbose_name='Резюме', to='resumes.Resume', related_name='responses', null=False,
                              blank=False, on_delete=models.CASCADE)
-    message = models.TextField(verbose_name='Сообщение', null=False, blank=True, max_length=3000)
+    hello_message = models.TextField(verbose_name='Приветственное сообщение', null=False, blank=True, max_length=3000,
+                                     default='Здравствуйте. Нас заинтересовало ваше резюме!')
+    vacancy = models.ForeignKey(
+        to='vacancies.Vacancy',
+        verbose_name='Вакансия',
+        related_name='response',
+        null=True,
+        blank=False,
+        on_delete=models.CASCADE
+    )
     is_deleted = models.BooleanField(
         verbose_name='Удалено',
         default=False, null=False

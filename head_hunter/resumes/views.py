@@ -5,8 +5,12 @@ from django.urls import reverse
 from django.views.generic import CreateView, TemplateView, UpdateView, DetailView, ListView
 from datetime import datetime
 
-from resumes.models import Resume, Experience, Education, Course, Response
-from resumes.forms import ExperienceForm, EducationForm, CourseForm, ResumeForm, ResponseForm
+from resumes.models import Resume, Experience, Education, Course, Response, Chat
+from resumes.forms import ExperienceForm, EducationForm, CourseForm, ResumeForm, ResponseForm, ChatForm
+
+from vacancies.models import Vacancy
+
+
 
 
 class ResumeCreateView(CreateView):
@@ -151,6 +155,8 @@ class ResumeDetailView(DetailView):
         experiences = Experience.objects.filter(resume_id=self.object.pk)
         education = Education.objects.filter(resume_id=self.object.pk)
         courses = Course.objects.filter(resume_id=self.object.pk)
+        vacancies = Vacancy.objects.exclude(is_deleted=True).exclude(is_public=False)
+        context['vacancies'] = vacancies
         context['response_form'] = ResponseForm()
         context['experiences'] = experiences
         context['education'] = education
@@ -162,28 +168,43 @@ class ResumeAddResponseView(CreateView):
     model = Response
 
     def post(self, request, *args, **kwargs):
-        message = request.POST['message']
+        print(request.POST)
+        hello_message = request.POST['hello_message']
         resume = Resume.objects.get(pk=kwargs['pk'])
         author = request.user
-        Response.objects.create(resume=resume, author=author, message=message)
+        vacancy = request.POST['vacancy']
+        Response.objects.create(resume=resume, author=author, hello_message=hello_message, vacancy_id=vacancy)
         return HttpResponse('success')
 
 
 class ResumesResponsesView(ListView):
     template_name = 'resumes_responses.html'
     model = Resume
+    context_object_name = 'resumes'
 
     def get(self, request, *args, **kwargs):
-        self.form = ResponseForm()
+        self.form = ChatForm()
         return super().get(request, *args, **kwargs)
 
     def get_queryset(self):
-        queryset = super().get_queryset().exclude(is_deleted=True).exclude(is_public=False).order_by('-created_at')
-        if self.search_value:
-            queryset = Resume.objects.filter(Q(title_job__icontains=self.search_value).order_by('-created_at'))
+        queryset = super().get_queryset().exclude(is_deleted=True).order_by('-created_at')
         return queryset
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ResumesResponsesView, self).get_context_data(object_list=object_list, **kwargs)
-        context['response_form'] = self.form
+        context['chat_form'] = self.form
         return context
+
+
+class ResumeAddChatMessageView(CreateView):
+    model = Chat
+    form_class = ChatForm
+
+    def post(self, request, *args, **kwargs):
+        print(request.POST)
+        print(kwargs['pk'])
+        message = request.POST['message']
+        response = Response.objects.get(pk=kwargs['pk'])
+        author = self.request.user
+        Chat.objects.create(response=response, message=message, author=author)
+        return redirect('responses', pk=self.request.user.pk)

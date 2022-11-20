@@ -2,6 +2,10 @@ from django import forms
 
 from resumes.models import Resume, Profession, Experience, Education, Course
 
+from vacancies.models import Vacancy
+
+from resumes.models import Response
+
 
 class ResumeForm(forms.ModelForm):
     profession = forms.ModelChoiceField(
@@ -53,12 +57,22 @@ class CourseForm(forms.ModelForm):
         fields = ('course_name', )
 
 
-class ResponseForm(forms.Form):
-    message = forms.CharField(max_length=3000, required=True, label='Сообщение',
+class ResponseForm(forms.ModelForm):
+    hello_message = forms.CharField(max_length=3000, required=True, label='Приветственное сообщение',
                               widget=forms.Textarea(attrs={'name': 'body', 'rows': 5, 'cols': 21}))
+    vacancy = forms.ModelChoiceField(
+        label='Необходимо выбрать вакансию',
+        queryset=Vacancy.objects.all(),
+    )
 
     class Meta:
+        model = Response
         widgets = {
             'message': forms.Textarea(attrs={'cols': 21, 'rows': 5}),
         }
-        fields = ('message',)
+        fields = ('hello_message', 'vacancy', )
+
+
+class ChatForm(forms.Form):
+    message = forms.CharField(max_length=3000, required=False, label='',
+                              widget=forms.Textarea(attrs={'name': 'body', 'rows': 3, 'cols': 21}))

@@ -69,6 +69,9 @@
                   <div class="col-2 text-center">
                       <a href="{% url 'resume_create' user_obj.pk %}"><button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Создать резюме</button></a>
                   </div>
+                  <div class="col-2 text-center">
+                      <a href="{% url 'responses' user_obj.pk %}"><button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Посмотреть отклики</button></a>
+                  </div>
                  <hr>
                 {% endif %}
                 <div class="row justify-content-between">
@@ -107,7 +110,7 @@
                     {% endfor %}
 
                     {% for resume in resumes %}
-                        <div class="col-sm-6" style="margin-top: 20px">
+                        <div class="col-sm-6" style="margin-top: 20px; margin-bottom: 40px">
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ resume.profession }}</h5>
@@ -142,13 +145,15 @@
                             </div>
                         </div>
                     {% endfor %}
+
+                <hr>
+
+
               </div>
 
 
 
-      </div>
 
-  </div>
 
 <script type="text/javascript" src="{% static 'js/user-detail-switch_button.js' %}"></script>
 
