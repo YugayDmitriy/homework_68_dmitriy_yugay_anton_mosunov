@@ -6,8 +6,17 @@
 
 {% if request.user.is_authenticated %}
 
+    <div class="row justify-content-center">
+        <div class="col-5 search-form">
+            {% include 'partials/search.html' %}
+        </div>
+    </div>
+
     {% if request.user.user_category == 'employer' %}
         <h2 style="margin: 50px; text-align: center">Список резюме</h2>
+        {% if resumes.count == 0 %}
+            <p>Резюме не опубликованы</p>
+        {% endif %}
         {% for resume in resumes %}
             <div class="card" style="margin: 20px">
                 <h5 class="card-header">{{ resume.job_title }}</h5>

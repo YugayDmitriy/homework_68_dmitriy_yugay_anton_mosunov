@@ -14,6 +14,9 @@
 
     {% if request.user.user_category == 'applicant' %}
         <h2 style="margin: 50px; text-align: center">Список вакансий</h2>
+        {% if vacancies.count == 0 %}
+            <p>Вакансии не опубликованы</p>
+        {% endif %}
         {% for vacancy in vacancies %}
             {% if vacancy.is_public %}
             <div class="card" style="margin: 20px">
@@ -27,9 +30,8 @@
                     <a href="{% url 'profile' vacancy.pk %}">Подробнее о {{ vacancy.author.username }}</a>
                 </div>
             </div>
-            {% else%}
-            <p>Вакансии не опубликованы</p>
             {% endif %}
+
         {% endfor %}
         {% endif %}
     <div class="row justify-content-center">
