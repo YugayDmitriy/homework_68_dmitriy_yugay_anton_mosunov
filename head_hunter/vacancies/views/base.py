@@ -1,11 +1,16 @@
 from datetime import datetime
 from django.shortcuts import redirect
 from django.urls import reverse
+from django.http import HttpResponse
 from django.views.generic import ListView, CreateView, TemplateView, UpdateView, DetailView
 from django.db.models import Q
 from resumes.models import Resume
 from vacancies.models.vacancies import Vacancy
 from vacancies.forms import VacancyForm, SearchForm
+
+from vacancies.models import VacancyResponse
+
+from vacancies.forms import VacancyResponseForm
 
 
 class VacanciesIndexView(ListView):
@@ -137,5 +142,24 @@ class VacancyDetailView(DetailView):
     template_name = 'vacancy_detail.html'
     model = Vacancy
     context_object_name = 'vacancy'
+
+    def get_context_data(self,  **kwargs):
+        context = super(VacancyDetailView, self).get_context_data(**kwargs)
+        resumes = Resume.objects.exclude(is_deleted=True).exclude(is_public=False)
+        context['resumes'] = resumes
+        context['vacancy_response_form'] = VacancyResponseForm(current_user=self.request.user)
+        return context
+
+
+class VacancyAddResponseView(CreateView):
+    model = VacancyResponse
+
+    def post(self, request, *args, **kwargs):
+        hello_message = request.POST['hello_message']
+        vacancy = Vacancy.objects.get(pk=kwargs['pk'])
+        author = request.user
+        resume = request.POST['resume']
+        VacancyResponse.objects.create(resume_id=resume, author=author, hello_message=hello_message, vacancy=vacancy)
+        return HttpResponse('success')
 
 

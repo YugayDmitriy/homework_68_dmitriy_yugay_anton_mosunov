@@ -5,10 +5,12 @@
     <h2 style="text-align: center; margin: 50px">Список откликов на резюме</h2>
     <div class="row justify-content-center">
         {% for resume in resumes %}
-            <div class="col-5">
+
                 {% if resume.responses.all.count > 0 %}
                     {% for response in resume.responses.all %}
                         {% if response.author == request.user or response.resume.author == request.user %}
+                            <div class="col-5">
+
                                 <div class="card" style="width: 30rem; margin-top: 20px;">
                                     <img  src="{{ response.resume.author.avatar.url }}" style="height: 40px; width: 40px; margin: 15px" class="card-img-top" alt="...">
                                         <div class="card-body">
@@ -43,10 +45,11 @@
                                                     </div>
                                         </div>
                                 </div>
+                            </div>
                         {% endif %}
                     {% endfor %}
                 {% endif %}
-            </div>
+
         {% endfor %}
     </div>
 {% endblock %}

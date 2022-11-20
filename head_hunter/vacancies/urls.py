@@ -1,6 +1,6 @@
 from django.urls import path
 from vacancies.views.base import VacanciesIndexView, VacancyCreateView, ResumesIndexView,\
-    VacancyPublicView, VacancyEditView, VacancyUpdateDateView, VacancyDetailView
+    VacancyPublicView, VacancyEditView, VacancyUpdateDateView, VacancyDetailView, VacancyAddResponseView
 
 urlpatterns = [
     path('', VacanciesIndexView.as_view(), name='index'),
@@ -9,4 +9,5 @@ urlpatterns = [
     path('vacancy/<int:pk>/edit', VacancyEditView.as_view(), name='vacancy_edit'),
     path('vacancy/<int:pk>/update_date/', VacancyUpdateDateView.as_view(), name='vacancy_date_update'),
     path('vacancy/<int:pk>/detail/', VacancyDetailView.as_view(), name='vacancy_detail'),
+    path('vacancy/<int:pk>/detail/add/response/', VacancyAddResponseView.as_view(), name='vacancy_add_response'),
 ]
