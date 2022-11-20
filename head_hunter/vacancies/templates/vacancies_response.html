@@ -7,7 +7,7 @@
         {% for vacancy in vacancies %}
                 {% if vacancy.vacancy_responses.all.count > 0 %}
                     {% for response in vacancy.vacancy_responses.all %}
-                        {% if response.author == request.user or response.resume.author == request.user %}
+                        {% if response.author == request.user or response.vacancy.author == request.user %}
                             <div class="col-5">
                                 <div class="card" style="width: 30rem; margin-top: 20px;">
                                     <img  src="{{ response.vacancy.author.avatar.url }}" style="height: 40px; width: 40px; margin: 15px" class="card-img-top" alt="...">
