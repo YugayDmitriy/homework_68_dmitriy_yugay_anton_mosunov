@@ -86,7 +86,7 @@ class ProfileView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         account = self.object
-        resumes = Resume.objects.filter(author=account)
+        resumes = Resume.objects.filter(author=account).exclude(is_deleted=True)
         vacancies = Vacancy.objects.filter(author=account)
         context['resumes'] = resumes
         context['vacancies'] = vacancies
@@ -100,8 +100,6 @@ class UserChangeView(UpdateView):
     context_object_name = 'user_obj'
 
     def get_context_data(self, **kwargs):
-        # if 'profile_form' not in kwargs:
-        #     kwargs['profile_form'] = self.get_profile_form()
         context = super(UserChangeView, self).get_context_data(**kwargs)
         context['form'] = UserChangeForm(instance=self.object)
         return context

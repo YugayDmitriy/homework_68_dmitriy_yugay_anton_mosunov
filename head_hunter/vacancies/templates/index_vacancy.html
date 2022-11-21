@@ -27,7 +27,7 @@
                         <p class="card-text">{{ vacancy.changed_at }}</p>
                         <p class="card-text">{{ vacancy.is_public }}</p>
                     <a href="{% url 'vacancy_detail' vacancy.pk %}" class="btn btn-primary">Подробности о вакансии</a>
-                    <a href="{% url 'profile' vacancy.pk %}">Подробнее о {{ vacancy.author.username }}</a>
+                    <a href="{% url 'profile' vacancy.author.pk %}">Подробнее о {{ vacancy.author.username }}</a>
                 </div>
             </div>
             {% endif %}

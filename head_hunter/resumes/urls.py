@@ -1,7 +1,7 @@
 from django.urls import path
 from resumes.views import ResumeCreateView, ResumeCreateExperienceView, ResumeCreateEducationView, \
     ResumeCreateCourseView, ResumePublicView, ResumeUpdateDateView, ResumeEditView, ResumeDetailView, \
-    ResumeAddResponseView, ResumesResponsesView, ResumeAddChatMessageView
+    ResumeAddResponseView, ResumesResponsesView, ResumeAddChatMessageView, ResumeDeleteView
 
 from vacancies.views.base import ResumesIndexView
 
@@ -18,6 +18,7 @@ urlpatterns = [
     path('resume/<int:pk>/edit', ResumeEditView.as_view(), name='resume_edit'),
     path('resume/<int:pk>/detail/add/response/', ResumeAddResponseView.as_view(), name='resume_add_response'),
     path('resume/<int:pk>/response/', ResumesResponsesView.as_view(), name='responses'),
-    # path('resume/<int:pk>/to_vacancy_response/', ToVacancyResponsesView.as_view(), name='to_vacancy_responses'),
+    path('resume/<int:pk>/confirm-delete/', ResumeDeleteView.as_view(), name='resume_confirm_delete'),
+    path('resume/<int:pk>/delete/', ResumeDeleteView.as_view(), name='resume_delete'),
     path('resume/<int:pk>/response/add/chat_message/', ResumeAddChatMessageView.as_view(), name='add_chat_message'),
 ]

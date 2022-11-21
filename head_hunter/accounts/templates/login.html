@@ -5,7 +5,7 @@
 {% block content %}
 
          <div class="head_text heading text-center">
-            <p class="main-title-auth">Вход</p>
+            <p class="main-title-auth" style="font-size: 30px; font-weight: bold; margin-top: 40px">Вход</p>
         </div>
         <div class="row justify-content-center">
             <div class="col-6">
@@ -19,13 +19,15 @@
                             <button type="submit" class="btn btn-secondary btn-block">Войти</button>
                         </div>
                     </div>
+                    <div class="row justify-content-center">
+                        <div class="col-10 text-center">
+                            <a href="{% url 'register' %}"><button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Зарегистрироваться</button></a>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
-        <p>Если нет аккаунта, то зарегистрируйтесь</p>
-        <div class="col-2 text-center">
-            <a href="{% url 'register' %}"><button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Зарегистрироваться</button></a>
-        </div>
+
 
 
 {% endblock %}

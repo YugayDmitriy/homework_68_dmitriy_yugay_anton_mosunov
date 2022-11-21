@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <h1>Вы точно хотите удалить резюме?</h1>
+
+    <form action="{% url 'resume_confirm_delete' resume.pk %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Да">
+        <a href="{% url 'index' %}">Нет</a>
+    </form>
+{% endblock %}

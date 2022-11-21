@@ -64,30 +64,31 @@
                                   <h1 class="user-header" style="font-weight: normal;">
                                       {{ user_obj.username }}</h1>
                               </div>
-                              {% if request.user == user_obj %}
-                                  <div class="col-3 ">
-                                      <form action="{% url 'change' user_obj.pk %}" method="POST">
-                                          {% csrf_token %}
 
-                                          {% bootstrap_button button_type="submit" content='Редактировать профиль' %}
-                                      </form>
-                                  </div>
-                              {% endif %}
                           </div>
                       </div>
                   </div>
-                  <div class="col-2 text-center">
-                      <a href="{% url 'resume_create' user_obj.pk %}">
-                          <button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Создать резюме</button></a>
-                  </div>
-                  <div class="col-2 text-center">
-                      <a href="{% url 'responses' user_obj.pk %}">
-                          <button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Посмотреть отклики на мои резюме</button></a>
-                  </div>
-                  <div class="col-2 text-center">
-                      <a href="{% url 'to_vacancies_responses' user_obj.pk %}">
-                          <button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Посмотреть мои отклики на вакансии</button></a>
-                  </div>
+                  {% if request.user == user_obj %}
+                  <div class="row">
+                      <div class="col-3 text-center">
+                          <a href="{% url 'resume_create' user_obj.pk %}">
+                              <button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Создать резюме</button></a>
+                      </div>
+                      <div class="col-3 text-center">
+                          <a href="{% url 'responses' user_obj.pk %}">
+                              <button type="submit" class="btn btn-info btn-block" style="margin-top: 20px;">Посмотреть отклики на мои резюме</button></a>
+                      </div>
+                      <div class="col-3 text-center">
+                          <a href="{% url 'to_vacancies_responses' user_obj.pk %}">
+                              <button type="submit" class="btn btn-info btn-block" style="margin-top: 20px;">Посмотреть мои отклики на вакансии</button></a>
+                      </div>
+                      <div class="col-3 text-center">
+                          <a href="{% url 'change' user_obj.pk %}">
+                              <button type="submit" class="btn btn-primary btn-block" style="margin-top: 20px;">Редактировать профиль</button></a>
+
+                      </div>
+                 </div>
+                 {% endif %}
                  <hr>
                 {% endif %}
                 <div class="row justify-content-between">
@@ -97,7 +98,7 @@
                 
                 
                 {% for vacancy in vacancies %}
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">{{ vacancy.title }}</h5>
@@ -142,35 +143,58 @@
                                                 </div>
                                             </form>
                                         </div>
+
                                         <div class="col-4">
                                             <form action="{% url 'resume_public' resume.pk %}" method="POST">
                                                 {% csrf_token %}
                                                 <div id="container">
                                                     {% if resume.is_public %}
-                                                    <button type="submit" id="public" class="btn btn-primary">Не публиковать</button>
+                                                    <button type="submit" id="public" class="btn btn-secondary">Не публиковать</button>
                                                     {% else%}
                                                     <button type="submit" id="publicP" class="btn btn-primary">Опубликовать</button>
                                                     {% endif %}
                                                 </div>
                                             </form>
                                         </div>
-                                        <a href="{% url 'resume_edit' resume.pk %}"><button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Редактировать</button></a>
-
+                                    </div>
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <a href="{% url 'resume_edit' resume.pk %}"><button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Редактировать</button></a>
+                                            </div>
+                                            <div class="col-4">
+                                                <a href="{% url 'resume_delete' resume.pk %}"><button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Удалить</button></a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                         </div>
+
                     {% endfor %}
 
                 <hr>
 
 
               </div>
+                <p id="resumePk" style="display: none">{{ resume.pk }}</p>
+                <div id="myModalDeleteConfirm" class="modal" style="display: none; width: 100%; height: 100%; background-color: #bbbbbb; z-index: 1; overflow: auto">
+                <div class="modal-content" style="background-color: white; margin: 10% auto; padding: 20px; width: 80%; border: 1px solid#888">
+                    <h2 style="margin: 30px auto">Подтвердите удаление</h2>
+                    <div class="row justify-content-center">
+                        <div class="col-3 text-center">
+                            <button type="submit" id="btn-delete-confirm" class="btn btn-secondary btn-block" style="margin-top: 20px; width: ">Удалить</button>
+                        </div>
+                        <div class="col-3 text-center">
+                            <button type="submit" id="btn-delete-cancel" class="btn btn-primary btn-block" style="margin-top: 20px; width: ">Отмена</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
 
 
 
 
 
-<script type="text/javascript" src="{% static 'js/user-detail-switch_button.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/user-detail-delete_button.js' %}"></script>
 
 {% endblock %}

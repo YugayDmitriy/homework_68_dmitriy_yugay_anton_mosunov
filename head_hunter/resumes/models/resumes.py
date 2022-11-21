@@ -1,3 +1,5 @@
+from django.utils import timezone
+
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -77,4 +79,7 @@ class Resume(models.Model):
     def __str__(self):
         return f'{self.profession} {self.job_title} {self.salary_level} {self.about_user} {self.email} ' \
                f'{self.telegram_link} {self.linkedin_link} {self.facebook_link} '
+
+
+
 

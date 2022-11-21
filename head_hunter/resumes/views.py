@@ -2,7 +2,8 @@ from django.contrib.auth import get_user_model
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse
-from django.views.generic import CreateView, TemplateView, UpdateView, DetailView, ListView
+from django.utils import timezone
+from django.views.generic import CreateView, TemplateView, UpdateView, DetailView, ListView, DeleteView
 from datetime import datetime
 
 from resumes.models import Resume, Experience, Education, Course, Response, Chat
@@ -44,10 +45,6 @@ class ResumeCreateExperienceView(CreateView):
         responsibilities = request.POST['responsibilities']
 
         resume = Resume.objects.get(pk=kwargs['pk'])
-        print(f' pk резюме {kwargs["pk"]}')
-        print(f' Пришедший запрос {request.POST}')
-        print(f'Резюме из списка {resume.pk}')
-
         Experience.objects.create(resume=resume, work_begin=work_begin, work_end=work_end,
                                   company=company, job_title=job_title, responsibilities=responsibilities)
 
@@ -209,4 +206,15 @@ class ResumeAddChatMessageView(CreateView):
         Chat.objects.create(response=response, message=message, author=author)
         return redirect('responses', pk=self.request.user.pk)
 
+
+class ResumeDeleteView(DeleteView):
+    template_name = 'resume_confirm_delete.html'
+    model = Resume
+
+    def post(self, request, *args, **kwargs):
+        resume = Resume.objects.get(pk=kwargs['pk'])
+        resume.deleted_at = timezone.now()
+        resume.is_deleted = True
+        resume.save()
+        return redirect('profile', pk=self.request.user.pk)
 
