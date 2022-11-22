@@ -3,14 +3,29 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
-    <h2 style="margin: 30px auto">Создание резюме</h2><div>
+    <h2 style="margin: 50px auto">Редактирование резюме</h2><div>
+    <p style="margin: 20px auto">У вас есть возможность добавлять инфо об опыте работы, образовании, курасах.</p><div>
+    <p style="margin: 10px auto; margin-bottom: 50px;">Вы можете удалить ненужный опыт работы, инфо об образовании и курсах. Данные блоки расоплагаются в нижней части страницы</p><div>
     <div id="resume" style="display: none">{{ resume.pk }}</div>
-    {{ resume.pk }}
-    <form action="{% url 'resume_edit' resume.pk %}" method="POST" enctype="multipart/form-data">
+    <hr>
+    <form action="{% url 'resume_edit' resume.pk %}" method="POST" enctype="multipart/form-data" >
      {% csrf_token %}
         <div class="form" >
-            <div id="container">
-                <input id="add-modal-work" type="button" value="добавить опыт работы">
+            <div class="row" style="margin-bottom: 50px; margin-top: 50px">
+                <div class="col-3" >
+                    <button type="button" id="add-modal-work" class="btn btn-primary">добавить опыт работы</button>
+{#                    <input id="add-modal-work" type="button" value="добавить опыт работы">#}
+                </div>
+
+                <div class="col-3">
+                    <button type="button" id="add-modal-education" class="btn btn-primary">добавить образование</button>
+{#                    <input id="add-modal-education" type="button" value="добавить образование">#}
+                </div>
+
+                <div class="col-3">
+                    <button type="button" id="add-modal-courses" class="btn btn-primary">добавить курсы</button>
+{#                    <input id="add-modal-courses" type="button" value="добавить курсы">#}
+                </div>
             </div>
 
             <div id="myModal" class="modal" style="display: none; width: 100%; height: 100%; background-color: #bbbbbb; z-index: 1; overflow: auto">
@@ -32,9 +47,7 @@
             </div>
 
 
-            <div id="container">
-                <input id="add-modal-education" type="button" value="добавить инфо об образовании">
-            </div>
+
 
             <div id="myModalEducation" class="modal" style="display: none; width: 100%; height: 100%; background-color: #bbbbbb; z-index: 1; overflow: auto">
                 <div class="modal-content" style="background-color: white; margin: 10% auto; padding: 20px; width: 80%; border: 1px solid#888">
@@ -54,9 +67,7 @@
             </div>
 
 
-            <div id="container">
-                <input id="add-modal-courses" type="button" value="добавить инфо о доп. курсах">
-            </div>
+
 
             <div id="myModalCourse" class="modal" style="display: none; width: 100%; height: 100%; background-color: #bbbbbb; z-index: 1; overflow: auto">
                 <div class="modal-content" style="background-color: white; margin: 10% auto; padding: 20px; width: 80%; border: 1px solid#888">
@@ -77,12 +88,73 @@
 
 
             {% bootstrap_form form %}
-            {% bootstrap_button button_type="submit" content='Создать резюме' %}
+            {% bootstrap_button button_type="submit" content='Сохранить резюме' %}
         </div>
-    </form>
+
+    <hr style="margin-top:50px; margin-bottom:50px;">
+    <h2 style="margin-bottom: 50px;">Опыт работы</h2>
+
+    <div class="row">
+        {% for exp in experiences %}
+          <div class="col-sm-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{ exp.company }}</h5>
+                <p class="card-text">{{ exp.job_title }}</p>
+                <a href="{% url 'resume_experience_edit' exp.pk %}" class="btn btn-primary">Редактировать</a>
+                <a href="{% url 'resume_experience_delete' exp.pk %}" class="btn btn-primary">Удалить</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+    </div>
+
+
+    <hr style="margin-top:50px; margin-bottom:50px;">
+    <h2 style="margin-bottom: 50px;">Информация об образовании</h2>
+
+    <div class="row">
+        {% for edu in education %}
+          <div class="col-sm-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{ edu.educational_institution_name }}</h5>
+                <p class="card-text">{{ edu.speciality }}</p>
+                <a href="{% url 'resume_education_edit' edu.pk %}" class="btn btn-primary">Редактировать</a>
+                <a href="{% url 'resume_education_delete' edu.pk %}" class="btn btn-primary">Удалить</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+    </div>
+
+    <hr style="margin-top:50px; margin-bottom:50px;">
+    <h2 style="margin-bottom: 50px;">Информация о курсах</h2>
+
+    <div class="row">
+        {% for course in courses %}
+          <div class="col-sm-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{ course.course_name }}</h5>
+                <a href="{% url 'resume_course_edit' course.pk %}" class="btn btn-primary" id="delete_course">Редактировать</a>
+                <a href="{% url 'resume_course_delete' course.pk %}" class="btn btn-primary">Удалить</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+    </div>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.js"></script>
 <script type="text/javascript" src="{% static 'js/add-resume-forms-modal.js' %}"></script>
 
 
 {% endblock %}
+
+
+
+
+
+
+

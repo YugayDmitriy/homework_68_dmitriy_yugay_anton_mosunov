@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <h1>Вы точно хотите удалить этот опыт работы из резюме?</h1>
+
+    <form action="{% url 'experience_confirm_delete' experience.pk %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Да">
+        <a href="{% url 'resume_edit' experience.resume.pk %}">Нет</a>
+    </form>
+{% endblock %}

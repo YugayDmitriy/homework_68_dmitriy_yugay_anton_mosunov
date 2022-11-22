@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <h1>Вы точно хотите удалить инфо об обучении?</h1>
+
+    <form action="{% url 'education_confirm_delete' education.pk %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Да">
+        <a href="{% url 'resume_edit' education.resume.pk %}">Нет</a>
+    </form>
+{% endblock %}

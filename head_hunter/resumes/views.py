@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils import timezone
@@ -47,8 +47,36 @@ class ResumeCreateExperienceView(CreateView):
         resume = Resume.objects.get(pk=kwargs['pk'])
         Experience.objects.create(resume=resume, work_begin=work_begin, work_end=work_end,
                                   company=company, job_title=job_title, responsibilities=responsibilities)
-
         return HttpResponse('success')
+
+
+class ResumeEditExperienceView(UpdateView):
+    template_name = 'experience_edit.html'
+    form_class = ExperienceForm
+    model = Experience
+    context_object_name = 'experience'
+
+    def get_context_data(self, **kwargs):
+        context = super(ResumeEditExperienceView, self).get_context_data(**kwargs)
+        context['experience_form'] = ExperienceForm(instance=self.object)
+        return context
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.save()
+        return redirect('resume_edit', pk=self.object.resume.pk)
+
+
+class ResumeDeleteExperienceView(DeleteView):
+    template_name = 'experience_confirm_delete.html'
+    model = Experience
+
+    def form_valid(self, form):
+        pk = self.object.resume.pk
+        self.object.delete()
+        return redirect('resume_edit', pk=pk)
+
+
 
 
 class ResumeCreateEducationView(CreateView):
@@ -67,6 +95,32 @@ class ResumeCreateEducationView(CreateView):
         return HttpResponse('success')
 
 
+class ResumeEditEducationView(UpdateView):
+    template_name = 'education_edit.html'
+    form_class = EducationForm
+    model = Education
+    context_object_name = 'education'
+
+    def get_context_data(self, **kwargs):
+        context = super(ResumeEditEducationView, self).get_context_data(**kwargs)
+        context['education_form'] = EducationForm(instance=self.object)
+        return context
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.save()
+        return redirect('resume_edit', pk=self.object.resume.pk)
+
+class ResumeDeleteEducationView(DeleteView):
+    template_name = 'education_confirm_delete.html'
+    model = Education
+
+    def form_valid(self, form):
+        pk = self.object.resume.pk
+        self.object.delete()
+        return redirect('resume_edit', pk=pk)
+
+
 class ResumeCreateCourseView(CreateView):
     model = Course
 
@@ -76,6 +130,32 @@ class ResumeCreateCourseView(CreateView):
         Course.objects.create(resume=resume, course_name=course_name)
         return HttpResponse('success')
 
+
+class ResumeEditCourseView(UpdateView):
+    template_name = 'course_edit.html'
+    form_class = CourseForm
+    model = Course
+    context_object_name = 'course'
+
+    def get_context_data(self, **kwargs):
+        context = super(ResumeEditCourseView, self).get_context_data(**kwargs)
+        context['course_form'] = CourseForm(instance=self.object)
+        return context
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.save()
+        return redirect('resume_edit', pk=self.object.resume.pk)
+
+
+class ResumeDeleteCourseView(DeleteView):
+    template_name = 'course_confirm_delete.html'
+    model = Course
+
+    def form_valid(self, form):
+        pk = self.object.resume.pk
+        self.object.delete()
+        return redirect('resume_edit', pk=pk)
 
 class ResumeUpdateDateView(TemplateView):
     model = Resume
@@ -109,12 +189,20 @@ class ResumeEditView(UpdateView):
     context_object_name = 'resume'
 
     def get_context_data(self, **kwargs):
+        experiences = Experience.objects.filter(resume_id=self.object.pk)
+        education = Education.objects.filter(resume_id=self.object.pk)
+        courses = Course.objects.filter(resume_id=self.object.pk)
         context = super(ResumeEditView, self).get_context_data(**kwargs)
+        context['experiences'] = experiences
+        context['education'] = education
+        context['courses'] = courses
+
         context['form'] = ResumeForm(instance=self.object)
         resume = self.object
         context['experience_form'] = ExperienceForm()
         context['education_form'] = EducationForm()
         context['course_form'] = CourseForm()
+        # experience = Experience.objects.filter
         return context
 
     def post(self, request, *args, **kwargs):
