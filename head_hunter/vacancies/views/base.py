@@ -1,8 +1,9 @@
 from datetime import datetime
+from django.utils import timezone
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.http import HttpResponse
-from django.views.generic import ListView, CreateView, TemplateView, UpdateView, DetailView
+from django.views.generic import ListView, CreateView, TemplateView, UpdateView, DetailView, DeleteView
 from django.db.models import Q
 from resumes.models import Resume
 from vacancies.models.vacancies import Vacancy
@@ -124,7 +125,7 @@ class VacancyUpdateDateView(TemplateView):
         vacancy = Vacancy.objects.get(id=kwargs['pk'])
         vacancy.changed_at = datetime.now()
         vacancy.save()
-        return reverse('index')
+        return redirect('profile', pk=request.user.pk)
 
 
 class VacancyEditView(UpdateView):
@@ -200,3 +201,13 @@ class VacancyAddChatMessageView(CreateView):
         return redirect('to_vacancies_responses', pk=self.request.user.pk)
 
 
+class VacancyDeleteView(DeleteView):
+    template_name = 'vacancy_confirm_delete.html'
+    model = Vacancy
+
+    def post(self, request, *args, **kwargs):
+        vacancy = Vacancy.objects.get(pk=kwargs['pk'])
+        vacancy.deleted_at = timezone.now()
+        vacancy.is_deleted = True
+        vacancy.save()
+        return redirect('profile', pk=self.request.user.pk)
