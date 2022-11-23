@@ -1,200 +1,233 @@
 {% extends 'base.html' %}
-{% load django_bootstrap5 %}
-{% load static %}
-
 {% block content %}
-<br>
-<br>
-<article class="media">
-                {% if user_obj.user_category == 'employer' %}
-                  <div class="row justify-content-center ">
-                      <div class="col-3">
-                          <div class="photo-avatar" style="width: 200px; height: 200px;">
+{% if user_obj.user_category == 'employer' %}
+<main class="settingsPage profile my-md">
+  <div class="container">
+    <div class="layout">
+      <div class="column column--1of3">
+        <div class="card text-center">
+          <div class="card__body dev">
+            {% if request.user == user_obj %}
+            <a class="tag tag--pill tag--main settings__btn" href="{% url 'change' user_obj.pk %}"><i class="im im-edit"></i>
+              Редактировать профиль</a>
+            {% endif %}
+            <img class="avatar avatar--xl dev__avatar" src="{{ user_obj.avatar.url }}"/>
+            <h2 class="dev__name">Company: {{ user_obj.username }}</h2>
+            <p class="dev__title">Email: {{ user_obj.email }}</p>
+            <p class="dev__location">Phone: {{ user_obj.phone }}</p>
+            <ul class="dev__social">
+              {% if user_obj.github %}
+              <li>
+                <a title="GitHub" href="{{ user_obj.github }}" target="_blank"><i class="im im-github"></i></a>
+              </li>
+              {% endif %}
+              {% if user_obj.twitter %}
+              <li>
+                <a title="Twitter" href="{{ user_obj.twitter }}" target="_blank"><i class="im im-twitter"></i></a>
+              </li>
+              {% endif %}
+              {% if user_obj.linkedin %}
+              <li>
+                <a title="LinkedIn" href="{{ user_obj.linkedin }}" target="_blank"><i
+                    class="im im-linkedin"></i></a>
+              </li>
+              {% endif %}
+              {% if user_obj.website %}
+              <li>
+                <a title="Личный сайт" href="{{ user_obj.website }}" target="_blank"><i
+                    class="im im-globe"></i></a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="column column--2of3">
+        <div class="settings">
+          <h3 class="settings__title">Отклики</h3>
+          <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'responses' user_obj.pk %}"><i
+              class="im im-plus"></i>Посмотреть отклик на резюме</a>
+          <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'to_vacancies_responses' user_obj.pk %}"><i
+              class="im im-plus"></i>Посмотреть отклик на вакансию</a>
+        </div>
 
-                              <img class="is-rounded" style="display: block; max-width: 100%;" src="{{ user_obj.avatar.url }}">
+        <table class="settings__table">
+          {% for skill in skills %}
+          <tr>
+            <td class="settings__tableInfo">
+              <h4>{{skill.name}}</h4>
+              <p>
+                {{skill.description}}
+              </p>
+            </td>
+            <td class="settings__tableActions">
+              <a class="tag tag--pill tag--main settings__btn" href="#"><i
+                  class="im im-edit"></i> Изменить</a>
+              <a class="tag tag--pill tag--main settings__btn" href="#"><i
+                  class="im im-x-mark-circle-o"></i>
+                Удалить</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
 
-                          </div>
-                       </div>
-                      <div class="col-7">
-                          <div class="row ">
-                              <div class="col-3">
-                                  <h1 class="user-header" style="font-weight: normal;">
-                                      {{ user_obj.username }}</h1>
-                              </div>
-                              {% if request.user == user_obj %}
-                                  <div class="col-3 ">
-                                      <form action="{% url 'change' user_obj.pk %}" method="POST">
-                                          {% csrf_token %}
-                                          {% bootstrap_button button_type="submit" content='Редактировать профиль' %}
-                                      </form>
-                                  </div>
+        <div class="settings">
+          <h3 class="settings__title">Вакансии</h3>
+          <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'create_vacancy' user_obj.pk %}"><i
+              class="im im-plus"></i> Добавить вакансию</a>
+        </div>
 
-                                  <div class="col-2 text-center">
-                                      <a href="{% url 'responses' user_obj.pk %}"><button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Посмотреть отклики на резюме</button></a>
-                                  </div>
+        <table class="settings__table">
+          {% for vacancy in vacancies %}
+          <tr>
+            <td class="settings__thumbnail">
+              <a href="#">Вакансия № {{ forloop.counter }}</a>
+            </td>
+            <td class="settings__tableInfo">
+              <a href="#">{{vacancy.title}}</a>
+              <p>{{vacancy.salary_level|slice:"150"}}</p>
+              <p>{{vacancy.changed_at}}</p>
+            </td>
+            <td class="settings__tableActions">
+              <form action="{% url 'vacancy_public' vacancy.pk %}" method="POST">
+                {% csrf_token %}
+                {% if vacancy.is_public %}
+                  <button type="submit" class="tag tag--pill tag--main settings__btn">Не публиковать</button>
+                {% else%}
+                  <button type="submit" class="tag tag--pill tag--main settings__btn">Oпубликовать</button>
+                {% endif%}
+              </form>
+              <form action="{% url 'vacancy_date_update' vacancy.pk %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="tag tag--pill tag--main settings__btn">Обновить</button>
+              </form>
+              <a class="tag tag--pill tag--main settings__btn" href="{% url 'vacancy_edit' vacancy.pk %}"><i
+                  class="im im-edit"></i> Редактировать</a>
+              <a class="tag tag--pill tag--main settings__btn"
+                href="{% url 'vacancy_delete' vacancy.pk %}"><i class="im im-x-mark-circle-o"></i>
+                Удалить</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
+{% elif user_obj.user_category == 'applicant' %}
+<main class="settingsPage profile my-md">
+  <div class="container">
+    <div class="layout">
+      <div class="column column--1of3">
+        <div class="card text-center">
+          <div class="card__body dev">
+            {% if request.user == user_obj %}
+            <a class="tag tag--pill tag--main settings__btn" href="{% url 'change' user_obj.pk %}"><i class="im im-edit"></i>
+              Редактировать профиль</a>
+            {% endif %}
+            <img class="avatar avatar--xl dev__avatar" src="{{ user_obj.avatar.url }}"/>
+            <h2 class="dev__name">Name: {{ user_obj.username }}</h2>
+            <p class="dev__title">Email: {{ user_obj.email }}</p>
+            <p class="dev__location">Phone: {{ user_obj.phone }}</p>
+            <ul class="dev__social">
+              {% if user_obj.github %}
+              <li>
+                <a title="GitHub" href="{{ user_obj.github }}" target="_blank"><i class="im im-github"></i></a>
+              </li>
+              {% endif %}
+              {% if user_obj.twitter %}
+              <li>
+                <a title="Twitter" href="{{ user_obj.twitter }}" target="_blank"><i class="im im-twitter"></i></a>
+              </li>
+              {% endif %}
+              {% if user_obj.linkedin %}
+              <li>
+                <a title="LinkedIn" href="{{ user_obj.linkedin }}" target="_blank"><i
+                    class="im im-linkedin"></i></a>
+              </li>
+              {% endif %}
+              {% if user_obj.website %}
+              <li>
+                <a title="Личный сайт" href="{{ user_obj.website }}" target="_blank"><i
+                    class="im im-globe"></i></a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="column column--2of3">
+        <div class="settings">
+          <h3 class="settings__title">Отклики</h3>
+          <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'responses' user_obj.pk %}"><i
+              class="im im-plus"></i>Посмотреть отклик на резюме</a>
+          <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'to_vacancies_responses' user_obj.pk %}"><i
+              class="im im-plus"></i>Посмотреть отклик на вакансию</a>
+        </div>
 
-                                  <div class="col-2 text-center">
-                                      <a href="{% url 'to_vacancies_responses' user_obj.pk %}">
-                                          <button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Посмотреть отклики на вакансии</button></a>
-                                  </div>
+        <table class="settings__table">
+          {% for skill in skills %}
+          <tr>
+            <td class="settings__tableInfo">
+              <h4>{{skill.name}}</h4>
+              <p>
+                {{skill.description}}
+              </p>
+            </td>
+            <td class="settings__tableActions">
+              <a class="tag tag--pill tag--main settings__btn" href="#"><i
+                  class="im im-edit"></i> Изменить</a>
+              <a class="tag tag--pill tag--main settings__btn" href="#"><i
+                  class="im im-x-mark-circle-o"></i>
+                Удалить</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
 
-                              {% endif %}
-                          </div>
-                      </div>
-                  </div>
-                  <div class="col-2 text-center">
-                      <a href="{% url 'create_vacancy' user_obj.pk %}"><button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Создать вакансию</button></a>
-                  </div>
-                 <hr>
+        <div class="settings">
+          <h3 class="settings__title">Резюме</h3>
+          <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'resume_create' user_obj.pk %}"><i
+              class="im im-plus"></i> Добавить резюме</a>
+        </div>
 
-
-
-                {% elif user_obj.user_category == 'applicant' %}
-                <div class="row justify-content-center ">
-                      <div class="col-3">
-                          <div class="photo-avatar" style="width: 200px; height: 200px;">
-
-                              <img class="is-rounded" style="display: block; max-width: 100%;" src="{{ user_obj.avatar.url }}">
-
-                          </div>
-                       </div>
-                      <div class="col-7">
-                          <div class="row ">
-                              <div class="col-3">
-                                  <h1 class="user-header" style="font-weight: normal;">
-                                      {{ user_obj.username }}</h1>
-                              </div>
-
-                          </div>
-                      </div>
-                  </div>
-                  {% if request.user == user_obj %}
-                  <div class="row">
-                      <div class="col-3 text-center">
-                          <a href="{% url 'resume_create' user_obj.pk %}">
-                              <button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Создать резюме</button></a>
-                      </div>
-                      <div class="col-3 text-center">
-                          <a href="{% url 'responses' user_obj.pk %}">
-                              <button type="submit" class="btn btn-info btn-block" style="margin-top: 20px;">Посмотреть отклики на мои резюме</button></a>
-                      </div>
-                      <div class="col-3 text-center">
-                          <a href="{% url 'to_vacancies_responses' user_obj.pk %}">
-                              <button type="submit" class="btn btn-info btn-block" style="margin-top: 20px;">Посмотреть мои отклики на вакансии</button></a>
-                      </div>
-                      <div class="col-3 text-center">
-                          <a href="{% url 'change' user_obj.pk %}">
-                              <button type="submit" class="btn btn-primary btn-block" style="margin-top: 20px;">Редактировать профиль</button></a>
-
-                      </div>
-                 </div>
-                 {% endif %}
-                 <hr>
-                {% endif %}
-                <div class="row justify-content-between">
-                
-                
-                
-                
-                
-                {% for vacancy in vacancies %}
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ vacancy.title }}</h5>
-                                <p class="card-text">{{ vacancy.salary_level }}</p>
-                                <p class="card-text">{{ vacancy.created_at }}</p>
-                                <form action="{% url 'vacancy_date_update' vacancy.pk %}" method="POST">
-                                    {% csrf_token %}
-                                    <div id="container">
-                                        <button type="submit" class="btn btn-primary">Обновить</button>
-                                    </div>
-                                </form>
-                                <form action="{% url 'vacancy_public' vacancy.pk %}" method="POST">
-                                    {% csrf_token %}
-                                    <div id="container">
-                                        {% if vacancy.is_public %}
-                                        <button type="submit" class="btn btn-primary">Не публиковать</button>
-                                        {% else%}
-                                        <button type="submit" class="btn btn-primary">Oпубликовать</button>
-                                        {% endif%}
-                                    </div>
-                                </form>
-                                <a href="{% url 'vacancy_edit' vacancy.pk %}"><button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Редактировать</button></a>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-
-                    {% for resume in resumes %}
-                        <div class="col-sm-6" style="margin-top: 20px; margin-bottom: 40px">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ resume.profession }}</h5>
-                                    <p class="card-text">{{ resume.job_title }}</p>
-                                    <p class="card-text">{{ resume.changed_at }}</p>
-
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <form action="{% url 'resume_date_update' resume.pk %}" method="POST">
-                                                {% csrf_token %}
-                                                <div id="container">
-                                                    <button type="submit" class="btn btn-primary">Обновить</button>
-                                                </div>
-                                            </form>
-                                        </div>
-
-                                        <div class="col-4">
-                                            <form action="{% url 'resume_public' resume.pk %}" method="POST">
-                                                {% csrf_token %}
-                                                <div id="container">
-                                                    {% if resume.is_public %}
-                                                    <button type="submit" id="public" class="btn btn-secondary">Не публиковать</button>
-                                                    {% else%}
-                                                    <button type="submit" id="publicP" class="btn btn-primary">Опубликовать</button>
-                                                    {% endif %}
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                        <div class="row">
-                                            <div class="col-5">
-                                                <a href="{% url 'resume_edit' resume.pk %}"><button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Редактировать</button></a>
-                                            </div>
-                                            <div class="col-4">
-                                                <a href="{% url 'resume_delete' resume.pk %}"><button type="submit" class="btn btn-secondary btn-block" style="margin-top: 20px;">Удалить</button></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                        </div>
-
-                    {% endfor %}
-
-                <hr>
-
-
-              </div>
-                <p id="resumePk" style="display: none">{{ resume.pk }}</p>
-                <div id="myModalDeleteConfirm" class="modal" style="display: none; width: 100%; height: 100%; background-color: #bbbbbb; z-index: 1; overflow: auto">
-                <div class="modal-content" style="background-color: white; margin: 10% auto; padding: 20px; width: 80%; border: 1px solid#888">
-                    <h2 style="margin: 30px auto">Подтвердите удаление</h2>
-                    <div class="row justify-content-center">
-                        <div class="col-3 text-center">
-                            <button type="submit" id="btn-delete-confirm" class="btn btn-secondary btn-block" style="margin-top: 20px; width: ">Удалить</button>
-                        </div>
-                        <div class="col-3 text-center">
-                            <button type="submit" id="btn-delete-cancel" class="btn btn-primary btn-block" style="margin-top: 20px; width: ">Отмена</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-
-
-
-
-<script type="text/javascript" src="{% static 'js/user-detail-delete_button.js' %}"></script>
-
+        <table class="settings__table">
+          {% for resume in resumes %}
+          <tr>
+            <td class="settings__thumbnail">
+              <a href="#">Резюме № {{ forloop.counter }}</a>
+            </td>
+            <td class="settings__tableInfo">
+              <a href="#">{{resume.profession }}</a>
+              <p>{{resume.job_title|slice:"150"}}</p>
+              <p>{{resume.changed_at}}</p>
+            </td>
+            <td class="settings__tableActions">
+              <form action="{% url 'resume_public' resume.pk %}" method="POST">
+                {% csrf_token %}
+                {% if resume.is_public %}
+                  <button type="submit" class="tag tag--pill tag--main settings__btn">Не публиковать</button>
+                {% else%}
+                  <button type="submit" class="tag tag--pill tag--main settings__btn">Oпубликовать</button>
+                {% endif%}
+              </form>
+              <form action="{% url 'resume_date_update' resume.pk %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="tag tag--pill tag--main settings__btn">Обновить</button>
+              </form>
+              <a class="tag tag--pill tag--main settings__btn" href="{% url 'resume_edit' resume.pk %}"><i
+                  class="im im-edit"></i> Редактировать</a>
+              <a class="tag tag--pill tag--main settings__btn"
+                href="{% url 'resume_delete' resume.pk %}"><i class="im im-x-mark-circle-o"></i>
+                Удалить</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </div>
+  </div>
+</main>
+{% endif %}
 {% endblock %}
