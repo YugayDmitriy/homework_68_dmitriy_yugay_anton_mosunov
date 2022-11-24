@@ -8,13 +8,9 @@ from django.db.models import Q
 from resumes.models import Resume
 from vacancies.models.vacancies import Vacancy
 from vacancies.forms import VacancyForm, SearchForm
-
 from vacancies.models import VacancyResponse
-
 from vacancies.forms import VacancyResponseForm
-
 from vacancies.forms import VacancyChatForm
-
 from vacancies.models import VacancyChat
 
 
@@ -42,7 +38,7 @@ class VacanciesIndexView(ListView):
         return None
 
     def get_queryset(self):
-        queryset = super().get_queryset().exclude(is_deleted=True)
+        queryset = super().get_queryset().exclude(is_deleted=True).exclude(is_public=False).order_by('-changed_at')
         if self.search_value:
             queryset = Vacancy.objects.filter(title__icontains=self.search_value)
         return queryset
@@ -69,7 +65,7 @@ class ResumesIndexView(ListView):
         return None
 
     def get_queryset(self):
-        queryset = super().get_queryset().exclude(is_deleted=True).exclude(is_public=False).order_by('-created_at')
+        queryset = super().get_queryset().exclude(is_deleted=True).exclude(is_public=False).order_by('-changed_at')
         if self.search_value:
             queryset = Resume.objects.filter(Q(job_title__icontains=self.search_value))
         return queryset

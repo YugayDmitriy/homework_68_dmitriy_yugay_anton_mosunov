@@ -92,7 +92,7 @@
               <form action="{% url 'vacancy_public' vacancy.pk %}" method="POST">
                 {% csrf_token %}
                 {% if vacancy.is_public %}
-                  <button type="submit" class="tag tag--pill tag--main settings__btn">Не публиковать</button>
+                  <button type="submit" class="tag tag--pill tag--main settings__btn">Не_публиковать</button>
                 {% else%}
                   <button type="submit" class="tag tag--pill tag--main settings__btn">Oпубликовать</button>
                 {% endif%}
@@ -206,7 +206,7 @@
               <form action="{% url 'resume_public' resume.pk %}" method="POST">
                 {% csrf_token %}
                 {% if resume.is_public %}
-                  <button type="submit" class="tag tag--pill tag--main settings__btn">Не публиковать</button>
+                  <button type="submit" class="tag tag--pill tag--main settings__btn">Не_публиковать</button>
                 {% else%}
                   <button type="submit" class="tag tag--pill tag--main settings__btn">Oпубликовать</button>
                 {% endif%}

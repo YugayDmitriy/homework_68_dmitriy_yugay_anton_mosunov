@@ -1,42 +1,79 @@
 {% extends 'base.html' %}
-{% load static%}
-{% load django_bootstrap5 %}
+{% load static %}
 {% block content %}
-{{block.super}}
-    {% if request.user.is_authenticated %}
-        <h2>{{ vacancy.title }}</h2>
-        <h2>{{ vacancy.author.username }}</h2>
-        <h3>{{ vacancy.author.title }}</h3>
-        <h3>{{ vacancy.salary_level }}</h3>
-        <p>{{ vacancy.text }}</p>
-        <p>{{ vacancy.experience }}</p>
-        <p>{{ vacancy.specialization }}</p>
-        <p>{{ vacancy.changed_at }}</p>
-    <p></p>
-    {% endif %}
-    <div class="col-2 text-center">
-        <button id="btn-response" class="btn btn-secondary btn-block" style="margin-top: 20px;">Откликнуться и отправить сообщение</button>
-    </div>
+{% load django_bootstrap5 %}
+{% if request.user.is_authenticated %}
+<main class="singleProject my-md">
+    <div class="container">
+        <div class="layout">
+            <div class="column column--1of3">
+                <h3 class="singleProject__subtitle">Информация о вакансии</h3>
+                <div class="singleProject__toolStack">
+                <a href="#"
+                    class="singleProject__developer">Компания {{ vacancy.author.username }}</a>
+                </div>
 
-    <div class="col-2">
-        <p><a class="btn btn-primary" href="{% url 'index' %}">Вернуться к списку ваканский</a></p>
-    </div>
+                {% if project.source_link %}
+                <a class="singleProject__liveLink" href="#" target="_blank"><i
+                        class="im im-external-link"></i>Исходный код на GitHub
+                </a>
+                {% endif %}
 
+                {% if project.demo_link %}
+                <a class="singleProject__liveLink" href="#" target="_blank"><i
+                        class="im im-external-link"></i>Демо-сайт
+
+                </a>
+                {% endif %}
+                <div class="col-2">
+                    <p><a class="btn btn-primary" href="{% url 'index' %}">Вернуться к списку ваканский</a></p>
+                </div>
+            </div>
+            <div class="column column--2of3">
+
+                <h2 class="singleProject__title">{{ vacancy.title }}</h2>
+                <h5 class="project--rating">
+                    Заработная плата: {{ vacancy.salary_level }}
+                </h5>
+                <h5 class="project--rating">
+                    Описание: {{ vacancy.text }}
+                </h5>
+                <h5 class="project--rating">
+                    Опыт: {{ vacancy.experience }}
+                </h5>
+                <h5 class="project--rating">
+                    Специализация: {{ vacancy.specialization }}
+                </h5>
+
+                <div class="comments">
+                    <h3 class="singleProject__subtitle">Дата публикации</h3>
+                    <h5 class="project--rating">
+                    {{ vacancy.changed_at }}
+                    </h5>
+                    <div class="col-2">
+                    <button id="btn-response" class="btn btn-secondary btn-block" style="margin-top: 20px;">Откликнуться</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</main>
+{% endif %}
     <div id="modalResponse" class="modal" style="display: none; width: 100%; height: 100%; background-color: #bbbbbb; z-index: 1; overflow: auto">
-    <div class="modal-content" style="background-color: white; margin: 10% auto; padding: 20px; width: 80%; border: 1px solid#888">
-        <h2 style="margin: 30px auto">Можете оставить сообщение</h2><div>
+    <div class="modal-content" style="background-color: white; margin: 10% auto; padding: 40px; width: 80%; border: 1px solid#888">
+        <h2 style="text-align: center">Можете оставить сообщение</h2><div>
             <form action="" method="POST" enctype="multipart/form-data">
              {% csrf_token %}
-                <div class="form" id="form-course" >
+                <div class="form" id="form-course" style="background-color: white; margin: 10% auto; padding: 40px; width: 80%;">
                     {% bootstrap_form vacancy_response_form %}
-                    <button id="save-response" type="button" class="btn btn-primary">Сохранить</button>
-                    <button id="btn-close-response" type="button" class="btn btn-primary">Закрыть</button>
+                    <button id="save-response" type="button" class="btn btn-primary" style="margin: 20px 10px 0 0">Сохранить</button>
+                    <button id="btn-close-response" type="button" class="btn btn-primary"style="margin-top: 20px">Закрыть</button>
                 </div>
             </form>
         </div>
     </div>
-
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.js"></script>
 <script type="text/javascript" src="{% static 'js/add-response-to-vacancy.js' %}"></script>
 {% endblock %}

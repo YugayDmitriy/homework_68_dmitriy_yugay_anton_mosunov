@@ -1,58 +1,100 @@
 {% extends 'base.html' %}
-{% load static%}
-{% load django_bootstrap5 %}
+{% load static %}
 {% block content %}
-{{block.super}}
-    {% if request.user.is_authenticated %}
-        <h2>{{ resume.job_title }}</h2>
-        <h3>{{ resume.author.username }}</h3>
-        <h3>{{ resume.profession }}</h3>
-        <p>{{ resume.phone }}</p>
-        <p>{{ resume.telegram_link }}</p>
-        <p>{{ resume.linkedin_link }}</p>
-        <p>{{ resume.facebook_link }}</p>
+{% load django_bootstrap5 %}
+{% if request.user.is_authenticated %}
+<main class="singleProject my-md">
+    <div class="container">
+        <div class="layout">
+            <div class="column column--1of3">
+                <h3 class="singleProject__subtitle">Информация о резюме</h3>
+                <div class="singleProject__toolStack">
+                <a href="#"
+                    class="singleProject__developer">Соискатель: {{ resume.author.username }}</a>
+                </div>
+                <div class="singleProject__toolStack">
+                <a href="#"
+                    class="singleProject__developer">Контактный номер: {{ resume.phone }}</a>
+                </div>
+                <div class="singleProject__toolStack">
+                <a href="#"
+                    class="singleProject__developer">Telegram: {{ resume.telegram_link }}</a>
+                </div>
+                <div class="singleProject__toolStack">
+                <a href="#"
+                    class="singleProject__developer">linkedin: {{ resume.linkedin_link }}</a>
+                </div>
+                <div class="singleProject__toolStack">
+                <a href="#"
+                    class="singleProject__developer">Facebook: {{ resume.facebook_link }}</a>
+                </div>
 
-        <h2>Опыт работы</h2>
-        {% for experience in experiences %}
-            {{ experience.company}}
-        {% endfor %}
 
-        <h2>Образование</h2>
-        {% for educ in education %}
-            {{ educ.educational_institution_name}}
-        {% endfor %}
-        <h2>Образовательные курсы</h2>
-        {% for course in courses %}
-            {{ course.course_name}}
-        {% endfor %}
+                <div class="col-2">
+                    <p><a class="btn btn-primary" href="{% url 'index' %}">Вернуться к списку ваканский</a></p>
+                </div>
+            </div>
+            <div class="column column--2of3">
 
-    {% endif %}
+                <h2 class="singleProject__title">{{ resume.job_title }}</h2>
+                <h5 class="project--rating">
+                    Специальность: {{ resume.profession }}
+                </h5>
 
-    <div class="col-2 text-center">
-        <button id="btn-response" class="btn btn-secondary btn-block" style="margin-top: 20px;">Откликнуться и отправить сообщение</button>
-    </div>
+                {% for experience in experiences %}
+                <div class="comments">
+                    <h3 class="singleProject__subtitle">Опыт работы</h3>
+                    <h5 class="project--rating">
+                    {{ experience.company}}
+                    </h5>
+                </div>
+                {% endfor %}
 
-    <div class="col-2">
-        <p><a class="btn btn-primary" href="{% url 'index_resumes' request.user.pk %}">Вернуться к списку резюме</a></p>
-    </div>
+                {% for educ in education %}
+                <div class="comments">
+                    <h3 class="singleProject__subtitle">Образование</h3>
+                    <h5 class="project--rating">
+                    {{ educ.educational_institution_name }}
+                    </h5>
+                </div>
+                {% endfor %}
 
-    <div id="modalResponse" class="modal" style="display: none; width: 100%; height: 100%; background-color: #bbbbbb; z-index: 1; overflow: auto">
-        <div class="modal-content" style="background-color: white; margin: 10% auto; padding: 20px; width: 80%; border: 1px solid#888">
-            <h2 style="margin: 30px auto">Можете оставить сообщение</h2><div>
-                <form action="" method="POST" enctype="multipart/form-data">
-                 {% csrf_token %}
-                    <div class="form" id="form-course" >
-                        {% bootstrap_form response_form %}
-                        <button id="save-response" type="button" class="btn btn-primary">Сохранить</button>
-                        <button id="btn-close-response" type="button" class="btn btn-primary">Закрыть</button>
+                {% for course in courses %}
+                <div class="comments">
+                    <h3 class="singleProject__subtitle">Образование</h3>
+                    <h5 class="project--rating">
+                    {{ course.course_name}}
+                    </h5>
+                </div>
+                {% endfor %}
+
+                <div class="comments">
+                    <h3 class="singleProject__subtitle">Дата публикации</h3>
+                    <h5 class="project--rating">
+                    {{ resume.changed_at }}
+                    </h5>
+                    <div class="col-2">
+                    <button id="btn-response" class="btn btn-secondary btn-block" style="margin-top: 20px;">Откликнуться</button>
                     </div>
-
-                </form>
+                </div>
+                </div>
             </div>
         </div>
+</main>
+{% endif %}
+    <div id="modalResponse" class="modal" style="display: none; width: 100%; height: 100%; background-color: #bbbbbb; z-index: 1; overflow: auto">
+    <div class="modal-content" style="background-color: white; margin: 10% auto; padding: 40px; width: 80%; border: 1px solid#888">
+        <h2 style="text-align: center">Можете оставить сообщение</h2><div>
+            <form action="" method="POST" enctype="multipart/form-data">
+             {% csrf_token %}
+                <div class="form" id="form-course" style="background-color: white; margin: 10% auto; padding: 40px; width: 80%;">
+                    {% bootstrap_form response_form %}
+                    <button id="save-response" type="button" class="btn btn-primary" style="margin: 20px 10px 0 0">Сохранить</button>
+                    <button id="btn-close-response" type="button" class="btn btn-primary"style="margin-top: 20px">Закрыть</button>
+                </div>
+            </form>
+        </div>
     </div>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.js"></script>
 <script type="text/javascript" src="{% static 'js/add-response-to-resume.js' %}"></script>
-
 {% endblock %}
