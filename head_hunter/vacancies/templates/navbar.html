@@ -11,9 +11,6 @@
             <ul class="header__menu">
                 <li class="header__menuItem"><a href="#">Вакансии</a></li>
                 <li class="header__menuItem"><a href="#">Резюме</a></li>
-
-
-
                 {% if request.user.is_authenticated %}
                 <li class="header__menuItem"><a href="#">Сообщения</a></li>
                 <li class="header__menuItem"><a href="{% url 'profile' user.pk %}"><img style="width: 30px; height: 30px; border-radius: 20px" src="{{request.user.avatar.url}}">Мой аккаунт</a></li>

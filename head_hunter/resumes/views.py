@@ -19,8 +19,6 @@ class ResumeCreateView(CreateView):
     form_class = ResumeForm
     model = Resume
 
-
-
     def get(self, request, *args, **kwargs):
         resume = Resume.objects.create(author=request.user)
         # return super().get(request, *args, **kwargs)
@@ -43,7 +41,6 @@ class ResumeCreateExperienceView(CreateView):
         company = request.POST['company']
         job_title = request.POST['job_title']
         responsibilities = request.POST['responsibilities']
-
         resume = Resume.objects.get(pk=kwargs['pk'])
         Experience.objects.create(resume=resume, work_begin=work_begin, work_end=work_end,
                                   company=company, job_title=job_title, responsibilities=responsibilities)
@@ -77,8 +74,6 @@ class ResumeDeleteExperienceView(DeleteView):
         return redirect('resume_edit', pk=pk)
 
 
-
-
 class ResumeCreateEducationView(CreateView):
     model = Education
 
@@ -110,6 +105,7 @@ class ResumeEditEducationView(UpdateView):
         self.object = form.save(commit=False)
         self.object.save()
         return redirect('resume_edit', pk=self.object.resume.pk)
+
 
 class ResumeDeleteEducationView(DeleteView):
     template_name = 'education_confirm_delete.html'
@@ -156,6 +152,7 @@ class ResumeDeleteCourseView(DeleteView):
         pk = self.object.resume.pk
         self.object.delete()
         return redirect('resume_edit', pk=pk)
+
 
 class ResumeUpdateDateView(TemplateView):
     model = Resume
@@ -305,4 +302,3 @@ class ResumeDeleteView(DeleteView):
         resume.is_deleted = True
         resume.save()
         return redirect('profile', pk=self.request.user.pk)
-

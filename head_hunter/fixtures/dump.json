@@ -1,1040 +1,1616 @@
 [
-{
-  "model": "admin.logentry",
-  "pk": 1,
-  "fields": {
-    "action_time": "2022-11-18T07:18:11.473Z",
-    "user": 1,
-    "content_type": 7,
-    "object_id": "1",
-    "object_repr": "нет опыта",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 2,
-  "fields": {
-    "action_time": "2022-11-18T07:18:22.999Z",
-    "user": 1,
-    "content_type": 7,
-    "object_id": "2",
-    "object_repr": "от 1 года до 3 лет",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 3,
-  "fields": {
-    "action_time": "2022-11-18T07:18:34.212Z",
-    "user": 1,
-    "content_type": 7,
-    "object_id": "3",
-    "object_repr": "от 3 до 6 лет",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 4,
-  "fields": {
-    "action_time": "2022-11-18T07:18:44.234Z",
-    "user": 1,
-    "content_type": 7,
-    "object_id": "4",
-    "object_repr": "более 6 лет",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 5,
-  "fields": {
-    "action_time": "2022-11-18T07:49:38.245Z",
-    "user": 1,
-    "content_type": 9,
-    "object_id": "1",
-    "object_repr": "Информационные технологии",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 6,
-  "fields": {
-    "action_time": "2022-11-18T07:49:53.987Z",
-    "user": 1,
-    "content_type": 9,
-    "object_id": "2",
-    "object_repr": "Управление и экономика",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 7,
-  "fields": {
-    "action_time": "2022-11-18T07:50:04.931Z",
-    "user": 1,
-    "content_type": 9,
-    "object_id": "3",
-    "object_repr": "Юриспруденция",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 8,
-  "fields": {
-    "action_time": "2022-11-18T07:50:16.065Z",
-    "user": 1,
-    "content_type": 9,
-    "object_id": "4",
-    "object_repr": "Искусство и творчество",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 9,
-  "fields": {
-    "action_time": "2022-11-18T07:50:51.954Z",
-    "user": 1,
-    "content_type": 9,
-    "object_id": "5",
-    "object_repr": "Медиа, дизайн и архитектура",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 10,
-  "fields": {
-    "action_time": "2022-11-18T07:52:23.898Z",
-    "user": 1,
-    "content_type": 9,
-    "object_id": "6",
-    "object_repr": "Рабочий персонал",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 11,
-  "fields": {
-    "action_time": "2022-11-18T07:52:39.149Z",
-    "user": 1,
-    "content_type": 9,
-    "object_id": "7",
-    "object_repr": "Продажи, обслуживание клиентов",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 12,
-  "fields": {
-    "action_time": "2022-11-18T07:52:55.189Z",
-    "user": 1,
-    "content_type": 9,
-    "object_id": "8",
-    "object_repr": "Медицина, фармацевтика",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 13,
-  "fields": {
-    "action_time": "2022-11-18T07:53:12.080Z",
-    "user": 1,
-    "content_type": 9,
-    "object_id": "9",
-    "object_repr": "Автомобильный бизнес",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 14,
-  "fields": {
-    "action_time": "2022-11-18T07:53:38.678Z",
-    "user": 1,
-    "content_type": 9,
-    "object_id": "10",
-    "object_repr": "Транспорт, логистика, перевозки",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 15,
-  "fields": {
-    "action_time": "2022-11-18T07:53:48.631Z",
-    "user": 1,
-    "content_type": 9,
-    "object_id": "11",
-    "object_repr": "Страхование",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 16,
-  "fields": {
-    "action_time": "2022-11-18T07:54:00.226Z",
-    "user": 1,
-    "content_type": 9,
-    "object_id": "12",
-    "object_repr": "Финансы, бухгалтерия",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 17,
-  "fields": {
-    "action_time": "2022-11-18T07:54:14.897Z",
-    "user": 1,
-    "content_type": 9,
-    "object_id": "13",
-    "object_repr": "Строительство, недвижимость",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 1,
-  "fields": {
-    "name": "Can add log entry",
-    "content_type": 1,
-    "codename": "add_logentry"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 2,
-  "fields": {
-    "name": "Can change log entry",
-    "content_type": 1,
-    "codename": "change_logentry"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 3,
-  "fields": {
-    "name": "Can delete log entry",
-    "content_type": 1,
-    "codename": "delete_logentry"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 4,
-  "fields": {
-    "name": "Can view log entry",
-    "content_type": 1,
-    "codename": "view_logentry"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 5,
-  "fields": {
-    "name": "Can add permission",
-    "content_type": 2,
-    "codename": "add_permission"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 6,
-  "fields": {
-    "name": "Can change permission",
-    "content_type": 2,
-    "codename": "change_permission"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 7,
-  "fields": {
-    "name": "Can delete permission",
-    "content_type": 2,
-    "codename": "delete_permission"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 8,
-  "fields": {
-    "name": "Can view permission",
-    "content_type": 2,
-    "codename": "view_permission"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 9,
-  "fields": {
-    "name": "Can add group",
-    "content_type": 3,
-    "codename": "add_group"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 10,
-  "fields": {
-    "name": "Can change group",
-    "content_type": 3,
-    "codename": "change_group"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 11,
-  "fields": {
-    "name": "Can delete group",
-    "content_type": 3,
-    "codename": "delete_group"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 12,
-  "fields": {
-    "name": "Can view group",
-    "content_type": 3,
-    "codename": "view_group"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 13,
-  "fields": {
-    "name": "Can add content type",
-    "content_type": 4,
-    "codename": "add_contenttype"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 14,
-  "fields": {
-    "name": "Can change content type",
-    "content_type": 4,
-    "codename": "change_contenttype"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 15,
-  "fields": {
-    "name": "Can delete content type",
-    "content_type": 4,
-    "codename": "delete_contenttype"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 16,
-  "fields": {
-    "name": "Can view content type",
-    "content_type": 4,
-    "codename": "view_contenttype"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 17,
-  "fields": {
-    "name": "Can add session",
-    "content_type": 5,
-    "codename": "add_session"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 18,
-  "fields": {
-    "name": "Can change session",
-    "content_type": 5,
-    "codename": "change_session"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 19,
-  "fields": {
-    "name": "Can delete session",
-    "content_type": 5,
-    "codename": "delete_session"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 20,
-  "fields": {
-    "name": "Can view session",
-    "content_type": 5,
-    "codename": "view_session"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 21,
-  "fields": {
-    "name": "Can add Профиль",
-    "content_type": 6,
-    "codename": "add_account"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 22,
-  "fields": {
-    "name": "Can change Профиль",
-    "content_type": 6,
-    "codename": "change_account"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 23,
-  "fields": {
-    "name": "Can delete Профиль",
-    "content_type": 6,
-    "codename": "delete_account"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 24,
-  "fields": {
-    "name": "Can view Профиль",
-    "content_type": 6,
-    "codename": "view_account"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 25,
-  "fields": {
-    "name": "Can add Опыт",
-    "content_type": 7,
-    "codename": "add_experience"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 26,
-  "fields": {
-    "name": "Can change Опыт",
-    "content_type": 7,
-    "codename": "change_experience"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 27,
-  "fields": {
-    "name": "Can delete Опыт",
-    "content_type": 7,
-    "codename": "delete_experience"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 28,
-  "fields": {
-    "name": "Can view Опыт",
-    "content_type": 7,
-    "codename": "view_experience"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 29,
-  "fields": {
-    "name": "Can add Вакансия",
-    "content_type": 8,
-    "codename": "add_vacancy"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 30,
-  "fields": {
-    "name": "Can change Вакансия",
-    "content_type": 8,
-    "codename": "change_vacancy"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 31,
-  "fields": {
-    "name": "Can delete Вакансия",
-    "content_type": 8,
-    "codename": "delete_vacancy"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 32,
-  "fields": {
-    "name": "Can view Вакансия",
-    "content_type": 8,
-    "codename": "view_vacancy"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 33,
-  "fields": {
-    "name": "Can add Специализация",
-    "content_type": 9,
-    "codename": "add_specialization"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 34,
-  "fields": {
-    "name": "Can change Специализация",
-    "content_type": 9,
-    "codename": "change_specialization"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 35,
-  "fields": {
-    "name": "Can delete Специализация",
-    "content_type": 9,
-    "codename": "delete_specialization"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 36,
-  "fields": {
-    "name": "Can view Специализация",
-    "content_type": 9,
-    "codename": "view_specialization"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 37,
-  "fields": {
-    "name": "Can add course",
-    "content_type": 10,
-    "codename": "add_course"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 38,
-  "fields": {
-    "name": "Can change course",
-    "content_type": 10,
-    "codename": "change_course"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 39,
-  "fields": {
-    "name": "Can delete course",
-    "content_type": 10,
-    "codename": "delete_course"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 40,
-  "fields": {
-    "name": "Can view course",
-    "content_type": 10,
-    "codename": "view_course"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 41,
-  "fields": {
-    "name": "Can add education",
-    "content_type": 11,
-    "codename": "add_education"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 42,
-  "fields": {
-    "name": "Can change education",
-    "content_type": 11,
-    "codename": "change_education"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 43,
-  "fields": {
-    "name": "Can delete education",
-    "content_type": 11,
-    "codename": "delete_education"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 44,
-  "fields": {
-    "name": "Can view education",
-    "content_type": 11,
-    "codename": "view_education"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 45,
-  "fields": {
-    "name": "Can add experience",
-    "content_type": 12,
-    "codename": "add_experience"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 46,
-  "fields": {
-    "name": "Can change experience",
-    "content_type": 12,
-    "codename": "change_experience"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 47,
-  "fields": {
-    "name": "Can delete experience",
-    "content_type": 12,
-    "codename": "delete_experience"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 48,
-  "fields": {
-    "name": "Can view experience",
-    "content_type": 12,
-    "codename": "view_experience"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 49,
-  "fields": {
-    "name": "Can add profession",
-    "content_type": 13,
-    "codename": "add_profession"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 50,
-  "fields": {
-    "name": "Can change profession",
-    "content_type": 13,
-    "codename": "change_profession"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 51,
-  "fields": {
-    "name": "Can delete profession",
-    "content_type": 13,
-    "codename": "delete_profession"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 52,
-  "fields": {
-    "name": "Can view profession",
-    "content_type": 13,
-    "codename": "view_profession"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 53,
-  "fields": {
-    "name": "Can add resume",
-    "content_type": 14,
-    "codename": "add_resume"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 54,
-  "fields": {
-    "name": "Can change resume",
-    "content_type": 14,
-    "codename": "change_resume"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 55,
-  "fields": {
-    "name": "Can delete resume",
-    "content_type": 14,
-    "codename": "delete_resume"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 56,
-  "fields": {
-    "name": "Can view resume",
-    "content_type": 14,
-    "codename": "view_resume"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 1,
-  "fields": {
-    "app_label": "admin",
-    "model": "logentry"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 2,
-  "fields": {
-    "app_label": "auth",
-    "model": "permission"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 3,
-  "fields": {
-    "app_label": "auth",
-    "model": "group"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 4,
-  "fields": {
-    "app_label": "contenttypes",
-    "model": "contenttype"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 5,
-  "fields": {
-    "app_label": "sessions",
-    "model": "session"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 6,
-  "fields": {
-    "app_label": "accounts",
-    "model": "account"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 7,
-  "fields": {
-    "app_label": "vacancies",
-    "model": "experience"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 8,
-  "fields": {
-    "app_label": "vacancies",
-    "model": "vacancy"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 9,
-  "fields": {
-    "app_label": "vacancies",
-    "model": "specialization"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 10,
-  "fields": {
-    "app_label": "resumes",
-    "model": "course"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 11,
-  "fields": {
-    "app_label": "resumes",
-    "model": "education"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 12,
-  "fields": {
-    "app_label": "resumes",
-    "model": "experience"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 13,
-  "fields": {
-    "app_label": "resumes",
-    "model": "profession"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 14,
-  "fields": {
-    "app_label": "resumes",
-    "model": "resume"
-  }
-},
-{
-  "model": "accounts.account",
-  "pk": 1,
-  "fields": {
-    "password": "pbkdf2_sha256$390000$bkwXPqVvVZh8g1zYbX6Ftn$hsIsPu+0SLpFuNnM4vJbM+vUqGSIOmoCEQHw9qxReyE=",
-    "last_login": "2022-11-18T07:48:05.606Z",
-    "is_superuser": true,
-    "username": "root@gmail.com",
-    "first_name": "",
-    "last_name": "",
-    "is_staff": true,
-    "is_active": true,
-    "date_joined": "2022-11-12T17:12:41.855Z",
-    "user_category": "",
-    "email": "root@gmail.com",
-    "phone": "",
-    "avatar": "default_avatar/default-user.png",
-    "is_deleted": false,
-    "created_at": "2022-11-12T17:12:42.084Z",
-    "changed_at": "2022-11-12T17:12:42.084Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "accounts.account",
-  "pk": 3,
-  "fields": {
-    "password": "pbkdf2_sha256$390000$fkAf3dbWjc5YbhDVYhLcOm$3Hda249qYy+7qKDFHfyIU3TDJVQtwB2XzaNEMKNTFu8=",
-    "last_login": "2022-11-12T17:46:51.796Z",
-    "is_superuser": false,
-    "username": "AAA",
-    "first_name": "",
-    "last_name": "",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2022-11-12T17:46:51.637Z",
-    "user_category": "",
-    "email": "AAA@gmail.com",
-    "phone": "+77077730145",
-    "avatar": "avatars/1.jpg",
-    "is_deleted": false,
-    "created_at": "2022-11-12T17:46:51.775Z",
-    "changed_at": "2022-11-12T17:46:51.775Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "vacancies.experience",
-  "pk": 1,
-  "fields": {
-    "experience_name": "нет опыта",
-    "created_at": "2022-11-18T07:18:11.469Z",
-    "updated_at": "2022-11-18T07:18:11.470Z"
-  }
-},
-{
-  "model": "vacancies.experience",
-  "pk": 2,
-  "fields": {
-    "experience_name": "от 1 года до 3 лет",
-    "created_at": "2022-11-18T07:18:22.996Z",
-    "updated_at": "2022-11-18T07:18:22.996Z"
-  }
-},
-{
-  "model": "vacancies.experience",
-  "pk": 3,
-  "fields": {
-    "experience_name": "от 3 до 6 лет",
-    "created_at": "2022-11-18T07:18:34.210Z",
-    "updated_at": "2022-11-18T07:18:34.210Z"
-  }
-},
-{
-  "model": "vacancies.experience",
-  "pk": 4,
-  "fields": {
-    "experience_name": "более 6 лет",
-    "created_at": "2022-11-18T07:18:44.231Z",
-    "updated_at": "2022-11-18T07:18:44.231Z"
-  }
-},
-{
-  "model": "vacancies.specialization",
-  "pk": 1,
-  "fields": {
-    "specialization_name": "Информационные технологии",
-    "created_at": "2022-11-18T07:49:38.214Z",
-    "updated_at": "2022-11-18T07:49:38.214Z"
-  }
-},
-{
-  "model": "vacancies.specialization",
-  "pk": 2,
-  "fields": {
-    "specialization_name": "Управление и экономика",
-    "created_at": "2022-11-18T07:49:53.985Z",
-    "updated_at": "2022-11-18T07:49:53.986Z"
-  }
-},
-{
-  "model": "vacancies.specialization",
-  "pk": 3,
-  "fields": {
-    "specialization_name": "Юриспруденция",
-    "created_at": "2022-11-18T07:50:04.928Z",
-    "updated_at": "2022-11-18T07:50:04.928Z"
-  }
-},
-{
-  "model": "vacancies.specialization",
-  "pk": 4,
-  "fields": {
-    "specialization_name": "Искусство и творчество",
-    "created_at": "2022-11-18T07:50:16.064Z",
-    "updated_at": "2022-11-18T07:50:16.064Z"
-  }
-},
-{
-  "model": "vacancies.specialization",
-  "pk": 5,
-  "fields": {
-    "specialization_name": "Медиа, дизайн и архитектура",
-    "created_at": "2022-11-18T07:50:51.952Z",
-    "updated_at": "2022-11-18T07:50:51.952Z"
-  }
-},
-{
-  "model": "vacancies.specialization",
-  "pk": 6,
-  "fields": {
-    "specialization_name": "Рабочий персонал",
-    "created_at": "2022-11-18T07:52:23.895Z",
-    "updated_at": "2022-11-18T07:52:23.895Z"
-  }
-},
-{
-  "model": "vacancies.specialization",
-  "pk": 7,
-  "fields": {
-    "specialization_name": "Продажи, обслуживание клиентов",
-    "created_at": "2022-11-18T07:52:39.147Z",
-    "updated_at": "2022-11-18T07:52:39.147Z"
-  }
-},
-{
-  "model": "vacancies.specialization",
-  "pk": 8,
-  "fields": {
-    "specialization_name": "Медицина, фармацевтика",
-    "created_at": "2022-11-18T07:52:55.185Z",
-    "updated_at": "2022-11-18T07:52:55.185Z"
-  }
-},
-{
-  "model": "vacancies.specialization",
-  "pk": 9,
-  "fields": {
-    "specialization_name": "Автомобильный бизнес",
-    "created_at": "2022-11-18T07:53:12.078Z",
-    "updated_at": "2022-11-18T07:53:12.078Z"
-  }
-},
-{
-  "model": "vacancies.specialization",
-  "pk": 10,
-  "fields": {
-    "specialization_name": "Транспорт, логистика, перевозки",
-    "created_at": "2022-11-18T07:53:38.676Z",
-    "updated_at": "2022-11-18T07:53:38.676Z"
-  }
-},
-{
-  "model": "vacancies.specialization",
-  "pk": 11,
-  "fields": {
-    "specialization_name": "Страхование",
-    "created_at": "2022-11-18T07:53:48.627Z",
-    "updated_at": "2022-11-18T07:53:48.627Z"
-  }
-},
-{
-  "model": "vacancies.specialization",
-  "pk": 12,
-  "fields": {
-    "specialization_name": "Финансы, бухгалтерия",
-    "created_at": "2022-11-18T07:54:00.224Z",
-    "updated_at": "2022-11-18T07:54:00.224Z"
-  }
-},
-{
-  "model": "vacancies.specialization",
-  "pk": 13,
-  "fields": {
-    "specialization_name": "Строительство, недвижимость",
-    "created_at": "2022-11-18T07:54:14.894Z",
-    "updated_at": "2022-11-18T07:54:14.894Z"
-  }
-}
+    {
+      "model": "admin.logentry",
+      "pk": 1,
+      "fields": {
+        "action_time": "2022-11-22T10:43:24.086Z",
+        "user": 1,
+        "content_type": 15,
+        "object_id": "1",
+        "object_repr": "Юрист",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 2,
+      "fields": {
+        "action_time": "2022-11-22T10:43:29.822Z",
+        "user": 1,
+        "content_type": 15,
+        "object_id": "2",
+        "object_repr": "Экономист",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 3,
+      "fields": {
+        "action_time": "2022-11-22T10:43:39.451Z",
+        "user": 1,
+        "content_type": 15,
+        "object_id": "3",
+        "object_repr": "Бухгалтер",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 4,
+      "fields": {
+        "action_time": "2022-11-22T10:46:31.427Z",
+        "user": 1,
+        "content_type": 15,
+        "object_id": "4",
+        "object_repr": "Программист",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 5,
+      "fields": {
+        "action_time": "2022-11-22T10:46:51.531Z",
+        "user": 1,
+        "content_type": 15,
+        "object_id": "5",
+        "object_repr": "Менеджмент",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 6,
+      "fields": {
+        "action_time": "2022-11-22T10:47:07.916Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "1",
+        "object_repr": "Нет опыта",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 7,
+      "fields": {
+        "action_time": "2022-11-22T10:47:10.730Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "2",
+        "object_repr": "От 1 года до 3 лет",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 8,
+      "fields": {
+        "action_time": "2022-11-22T10:47:14.811Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "3",
+        "object_repr": "От 3 до 6 лет",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 9,
+      "fields": {
+        "action_time": "2022-11-22T10:47:18.478Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "4",
+        "object_repr": "Более 6 лет",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 10,
+      "fields": {
+        "action_time": "2022-11-22T10:47:24.202Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "1",
+        "object_repr": "Автомобильный бизнес",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 11,
+      "fields": {
+        "action_time": "2022-11-22T10:47:27.346Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "2",
+        "object_repr": "Туризм, гостиницы, рестораны",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 12,
+      "fields": {
+        "action_time": "2022-11-22T10:47:32.362Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "3",
+        "object_repr": "Транспорт, логистика, перевозки",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 13,
+      "fields": {
+        "action_time": "2022-11-22T10:47:35.966Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "4",
+        "object_repr": "Рабочий персонал",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 14,
+      "fields": {
+        "action_time": "2022-11-22T10:47:40.467Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "5",
+        "object_repr": "Юристы",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 15,
+      "fields": {
+        "action_time": "2022-11-22T10:47:44.348Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "6",
+        "object_repr": "Розничная торговля",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 16,
+      "fields": {
+        "action_time": "2022-11-22T12:20:05.824Z",
+        "user": 1,
+        "content_type": 16,
+        "object_id": "1",
+        "object_repr": "Экономист Менеджер 15632131.0 ывавыаываыа BBB@gmail.com dsadasd asdasd adasd ",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0423\\u0434\\u0430\\u043b\\u0435\\u043d\\u043e\"]}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 17,
+      "fields": {
+        "action_time": "2022-11-22T12:20:33.056Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "Грузчик - 1500000.0 - Разнорабочий на склад расфасовки - От 3 до 6 лет - Рабочий персонал",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0423\\u0434\\u0430\\u043b\\u0435\\u043d\\u043e\"]}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 18,
+      "fields": {
+        "action_time": "2022-11-22T12:24:42.123Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "Грузчик - 1500000.0 - Разнорабочий на склад расфасовки - От 3 до 6 лет - Рабочий персонал",
+        "action_flag": 3,
+        "change_message": ""
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 19,
+      "fields": {
+        "action_time": "2022-11-23T08:02:21.300Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "3",
+        "object_repr": "BBB@gmail.com",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0410\\u0432\\u0430\\u0442\\u0430\\u0440\"]}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 20,
+      "fields": {
+        "action_time": "2022-11-23T09:05:39.022Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "4",
+        "object_repr": "Водитель - 800000.0 - ыфвфвыфвыфв - От 3 до 6 лет - Транспорт, логистика, перевозки",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0423\\u0434\\u0430\\u043b\\u0435\\u043d\\u043e\"]}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 21,
+      "fields": {
+        "action_time": "2022-11-23T09:05:45.981Z",
+        "user": 1,
+        "content_type": 16,
+        "object_id": "2",
+        "object_repr": "Бухгалтер вфывыфв 65651616.0 sdfdsf root@gmail.com sdfsdf sdfsdf sdfsdf ",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0423\\u0434\\u0430\\u043b\\u0435\\u043d\\u043e\"]}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 22,
+      "fields": {
+        "action_time": "2022-11-23T09:05:49.547Z",
+        "user": 1,
+        "content_type": 16,
+        "object_id": "6",
+        "object_repr": "Программист Разработчик 600000.0 ыфвыфвыфвв manager@gmail.com фвфыв ффвфыв фвфыв ",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u041d\\u0435 \\u043e\\u043f\\u0443\\u0431\\u043b\\u0438\\u043a\\u043e\\u0432\\u0430\\u043d\\u043e\"]}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 23,
+      "fields": {
+        "action_time": "2022-11-23T09:05:56.839Z",
+        "user": 1,
+        "content_type": 16,
+        "object_id": "1",
+        "object_repr": "Экономист Менеджер 15632131.0 ывавыаываыа BBB@gmail.com dsadasd asdasd adasd ",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0423\\u0434\\u0430\\u043b\\u0435\\u043d\\u043e\"]}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 24,
+      "fields": {
+        "action_time": "2022-11-23T09:06:00.991Z",
+        "user": 1,
+        "content_type": 16,
+        "object_id": "7",
+        "object_repr": "Экономист asdasd 564654.0 asdasd manager@gmail.com adasd adasd adsd ",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0423\\u0434\\u0430\\u043b\\u0435\\u043d\\u043e\"]}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 25,
+      "fields": {
+        "action_time": "2022-11-23T09:06:04.719Z",
+        "user": 1,
+        "content_type": 16,
+        "object_id": "3",
+        "object_repr": "Экономист asdasd 21321231.0 asdasd dev@gmail.com asdasd asdasd asdasd ",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0423\\u0434\\u0430\\u043b\\u0435\\u043d\\u043e\"]}}]"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 1,
+      "fields": {
+        "name": "Can add log entry",
+        "content_type": 1,
+        "codename": "add_logentry"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 2,
+      "fields": {
+        "name": "Can change log entry",
+        "content_type": 1,
+        "codename": "change_logentry"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 3,
+      "fields": {
+        "name": "Can delete log entry",
+        "content_type": 1,
+        "codename": "delete_logentry"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 4,
+      "fields": {
+        "name": "Can view log entry",
+        "content_type": 1,
+        "codename": "view_logentry"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 5,
+      "fields": {
+        "name": "Can add permission",
+        "content_type": 2,
+        "codename": "add_permission"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 6,
+      "fields": {
+        "name": "Can change permission",
+        "content_type": 2,
+        "codename": "change_permission"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 7,
+      "fields": {
+        "name": "Can delete permission",
+        "content_type": 2,
+        "codename": "delete_permission"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 8,
+      "fields": {
+        "name": "Can view permission",
+        "content_type": 2,
+        "codename": "view_permission"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 9,
+      "fields": {
+        "name": "Can add group",
+        "content_type": 3,
+        "codename": "add_group"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 10,
+      "fields": {
+        "name": "Can change group",
+        "content_type": 3,
+        "codename": "change_group"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 11,
+      "fields": {
+        "name": "Can delete group",
+        "content_type": 3,
+        "codename": "delete_group"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 12,
+      "fields": {
+        "name": "Can view group",
+        "content_type": 3,
+        "codename": "view_group"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 13,
+      "fields": {
+        "name": "Can add content type",
+        "content_type": 4,
+        "codename": "add_contenttype"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 14,
+      "fields": {
+        "name": "Can change content type",
+        "content_type": 4,
+        "codename": "change_contenttype"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 15,
+      "fields": {
+        "name": "Can delete content type",
+        "content_type": 4,
+        "codename": "delete_contenttype"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 16,
+      "fields": {
+        "name": "Can view content type",
+        "content_type": 4,
+        "codename": "view_contenttype"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 17,
+      "fields": {
+        "name": "Can add session",
+        "content_type": 5,
+        "codename": "add_session"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 18,
+      "fields": {
+        "name": "Can change session",
+        "content_type": 5,
+        "codename": "change_session"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 19,
+      "fields": {
+        "name": "Can delete session",
+        "content_type": 5,
+        "codename": "delete_session"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 20,
+      "fields": {
+        "name": "Can view session",
+        "content_type": 5,
+        "codename": "view_session"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 21,
+      "fields": {
+        "name": "Can add Профиль",
+        "content_type": 6,
+        "codename": "add_account"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 22,
+      "fields": {
+        "name": "Can change Профиль",
+        "content_type": 6,
+        "codename": "change_account"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 23,
+      "fields": {
+        "name": "Can delete Профиль",
+        "content_type": 6,
+        "codename": "delete_account"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 24,
+      "fields": {
+        "name": "Can view Профиль",
+        "content_type": 6,
+        "codename": "view_account"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 25,
+      "fields": {
+        "name": "Can add Опыт",
+        "content_type": 7,
+        "codename": "add_experience"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 26,
+      "fields": {
+        "name": "Can change Опыт",
+        "content_type": 7,
+        "codename": "change_experience"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 27,
+      "fields": {
+        "name": "Can delete Опыт",
+        "content_type": 7,
+        "codename": "delete_experience"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 28,
+      "fields": {
+        "name": "Can view Опыт",
+        "content_type": 7,
+        "codename": "view_experience"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 29,
+      "fields": {
+        "name": "Can add Вакансия",
+        "content_type": 8,
+        "codename": "add_vacancy"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 30,
+      "fields": {
+        "name": "Can change Вакансия",
+        "content_type": 8,
+        "codename": "change_vacancy"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 31,
+      "fields": {
+        "name": "Can delete Вакансия",
+        "content_type": 8,
+        "codename": "delete_vacancy"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 32,
+      "fields": {
+        "name": "Can view Вакансия",
+        "content_type": 8,
+        "codename": "view_vacancy"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 33,
+      "fields": {
+        "name": "Can add Специализация",
+        "content_type": 9,
+        "codename": "add_specialization"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 34,
+      "fields": {
+        "name": "Can change Специализация",
+        "content_type": 9,
+        "codename": "change_specialization"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 35,
+      "fields": {
+        "name": "Can delete Специализация",
+        "content_type": 9,
+        "codename": "delete_specialization"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 36,
+      "fields": {
+        "name": "Can view Специализация",
+        "content_type": 9,
+        "codename": "view_specialization"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 37,
+      "fields": {
+        "name": "Can add vacancy response",
+        "content_type": 10,
+        "codename": "add_vacancyresponse"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 38,
+      "fields": {
+        "name": "Can change vacancy response",
+        "content_type": 10,
+        "codename": "change_vacancyresponse"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 39,
+      "fields": {
+        "name": "Can delete vacancy response",
+        "content_type": 10,
+        "codename": "delete_vacancyresponse"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 40,
+      "fields": {
+        "name": "Can view vacancy response",
+        "content_type": 10,
+        "codename": "view_vacancyresponse"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 41,
+      "fields": {
+        "name": "Can add vacancy chat",
+        "content_type": 11,
+        "codename": "add_vacancychat"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 42,
+      "fields": {
+        "name": "Can change vacancy chat",
+        "content_type": 11,
+        "codename": "change_vacancychat"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 43,
+      "fields": {
+        "name": "Can delete vacancy chat",
+        "content_type": 11,
+        "codename": "delete_vacancychat"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 44,
+      "fields": {
+        "name": "Can view vacancy chat",
+        "content_type": 11,
+        "codename": "view_vacancychat"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 45,
+      "fields": {
+        "name": "Can add course",
+        "content_type": 12,
+        "codename": "add_course"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 46,
+      "fields": {
+        "name": "Can change course",
+        "content_type": 12,
+        "codename": "change_course"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 47,
+      "fields": {
+        "name": "Can delete course",
+        "content_type": 12,
+        "codename": "delete_course"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 48,
+      "fields": {
+        "name": "Can view course",
+        "content_type": 12,
+        "codename": "view_course"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 49,
+      "fields": {
+        "name": "Can add education",
+        "content_type": 13,
+        "codename": "add_education"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 50,
+      "fields": {
+        "name": "Can change education",
+        "content_type": 13,
+        "codename": "change_education"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 51,
+      "fields": {
+        "name": "Can delete education",
+        "content_type": 13,
+        "codename": "delete_education"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 52,
+      "fields": {
+        "name": "Can view education",
+        "content_type": 13,
+        "codename": "view_education"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 53,
+      "fields": {
+        "name": "Can add experience",
+        "content_type": 14,
+        "codename": "add_experience"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 54,
+      "fields": {
+        "name": "Can change experience",
+        "content_type": 14,
+        "codename": "change_experience"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 55,
+      "fields": {
+        "name": "Can delete experience",
+        "content_type": 14,
+        "codename": "delete_experience"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 56,
+      "fields": {
+        "name": "Can view experience",
+        "content_type": 14,
+        "codename": "view_experience"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 57,
+      "fields": {
+        "name": "Can add profession",
+        "content_type": 15,
+        "codename": "add_profession"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 58,
+      "fields": {
+        "name": "Can change profession",
+        "content_type": 15,
+        "codename": "change_profession"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 59,
+      "fields": {
+        "name": "Can delete profession",
+        "content_type": 15,
+        "codename": "delete_profession"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 60,
+      "fields": {
+        "name": "Can view profession",
+        "content_type": 15,
+        "codename": "view_profession"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 61,
+      "fields": {
+        "name": "Can add resume",
+        "content_type": 16,
+        "codename": "add_resume"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 62,
+      "fields": {
+        "name": "Can change resume",
+        "content_type": 16,
+        "codename": "change_resume"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 63,
+      "fields": {
+        "name": "Can delete resume",
+        "content_type": 16,
+        "codename": "delete_resume"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 64,
+      "fields": {
+        "name": "Can view resume",
+        "content_type": 16,
+        "codename": "view_resume"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 65,
+      "fields": {
+        "name": "Can add response",
+        "content_type": 17,
+        "codename": "add_response"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 66,
+      "fields": {
+        "name": "Can change response",
+        "content_type": 17,
+        "codename": "change_response"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 67,
+      "fields": {
+        "name": "Can delete response",
+        "content_type": 17,
+        "codename": "delete_response"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 68,
+      "fields": {
+        "name": "Can view response",
+        "content_type": 17,
+        "codename": "view_response"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 69,
+      "fields": {
+        "name": "Can add chat",
+        "content_type": 18,
+        "codename": "add_chat"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 70,
+      "fields": {
+        "name": "Can change chat",
+        "content_type": 18,
+        "codename": "change_chat"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 71,
+      "fields": {
+        "name": "Can delete chat",
+        "content_type": 18,
+        "codename": "delete_chat"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 72,
+      "fields": {
+        "name": "Can view chat",
+        "content_type": 18,
+        "codename": "view_chat"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 1,
+      "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 2,
+      "fields": {
+        "app_label": "auth",
+        "model": "permission"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 3,
+      "fields": {
+        "app_label": "auth",
+        "model": "group"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 4,
+      "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 5,
+      "fields": {
+        "app_label": "sessions",
+        "model": "session"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 6,
+      "fields": {
+        "app_label": "accounts",
+        "model": "account"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 7,
+      "fields": {
+        "app_label": "vacancies",
+        "model": "experience"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 8,
+      "fields": {
+        "app_label": "vacancies",
+        "model": "vacancy"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 9,
+      "fields": {
+        "app_label": "vacancies",
+        "model": "specialization"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 10,
+      "fields": {
+        "app_label": "vacancies",
+        "model": "vacancyresponse"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 11,
+      "fields": {
+        "app_label": "vacancies",
+        "model": "vacancychat"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 12,
+      "fields": {
+        "app_label": "resumes",
+        "model": "course"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 13,
+      "fields": {
+        "app_label": "resumes",
+        "model": "education"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 14,
+      "fields": {
+        "app_label": "resumes",
+        "model": "experience"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 15,
+      "fields": {
+        "app_label": "resumes",
+        "model": "profession"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 16,
+      "fields": {
+        "app_label": "resumes",
+        "model": "resume"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 17,
+      "fields": {
+        "app_label": "resumes",
+        "model": "response"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 18,
+      "fields": {
+        "app_label": "resumes",
+        "model": "chat"
+      }
+    },
+    {
+      "model": "sessions.session",
+      "pk": "itgtn0gpeh6i0s2ap8m2qv8ldklya6s2",
+      "fields": {
+        "session_data": ".eJxVjDsOwjAQBe_iGlnGv3Uo6XMGy7te4wBypDipEHeHSCmgfTPzXiKmba1x67zEKYuLMOL0u2GiB7cd5Htqt1nS3NZlQrkr8qBdjnPm5_Vw_w5q6vVbWwweCqM2RZdzAENQCD0Hy4CZg_MMCtAiqMGQS9rzUCgox0ppS168P_gTOBo:1oxli9:LYTSsWKOYgz9nFMC5dPehwQrJR9ffzvKy0KBWpUobG0",
+        "expire_date": "2022-12-07T09:06:29.135Z"
+      }
+    },
+    {
+      "model": "sessions.session",
+      "pk": "kn6is5grw1pqf0huuj5nq3g2kk1a9zzt",
+      "fields": {
+        "session_data": ".eJxVjMsOwiAQAP-FsyG8tqUevfcbyLILUjU0Ke3J-O-GpAe9zkzmLQIeewlHS1tYWFyFFpdfFpGeqXbBD6z3VdJa922JsifytE3OK6fX7Wz_BgVb6VtljWcNNADrTIZZWQJiP_hoWBNnNaJPhkE5AJUtGhdhmjzYEaIj8fkC3j83lQ:1oxKaC:30qihfJua6IludGpuYXd3KAwLLQsasyvrEjRNDfa__w",
+        "expire_date": "2022-12-06T04:08:28.348Z"
+      }
+    },
+    {
+      "model": "sessions.session",
+      "pk": "pksspla9jlnc85mffex7yvogbjfs7wtb",
+      "fields": {
+        "session_data": ".eJxVjDsOwjAQBe_iGlnGv3Uo6XMGy7te4wBypDipEHeHSCmgfTPzXiKmba1x67zEKYuLMOL0u2GiB7cd5Htqt1nS3NZlQrkr8qBdjnPm5_Vw_w5q6vVbWwweCqM2RZdzAENQCD0Hy4CZg_MMCtAiqMGQS9rzUCgox0ppS168P_gTOBo:1oxpmh:1KPDActh8kcJ4HG9PLZMjtFRFbXrt4f1S9Q372Nmwaw",
+        "expire_date": "2022-12-07T13:27:27.588Z"
+      }
+    },
+    {
+      "model": "accounts.account",
+      "pk": 1,
+      "fields": {
+        "password": "pbkdf2_sha256$390000$vP7KIozMKy2yTvnDEaKqP3$ujhPvJHpYSVjXfKW9bCtl0m4JUYum6yvQz+5t3pUvkU=",
+        "last_login": "2022-11-23T09:05:07.682Z",
+        "is_superuser": true,
+        "username": "root@gmail.com",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2022-11-22T04:06:06.926Z",
+        "user_category": "",
+        "email": "root@gmail.com",
+        "phone": "",
+        "avatar": "default_avatar/default-user.png",
+        "is_deleted": false,
+        "created_at": "2022-11-22T04:06:07.137Z",
+        "changed_at": "2022-11-22T04:06:07.137Z",
+        "groups": [],
+        "user_permissions": []
+      }
+    },
+    {
+      "model": "accounts.account",
+      "pk": 2,
+      "fields": {
+        "password": "pbkdf2_sha256$390000$bLDWQxyU43jRVQDYB8GhdQ$EUFUqHMTEn9DqYG8ou0zR9RWtgHYwtFYehRgGqd2kc0=",
+        "last_login": "2022-11-23T13:02:25.873Z",
+        "is_superuser": false,
+        "username": "Up_Legal",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2022-11-22T04:07:33.147Z",
+        "user_category": "employer",
+        "email": "AAA@gmail.com",
+        "phone": "+77008000882",
+        "avatar": "avatars/Котова_и_Серебряков.png",
+        "is_deleted": false,
+        "created_at": "2022-11-22T04:07:33.525Z",
+        "changed_at": "2022-11-23T05:51:26.617Z",
+        "groups": [],
+        "user_permissions": []
+      }
+    },
+    {
+      "model": "accounts.account",
+      "pk": 3,
+      "fields": {
+        "password": "pbkdf2_sha256$390000$Jvqstlj6A9N2mdTXC6XJm6$+dv3ViGy0AKuMb+/gGMaf5JfQ3gMunA+XkNe2b0gJh4=",
+        "last_login": "2022-11-23T13:27:27.580Z",
+        "is_superuser": false,
+        "username": "Jonh",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2022-11-22T11:14:55.143Z",
+        "user_category": "applicant",
+        "email": "BBB@gmail.com",
+        "phone": "+77008000881",
+        "avatar": "avatars/Салон_Красоты_Величие_природы.png",
+        "is_deleted": false,
+        "created_at": "2022-11-22T11:14:55.366Z",
+        "changed_at": "2022-11-23T13:37:25.811Z",
+        "groups": [],
+        "user_permissions": []
+      }
+    },
+    {
+      "model": "vacancies.experience",
+      "pk": 1,
+      "fields": {
+        "experience_name": "Нет опыта",
+        "created_at": "2022-11-22T10:47:07.915Z",
+        "updated_at": "2022-11-22T10:47:07.915Z"
+      }
+    },
+    {
+      "model": "vacancies.experience",
+      "pk": 2,
+      "fields": {
+        "experience_name": "От 1 года до 3 лет",
+        "created_at": "2022-11-22T10:47:10.729Z",
+        "updated_at": "2022-11-22T10:47:10.729Z"
+      }
+    },
+    {
+      "model": "vacancies.experience",
+      "pk": 3,
+      "fields": {
+        "experience_name": "От 3 до 6 лет",
+        "created_at": "2022-11-22T10:47:14.810Z",
+        "updated_at": "2022-11-22T10:47:14.810Z"
+      }
+    },
+    {
+      "model": "vacancies.experience",
+      "pk": 4,
+      "fields": {
+        "experience_name": "Более 6 лет",
+        "created_at": "2022-11-22T10:47:18.477Z",
+        "updated_at": "2022-11-22T10:47:18.477Z"
+      }
+    },
+    {
+      "model": "vacancies.specialization",
+      "pk": 1,
+      "fields": {
+        "specialization_name": "Автомобильный бизнес",
+        "created_at": "2022-11-22T10:47:24.201Z",
+        "updated_at": "2022-11-22T10:47:24.201Z"
+      }
+    },
+    {
+      "model": "vacancies.specialization",
+      "pk": 2,
+      "fields": {
+        "specialization_name": "Туризм, гостиницы, рестораны",
+        "created_at": "2022-11-22T10:47:27.345Z",
+        "updated_at": "2022-11-22T10:47:27.345Z"
+      }
+    },
+    {
+      "model": "vacancies.specialization",
+      "pk": 3,
+      "fields": {
+        "specialization_name": "Транспорт, логистика, перевозки",
+        "created_at": "2022-11-22T10:47:32.360Z",
+        "updated_at": "2022-11-22T10:47:32.361Z"
+      }
+    },
+    {
+      "model": "vacancies.specialization",
+      "pk": 4,
+      "fields": {
+        "specialization_name": "Рабочий персонал",
+        "created_at": "2022-11-22T10:47:35.965Z",
+        "updated_at": "2022-11-22T10:47:35.965Z"
+      }
+    },
+    {
+      "model": "vacancies.specialization",
+      "pk": 5,
+      "fields": {
+        "specialization_name": "Юристы",
+        "created_at": "2022-11-22T10:47:40.466Z",
+        "updated_at": "2022-11-22T10:47:40.466Z"
+      }
+    },
+    {
+      "model": "vacancies.specialization",
+      "pk": 6,
+      "fields": {
+        "specialization_name": "Розничная торговля",
+        "created_at": "2022-11-22T10:47:44.347Z",
+        "updated_at": "2022-11-22T10:47:44.347Z"
+      }
+    },
+    {
+      "model": "vacancies.vacancy",
+      "pk": 2,
+      "fields": {
+        "author": 2,
+        "title": "Грузчик",
+        "salary_level": 150000.0,
+        "text": "sadasdasdasdasdsa",
+        "experience": 2,
+        "specialization": 4,
+        "is_public": true,
+        "is_deleted": false,
+        "created_at": "2022-11-22T12:26:18.048Z",
+        "changed_at": "2022-11-23T13:20:39.864Z"
+      }
+    },
+    {
+      "model": "vacancies.vacancy",
+      "pk": 3,
+      "fields": {
+        "author": 2,
+        "title": "Менеджер",
+        "salary_level": 250000.0,
+        "text": "Менеджер в отдел продаж",
+        "experience": 2,
+        "specialization": 6,
+        "is_public": true,
+        "is_deleted": true,
+        "created_at": "2022-11-23T05:51:03.484Z",
+        "changed_at": "2022-11-23T09:03:40.719Z"
+      }
+    },
+    {
+      "model": "vacancies.vacancy",
+      "pk": 4,
+      "fields": {
+        "author": 2,
+        "title": "Водитель",
+        "salary_level": 800000.0,
+        "text": "ыфвфвыфвыфв",
+        "experience": 3,
+        "specialization": 3,
+        "is_public": true,
+        "is_deleted": false,
+        "created_at": "2022-11-23T07:48:52.381Z",
+        "changed_at": "2022-11-23T13:20:42.408Z"
+      }
+    },
+    {
+      "model": "vacancies.vacancyresponse",
+      "pk": 1,
+      "fields": {
+        "author": 3,
+        "resume": 3,
+        "hello_message": "Здравствуйте. Меня заинтересовала ваша вакансия!",
+        "vacancy": 4,
+        "is_deleted": false,
+        "created_at": "2022-11-23T12:52:12.101Z",
+        "changed_at": "2022-11-23T12:52:12.101Z"
+      }
+    },
+    {
+      "model": "vacancies.vacancychat",
+      "pk": 1,
+      "fields": {
+        "author": 2,
+        "message": "sdfdsfsdf",
+        "response": 1,
+        "is_deleted": false,
+        "created_at": "2022-11-23T13:04:29.904Z",
+        "changed_at": "2022-11-23T13:04:29.904Z"
+      }
+    },
+    {
+      "model": "vacancies.vacancychat",
+      "pk": 2,
+      "fields": {
+        "author": 2,
+        "message": "sdfhgfjhgfhgf",
+        "response": 1,
+        "is_deleted": false,
+        "created_at": "2022-11-23T13:04:35.318Z",
+        "changed_at": "2022-11-23T13:04:35.318Z"
+      }
+    },
+    {
+      "model": "resumes.resume",
+      "pk": 1,
+      "fields": {
+        "author": 3,
+        "profession": 2,
+        "job_title": "Менеджер",
+        "salary_level": 15632131.0,
+        "about_user": "ывавыаываыа",
+        "email": "BBB@gmail.com",
+        "phone": "+77008000800",
+        "telegram_link": "dsadasd",
+        "linkedin_link": "asdasd",
+        "facebook_link": "adasd",
+        "is_public": true,
+        "is_deleted": false,
+        "created_at": "2022-11-22T11:15:02.836Z",
+        "changed_at": "2022-11-23T09:06:35.911Z"
+      }
+    },
+    {
+      "model": "resumes.resume",
+      "pk": 2,
+      "fields": {
+        "author": 3,
+        "profession": 3,
+        "job_title": "вфывыфв",
+        "salary_level": 65651616.0,
+        "about_user": "sdfdsf",
+        "email": "root@gmail.com",
+        "phone": "+77008000881",
+        "telegram_link": "sdfsdf",
+        "linkedin_link": "sdfsdf",
+        "facebook_link": "sdfsdf",
+        "is_public": true,
+        "is_deleted": false,
+        "created_at": "2022-11-22T11:41:53.488Z",
+        "changed_at": "2022-11-23T09:06:37.293Z"
+      }
+    },
+    {
+      "model": "resumes.resume",
+      "pk": 3,
+      "fields": {
+        "author": 3,
+        "profession": 2,
+        "job_title": "asdasd",
+        "salary_level": 21321231.0,
+        "about_user": "asdasd",
+        "email": "dev@gmail.com",
+        "phone": "+77008000881",
+        "telegram_link": "asdasd",
+        "linkedin_link": "asdasd",
+        "facebook_link": "asdasd",
+        "is_public": false,
+        "is_deleted": false,
+        "created_at": "2022-11-22T12:00:37.371Z",
+        "changed_at": "2022-11-23T09:06:04.717Z"
+      }
+    },
+    {
+      "model": "resumes.resume",
+      "pk": 4,
+      "fields": {
+        "author": 3,
+        "profession": 3,
+        "job_title": "вфывыфв",
+        "salary_level": 5165564.0,
+        "about_user": "asdasdsadasd",
+        "email": "elena_300782@mail.ru",
+        "phone": "+77008000881",
+        "telegram_link": "adasd",
+        "linkedin_link": "adasd",
+        "facebook_link": "adasd",
+        "is_public": true,
+        "is_deleted": false,
+        "created_at": "2022-11-23T05:18:28.137Z",
+        "changed_at": "2022-11-23T09:06:39.325Z"
+      }
+    },
+    {
+      "model": "resumes.resume",
+      "pk": 5,
+      "fields": {
+        "author": 3,
+        "profession": null,
+        "job_title": null,
+        "salary_level": null,
+        "about_user": null,
+        "email": null,
+        "phone": null,
+        "telegram_link": null,
+        "linkedin_link": null,
+        "facebook_link": null,
+        "is_public": false,
+        "is_deleted": true,
+        "created_at": "2022-11-23T05:19:12.606Z",
+        "changed_at": "2022-11-23T07:42:33.224Z"
+      }
+    },
+    {
+      "model": "resumes.resume",
+      "pk": 6,
+      "fields": {
+        "author": 3,
+        "profession": 4,
+        "job_title": "Разработчик",
+        "salary_level": 600000.0,
+        "about_user": "ыфвыфвыфвв",
+        "email": "manager@gmail.com",
+        "phone": "+77008010001",
+        "telegram_link": "фвфыв",
+        "linkedin_link": "ффвфыв",
+        "facebook_link": "фвфыв",
+        "is_public": true,
+        "is_deleted": false,
+        "created_at": "2022-11-23T08:02:42.805Z",
+        "changed_at": "2022-11-23T09:08:31.206Z"
+      }
+    },
+    {
+      "model": "resumes.resume",
+      "pk": 7,
+      "fields": {
+        "author": 3,
+        "profession": 2,
+        "job_title": "asdasd",
+        "salary_level": 564654.0,
+        "about_user": "asdasd",
+        "email": "manager@gmail.com",
+        "phone": "+77008000881",
+        "telegram_link": "adasd",
+        "linkedin_link": "adasd",
+        "facebook_link": "adsd",
+        "is_public": true,
+        "is_deleted": true,
+        "created_at": "2022-11-23T08:19:52.619Z",
+        "changed_at": "2022-11-23T10:53:25.839Z"
+      }
+    },
+    {
+      "model": "resumes.profession",
+      "pk": 1,
+      "fields": {
+        "profession_name": "Юрист",
+        "created_at": "2022-11-22T10:43:24.085Z",
+        "updated_at": "2022-11-22T10:43:24.085Z"
+      }
+    },
+    {
+      "model": "resumes.profession",
+      "pk": 2,
+      "fields": {
+        "profession_name": "Экономист",
+        "created_at": "2022-11-22T10:43:29.821Z",
+        "updated_at": "2022-11-22T10:43:29.821Z"
+      }
+    },
+    {
+      "model": "resumes.profession",
+      "pk": 3,
+      "fields": {
+        "profession_name": "Бухгалтер",
+        "created_at": "2022-11-22T10:43:39.450Z",
+        "updated_at": "2022-11-22T10:43:39.450Z"
+      }
+    },
+    {
+      "model": "resumes.profession",
+      "pk": 4,
+      "fields": {
+        "profession_name": "Программист",
+        "created_at": "2022-11-22T10:46:31.426Z",
+        "updated_at": "2022-11-22T10:46:31.426Z"
+      }
+    },
+    {
+      "model": "resumes.profession",
+      "pk": 5,
+      "fields": {
+        "profession_name": "Менеджмент",
+        "created_at": "2022-11-22T10:46:51.530Z",
+        "updated_at": "2022-11-22T10:46:51.530Z"
+      }
+    },
+    {
+      "model": "resumes.experience",
+      "pk": 1,
+      "fields": {
+        "resume": 1,
+        "work_begin": "2022-01-01",
+        "work_end": "2022-01-01",
+        "company": "ТОО Up Legal",
+        "job_title": "вфывыфв",
+        "responsibilities": "фывфыв",
+        "is_deleted": false,
+        "created_at": "2022-11-22T11:15:23.639Z",
+        "changed_at": "2022-11-22T11:15:23.639Z"
+      }
+    },
+    {
+      "model": "resumes.response",
+      "pk": 1,
+      "fields": {
+        "author": 2,
+        "resume": 6,
+        "hello_message": "Здравствуйте. Нас заинтересовало ваше резюме!",
+        "vacancy": 3,
+        "is_deleted": false,
+        "created_at": "2022-11-23T11:22:43.800Z",
+        "changed_at": "2022-11-23T11:22:43.800Z"
+      }
+    },
+    {
+      "model": "resumes.response",
+      "pk": 2,
+      "fields": {
+        "author": 2,
+        "resume": 6,
+        "hello_message": "Здравствуйте. Нас заинтересовало ваше резюме!",
+        "vacancy": 3,
+        "is_deleted": false,
+        "created_at": "2022-11-23T13:04:06.172Z",
+        "changed_at": "2022-11-23T13:04:06.172Z"
+      }
+    }
 ]

@@ -2,9 +2,7 @@ from django import forms
 from vacancies.models.experiences import Experience
 from vacancies.models.vacancies import Vacancy
 from vacancies.models.specializations import Specialization
-
 from resumes.models import Resume
-
 from vacancies.models import VacancyResponse
 
 
@@ -13,19 +11,17 @@ class VacancyForm(forms.ModelForm):
         label='Название вакансии',
         max_length=100,
         )
-
     text = forms.CharField(
         label='Описание',
         widget=forms.Textarea
     )
-
     experience = forms.ModelChoiceField(
         queryset=Experience.objects.all(),
         empty_label='Опыт не выбран'),
-
     specialization = forms.ModelChoiceField(
         queryset=Specialization.objects.all(),
-        empty_label='Специализация не выбрана'
+        empty_label='Специализация не выбрана',
+        label='Специализация'
     )
 
     class Meta:
@@ -43,8 +39,8 @@ class VacancyResponseForm(forms.ModelForm):
         super(VacancyResponseForm, self).__init__(*args, **kwargs)
         self.fields['resume'].queryset = self.fields['resume'].queryset.filter(author=current_user.pk)
 
-    hello_message = forms.CharField(max_length=3000, required=True, label='Приветственное сообщение',
-                              widget=forms.Textarea(attrs={'name': 'body', 'rows': 5, 'cols': 21}))
+    hello_message = forms.CharField(max_length=3000, required=True, label='Приветственное сообщение ',
+                              widget=forms.Textarea(attrs={'name': 'body', 'rows': 10, 'cols': 68}))
     resume = forms.ModelChoiceField(
         label='Необходимо выбрать резюме',
         queryset=Resume.objects.all(),
@@ -53,7 +49,7 @@ class VacancyResponseForm(forms.ModelForm):
     class Meta:
         model = VacancyResponse
         widgets = {
-            'message': forms.Textarea(attrs={'cols': 21, 'rows': 5}),
+            'message': forms.Textarea(attrs={'cols': 40, 'rows': 5}),
         }
         fields = ('hello_message', 'resume', )
 

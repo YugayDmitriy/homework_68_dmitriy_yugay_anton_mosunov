@@ -5,7 +5,6 @@
 {{block.super}}
 
 {% if request.user.is_authenticated %}
-
     <div class="row justify-content-center">
         <div class="col-5 search-form">
             {% include 'partials/search.html' %}
@@ -31,7 +30,6 @@
                 </div>
             </div>
             {% endif %}
-
         {% endfor %}
         {% endif %}
     <div class="row justify-content-center">
