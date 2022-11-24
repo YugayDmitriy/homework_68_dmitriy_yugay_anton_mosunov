@@ -339,3 +339,32 @@ def get_search_value(form):
     if form.is_valid():
         return form.cleaned_data.get('search')
     return None
+
+
+def resume_salary_sort_view(request, choice):
+    form = SearchForm(request.GET)
+    search_value = get_search_value(form)
+    professions = Profession.objects.all()
+
+    if search_value:
+        if choice == 1:
+            resumes = Resume.objects.filter(Q(job_title__icontains=search_value)).order_by('salary_level')
+        elif choice == 0:
+            resumes = Resume.objects.filter(Q(job_title__icontains=search_value)).order_by('-salary_level')
+        context = {
+            'form': SearchForm(),
+            'resumes': resumes,
+            'professions': professions
+        }
+        return render(request, 'index_resumes.html', context)
+    if choice == 1:
+        resumes = Resume.objects.filter(is_deleted=False).order_by('salary_level')
+    elif choice == 0:
+        resumes = Resume.objects.filter(is_deleted=False).order_by('-salary_level')
+    find_form = SearchForm()
+    context = {
+        'form': find_form,
+        'resumes': resumes,
+        'professions': professions
+    }
+    return render(request, 'index_resumes.html', context)
