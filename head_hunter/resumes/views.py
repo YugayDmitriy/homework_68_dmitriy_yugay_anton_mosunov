@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
+from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.utils import timezone
 from django.views.generic import CreateView, TemplateView, UpdateView, DetailView, ListView, DeleteView
@@ -12,6 +13,10 @@ from resumes.forms import ExperienceForm, EducationForm, CourseForm, ResumeForm,
 from vacancies.models import Vacancy
 
 from vacancies.forms import VacancyChatForm
+
+from vacancies.forms import SearchForm
+
+from resumes.models import Profession
 
 
 class ResumeCreateView(CreateView):
@@ -306,3 +311,31 @@ class ResumeDeleteView(DeleteView):
         resume.save()
         return redirect('profile', pk=self.request.user.pk)
 
+
+def resume_category_view(request, category):
+    form = SearchForm(request.GET)
+    search_value = get_search_value(form)
+    professions = Profession.objects.all()
+    if search_value:
+        resumes = Resume.objects.filter(Q(job_title__icontains=search_value))
+        context = {
+            'form': SearchForm(),
+            'resumes': resumes,
+            'professions': professions
+        }
+        return render(request, 'index_resumes.html', context)
+    profession = Profession.objects.get(profession_name=category)
+    resumes = Resume.objects.filter(profession=profession.pk, is_deleted=False).order_by('changed_at')
+    find_form = SearchForm()
+    context = {
+        'form': find_form,
+        'resumes': resumes,
+        'professions': professions
+    }
+    return render(request, 'index_resumes.html', context)
+
+
+def get_search_value(form):
+    if form.is_valid():
+        return form.cleaned_data.get('search')
+    return None

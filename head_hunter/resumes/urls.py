@@ -3,7 +3,7 @@ from resumes.views import ResumeCreateView, ResumeCreateExperienceView, ResumeCr
     ResumeCreateCourseView, ResumePublicView, ResumeUpdateDateView, ResumeEditView, ResumeDetailView, \
     ResumeAddResponseView, ResumesResponsesView, ResumeAddChatMessageView, ResumeDeleteView, ResumeEditExperienceView, \
     ResumeEditEducationView, ResumeEditCourseView, ResumeDeleteExperienceView, ResumeDeleteEducationView, \
-    ResumeDeleteEducationView, ResumeDeleteCourseView
+    ResumeDeleteEducationView, ResumeDeleteCourseView, resume_category_view
 
 from vacancies.views.base import ResumesIndexView
 
@@ -32,4 +32,5 @@ urlpatterns = [
     path('resume/<int:pk>/confirm-delete/', ResumeDeleteView.as_view(), name='resume_confirm_delete'),
     path('resume/<int:pk>/delete/', ResumeDeleteView.as_view(), name='resume_delete'),
     path('resume/<int:pk>/response/add/chat_message/', ResumeAddChatMessageView.as_view(), name='add_chat_message'),
+    path('resumes/<str:category>', resume_category_view, name='list_by_resume_category'),
 ]

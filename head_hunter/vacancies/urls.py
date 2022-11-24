@@ -1,7 +1,7 @@
 from django.urls import path
 from vacancies.views.base import VacanciesIndexView, VacancyCreateView, ResumesIndexView,\
     VacancyPublicView, VacancyEditView, VacancyUpdateDateView, VacancyDetailView, VacancyAddResponseView, \
-    ToVacanciesResponsesView, VacancyAddChatMessageView
+    ToVacanciesResponsesView, VacancyAddChatMessageView, vacancy_category_view
 
 urlpatterns = [
     path('', VacanciesIndexView.as_view(), name='index'),
@@ -13,4 +13,5 @@ urlpatterns = [
     path('vacancy/<int:pk>/detail/add/response/', VacancyAddResponseView.as_view(), name='vacancy_add_response'),
     path('vacancy/<int:pk>/response/', ToVacanciesResponsesView.as_view(), name='to_vacancies_responses'),
     path('vacancy/<int:pk>/response/add/vacancy_chat_message/', VacancyAddChatMessageView.as_view(), name='add_vacancy_chat_message'),
+    path('vacancies/<str:category>', vacancy_category_view, name='list_by_vacancy_category'),
 ]

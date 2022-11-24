@@ -1,5 +1,5 @@
 from datetime import datetime
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.http import HttpResponse
 from django.views.generic import ListView, CreateView, TemplateView, UpdateView, DetailView
@@ -15,6 +15,10 @@ from vacancies.forms import VacancyResponseForm
 from vacancies.forms import VacancyChatForm
 
 from vacancies.models import VacancyChat
+
+from resumes.models import Profession
+
+from vacancies.models import Specialization
 
 
 class VacanciesIndexView(ListView):
@@ -48,6 +52,7 @@ class VacanciesIndexView(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(VacanciesIndexView, self).get_context_data(object_list=object_list, **kwargs)
+        context['specializations'] = Specialization.objects.all()
         context['form'] = self.form
         return context
 
@@ -75,6 +80,7 @@ class ResumesIndexView(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ResumesIndexView, self).get_context_data(object_list=object_list, **kwargs)
+        context['professions'] = Profession.objects.all()
         context['form'] = self.form
         return context
 
@@ -199,4 +205,31 @@ class VacancyAddChatMessageView(CreateView):
         VacancyChat.objects.create(response=response, message=message, author=author)
         return redirect('to_vacancies_responses', pk=self.request.user.pk)
 
+
+def vacancy_category_view(request, category):
+    form = SearchForm(request.GET)
+    search_value = get_search_value(form)
+    specializations = Specialization.objects.all()
+    if search_value:
+        vacancies = Vacancy.objects.filter(Q(title__icontains=search_value))
+        context = {
+            'form': SearchForm(),
+            'vacancies': vacancies,
+            'specializations': specializations
+        }
+        return render(request, 'index_vacancy.html', context)
+    specialization = Specialization.objects.get(specialization_name=category)
+    vacancies = Vacancy.objects.filter(specialization=specialization.pk, is_deleted=False).order_by('changed_at')
+    context = {
+        'form': SearchForm(),
+        'vacancies': vacancies,
+        'specializations': specializations
+    }
+    return render(request, 'index_vacancy.html', context)
+
+
+def get_search_value(form):
+    if form.is_valid():
+        return form.cleaned_data.get('search')
+    return None
 
