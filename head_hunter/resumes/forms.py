@@ -63,8 +63,8 @@ class ResponseForm(forms.ModelForm):
         super(ResponseForm, self).__init__(*args, **kwargs)
         self.fields['vacancy'].queryset = self.fields['vacancy'].queryset.filter(author=current_user.pk)
 
-    hello_message = forms.CharField(max_length=3000, required=True, label='Приветственное сообщение',
-                              widget=forms.Textarea(attrs={'name': 'body', 'rows': 5, 'cols': 21}))
+    hello_message = forms.CharField(max_length=3000, required=True, label='Приветственное сообщение ',
+                              widget=forms.Textarea(attrs={'name': 'body', 'rows': 10, 'cols': 70}))
     vacancy = forms.ModelChoiceField(
         label='Необходимо выбрать вакансию',
         queryset=Vacancy.objects.all(),
@@ -73,7 +73,7 @@ class ResponseForm(forms.ModelForm):
     class Meta:
         model = Response
         widgets = {
-            'message': forms.Textarea(attrs={'cols': 21, 'rows': 5}),
+            'message': forms.Textarea(attrs={'cols': 40, 'rows': 5}),
         }
         fields = ('hello_message', 'vacancy', )
 
