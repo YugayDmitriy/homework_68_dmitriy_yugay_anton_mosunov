@@ -5,63 +5,64 @@
 {{block.super}}
 
 {% if request.user.is_authenticated %}
-
-    <div class="row justify-content-center" style="background-color: #f8f9fa; border-radius: 10px; border-color: #d2d2d2; border-style: solid; border-width: thin"">
-        <div class="col-6 text-center search-form" style="padding-top: 30px; padding-bottom: 30px;">
-            {% include 'partials/search.html' %}
-        </div>
-        <div class="col-2" style="padding-left: 100px; padding-top: 50px">
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                Категории
-              </button>
-              <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                {% for specialization in specializations %}
-                    <li><a class="dropdown-item" href="{% url 'list_by_vacancy_category' specialization.specialization_name %}">{{ specialization.specialization_name }}</a></li>
-                {% endfor %}
-              </ul>
-           </div>
-        </div>
-        <div class="col-3" style="padding-left: 80px; padding-top: 50px">
-            <span>Зарплата</span>
-
-
-            <a href="{% url 'vacancy_salary_sort'  1 %}"><button type="submit" class="btn btn-outline-secondary btn-block"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
-                </svg></button></a>
-
-
-            <a href="{% url 'vacancy_salary_sort'  0 %}"><button type="submit" class="btn btn-outline-secondary btn-block"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
-                </svg></button></a>
-        </div>
-    </div>
-
-    {% if request.user.user_category == 'applicant' %}
-        <h2 style="margin: 50px; text-align: center">Список вакансий</h2>
-        {% if vacancies.count == 0 %}
-            <p>Вакансии не опубликованы</p>
-        {% endif %}
-        {% for vacancy in vacancies %}
-            <div class="card" style="margin-top: 25px; margin-bottom: 20px">
-                <h5 class="card-header">{{ vacancy.title }}</h5>
-                    <div class="card-body">
-                        <h5 class="card-title">{{ vacancy.salary_level | floatformat:-2 }}</h5>
-                        <p class="card-text">{{ vacancy.text }}</p>
-                        <p class="card-text">{{ vacancy.changed_at }}</p>
-                    <a href="{% url 'vacancy_detail' vacancy.pk %}" class="btn btn-primary">Подробности о вакансии</a>
-                        <span style="padding-left: 20px">Перейти к профилю работодателя: </span>
-                    <a style="text-decoration: none" href="{% url 'profile' vacancy.author.pk %}">{{ vacancy.author.username }}</a>
-                </div>
+    <div class="container">
+        <div class="row justify-content-center" style="background-color: #f8f9fa; border-radius: 10px; border-color: #d2d2d2; border-style: solid; border-width: thin"">
+            <div class="col-6 text-center search-form" style="padding-top: 30px; padding-bottom: 30px;">
+                {% include 'partials/search.html' %}
             </div>
-        {% endfor %}
-    {% endif %}
-    <div class="row justify-content-center" style="margin-bottom: 80px; margin-top: 30px">
-        <div class="col-5">
-            {% if is_paginated %}
-                {% include 'partials/pagination.html' %}
-            {% endif %}
+            <div class="col-2" style="padding-left: 100px; padding-top: 50px">
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                    Категории
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                    {% for specialization in specializations %}
+                        <li><a class="dropdown-item" href="{% url 'list_by_vacancy_category' specialization.specialization_name %}">{{ specialization.specialization_name }}</a></li>
+                    {% endfor %}
+                  </ul>
+               </div>
+            </div>
+            <div class="col-3" style="padding-left: 80px; padding-top: 50px">
+                <span>Зарплата</span>
+
+
+                <a href="{% url 'vacancy_salary_sort'  1 %}"><button type="submit" class="btn btn-outline-secondary btn-block"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+                    </svg></button></a>
+
+
+                <a href="{% url 'vacancy_salary_sort'  0 %}"><button type="submit" class="btn btn-outline-secondary btn-block"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+                    </svg></button></a>
+            </div>
         </div>
-    </div>
-    {% endif %}
+
+        {% if request.user.user_category == 'applicant' %}
+            <h2 style="margin: 50px; text-align: center">Список вакансий</h2>
+            {% if vacancies.count == 0 %}
+                <p>Вакансии не опубликованы</p>
+            {% endif %}
+            {% for vacancy in vacancies %}
+                <div class="card" style="margin-top: 25px; margin-bottom: 20px">
+                    <h5 class="card-header">{{ vacancy.title }}</h5>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ vacancy.salary_level | floatformat:-2 }}</h5>
+                            <p class="card-text">{{ vacancy.text }}</p>
+                            <p class="card-text">{{ vacancy.changed_at }}</p>
+                        <a href="{% url 'vacancy_detail' vacancy.pk %}" class="btn btn-primary">Подробности о вакансии</a>
+                            <span style="padding-left: 20px">Перейти к профилю работодателя: </span>
+                        <a style="text-decoration: none" href="{% url 'profile' vacancy.author.pk %}">{{ vacancy.author.username }}</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <div class="row justify-content-center" style="margin-bottom: 80px; margin-top: 30px">
+            <div class="col-5">
+                {% if is_paginated %}
+                    {% include 'partials/pagination.html' %}
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+</div>
 {% endblock %}

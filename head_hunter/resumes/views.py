@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect
@@ -20,11 +21,11 @@ from vacancies.forms import SearchForm
 from resumes.models import Profession
 
 
-class ResumeCreateView(CreateView):
+class ResumeCreateView(LoginRequiredMixin, CreateView):
     template_name = 'resume_create.html'
     form_class = ResumeForm
     model = Resume
-
+    permission_required = 'resumes.add_resume'
 
 
     def get(self, request, *args, **kwargs):
@@ -83,8 +84,6 @@ class ResumeDeleteExperienceView(DeleteView):
         return redirect('resume_edit', pk=pk)
 
 
-
-
 class ResumeCreateEducationView(CreateView):
     model = Education
 
@@ -116,6 +115,7 @@ class ResumeEditEducationView(UpdateView):
         self.object = form.save(commit=False)
         self.object.save()
         return redirect('resume_edit', pk=self.object.resume.pk)
+
 
 class ResumeDeleteEducationView(DeleteView):
     template_name = 'education_confirm_delete.html'
@@ -163,8 +163,10 @@ class ResumeDeleteCourseView(DeleteView):
         self.object.delete()
         return redirect('resume_edit', pk=pk)
 
+
 class ResumeUpdateDateView(TemplateView):
     model = Resume
+
 
     def post(self, request, *args, **kwargs):
         resume = Resume.objects.get(id=kwargs['pk'])
@@ -188,11 +190,15 @@ class ResumePublicView(TemplateView):
         return redirect('profile', pk=request.user.pk)
 
 
-class ResumeEditView(UpdateView):
+class ResumeEditView(PermissionRequiredMixin, UpdateView):
     template_name = 'resume_edit.html'
     form_class = ResumeForm
     model = Resume
     context_object_name = 'resume'
+    permission_required = 'resumes.change_vacancy'
+
+    def has_permission(self):
+        return self.get_object().author == self.request.user
 
     def get_context_data(self, **kwargs):
         experiences = Experience.objects.filter(resume_id=self.object.pk)
@@ -236,7 +242,7 @@ class ResumeEditView(UpdateView):
         return reverse('profile', kwargs={'pk': self.object.author})
 
 
-class ResumeDetailView(DetailView):
+class ResumeDetailView(LoginRequiredMixin, DetailView):
     template_name = 'resume_detail.html'
     model = Resume
     context_object_name = 'resume'
@@ -255,7 +261,7 @@ class ResumeDetailView(DetailView):
         return context
 
 
-class ResumeAddResponseView(CreateView):
+class ResumeAddResponseView(LoginRequiredMixin, CreateView):
     model = Response
 
     def post(self, request, *args, **kwargs):
@@ -268,10 +274,13 @@ class ResumeAddResponseView(CreateView):
         return HttpResponse('success')
 
 
-class ResumesResponsesView(ListView):
+class ResumesResponsesView(LoginRequiredMixin, ListView):
     template_name = 'resumes_responses.html'
     model = Resume
     context_object_name = 'resumes'
+    permission_required = 'resumes.view_response'
+
+
 
     def get(self, request, *args, **kwargs):
         self.form = ChatForm()
@@ -301,9 +310,13 @@ class ResumeAddChatMessageView(CreateView):
         return redirect('responses', pk=self.request.user.pk)
 
 
-class ResumeDeleteView(DeleteView):
+class ResumeDeleteView(PermissionRequiredMixin, DeleteView):
     template_name = 'resume_confirm_delete.html'
     model = Resume
+    permission_required = 'resumes.delete_resume'
+
+    def has_permission(self):
+        return self.get_object().author == self.request.user
 
     def post(self, request, *args, **kwargs):
         resume = Resume.objects.get(pk=kwargs['pk'])

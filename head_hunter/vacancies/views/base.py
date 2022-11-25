@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.core.paginator import Paginator
 from django.shortcuts import redirect, render
 from django.utils import timezone
@@ -21,7 +22,7 @@ from resumes.models import Profession
 from vacancies.models import Specialization
 
 
-class VacanciesIndexView(ListView):
+class VacanciesIndexView(LoginRequiredMixin, ListView):
     template_name = 'index_vacancy.html'
     model = Vacancy
     context_object_name = 'vacancies'
@@ -59,7 +60,7 @@ class VacanciesIndexView(ListView):
         return context
 
 
-class ResumesIndexView(ListView):
+class ResumesIndexView(LoginRequiredMixin, ListView):
     template_name = 'index_resumes.html'
     model = Resume
     context_object_name = 'resumes'
@@ -89,7 +90,7 @@ class ResumesIndexView(ListView):
         return context
 
 
-class VacancyCreateView(CreateView):
+class VacancyCreateView(LoginRequiredMixin, CreateView):
     template_name = 'create_vacancy.html'
     form_class = VacancyForm
     model = Vacancy
@@ -137,11 +138,15 @@ class VacancyUpdateDateView(TemplateView):
         return redirect('profile', pk=request.user.pk)
 
 
-class VacancyEditView(UpdateView):
+class VacancyEditView(PermissionRequiredMixin, UpdateView):
     template_name = 'vacancy_edit.html'
     form_class = VacancyForm
     model = Vacancy
     context_object_name = 'vacancy'
+    permission_required = 'vacancies.change_resume'
+
+    def has_permission(self):
+        return self.get_object().author == self.request.user
 
     def get_context_data(self, **kwargs):
         context = super(VacancyEditView, self).get_context_data(**kwargs)
@@ -152,7 +157,7 @@ class VacancyEditView(UpdateView):
         return reverse('vacancy_detail', kwargs={'pk': self.object.pk})
 
 
-class VacancyDetailView(DetailView):
+class VacancyDetailView(LoginRequiredMixin, DetailView):
     template_name = 'vacancy_detail.html'
     model = Vacancy
     context_object_name = 'vacancy'
@@ -165,7 +170,7 @@ class VacancyDetailView(DetailView):
         return context
 
 
-class VacancyAddResponseView(CreateView):
+class VacancyAddResponseView(LoginRequiredMixin, CreateView):
     model = VacancyResponse
 
     def post(self, request, *args, **kwargs):
@@ -177,7 +182,7 @@ class VacancyAddResponseView(CreateView):
         return HttpResponse('success')
 
 
-class ToVacanciesResponsesView(ListView):
+class ToVacanciesResponsesView(LoginRequiredMixin, ListView):
     template_name = 'vacancies_response.html'
     model = Vacancy
     context_object_name = 'vacancies'
@@ -197,7 +202,7 @@ class ToVacanciesResponsesView(ListView):
         return context
 
 
-class VacancyAddChatMessageView(CreateView):
+class VacancyAddChatMessageView(LoginRequiredMixin, CreateView):
     model = VacancyChat
     form_class = VacancyChatForm
 
@@ -220,6 +225,8 @@ class VacancyDeleteView(DeleteView):
         vacancy.is_deleted = True
         vacancy.save()
         return redirect('profile', pk=self.request.user.pk)
+
+
 def vacancy_category_view(request, category):
     form = SearchForm(request.GET)
     search_value = get_search_value(form)
