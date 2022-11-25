@@ -1,43 +1,25 @@
 {% load static %}
-{% block content %}
-
-<div class="upper" style="background-color: #f8f9fa">
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom: 70px;">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <a class="navbar-brand" href="{% url 'index' %}"><img id="panelpic" src="{% static 'images/hh-logo.png' %}" alt="instagram logo on nav-bar " style="width:53px; height:30px;margin-top:5px;margin-left:26px;border-right:1px solid;padding-right: 23px; "></a>
-
-
-          <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-
-                <li class="nav-item" >
-                    <a class="nav-link" href="{% url 'register' %}">Регистрация</a>
-                </li>
-                <li class="nav-item" >
-                    <a class="nav-link" href="{% url 'logout' %}">Выход</a>
-                </li>
-                <li class="nav-item" >
-                    <a class="nav-link" href="{% url 'login' %}">Вход</a>
-                </li>
-                <li class="nav-item" >
-                    <span> {{request.user}}</span>
-                </li>
-                {% if user.is_authenticated %}
-                  <li class="nav-item" >
-                      <a class="nav-link" href="{% url 'profile' user.pk %}">
-                          <img style="width: 40px; height: 40px" src="{{request.user.avatar.url}}">
-
-                      </a>
-                  </li>
-              {% endif %}
+<header class="header">
+    <div class="container container--narrow">
+        <a class="navbar-brand" href="{% url 'index' %}"><img id="panelpic" src="{% static 'images/hh-logo.png' %}" alt="instagram logo on nav-bar " style="width:53px; height:30px;margin-top:5px;margin-left:26px;border-right:1px solid;padding-right: 23px; "></a>
+        <nav class="header__nav">
+            <input type="checkbox" id="responsive-menu" />
+            <label for="responsive-menu" class="toggle-menu">
+                <span>Меню</span>
+                <div class="toggle-menu__lines"></div>
+            </label>
+            <ul class="header__menu">
+                <li class="header__menuItem"><a href="#">Вакансии</a></li>
+                <li class="header__menuItem"><a href="#">Резюме</a></li>
+                {% if request.user.is_authenticated %}
+                <li class="header__menuItem"><a href="#">Сообщения</a></li>
+                <li class="header__menuItem"><a href="{% url 'profile' user.pk %}"><img style="width: 30px; height: 30px; border-radius: 20px" src="{{request.user.avatar.url}}">Мой аккаунт</a></li>
+                <li class="header__menuItem"><a href="{% url 'logout' %}" class="btn btn--sub">Выйти</a></li>
+                {% else %}
+                <li class="header__menuItem"><a href="{% url 'register' %}" class="btn btn--sub">Зарегистрироваться</a></li>
+                <li class="header__menuItem"><a href="{% url 'login' %}" class="btn btn--sub">Войти</a></li>
+                {% endif %}
             </ul>
-          </div>
         </nav>
     </div>
-</div>
-
-{% endblock %}
-
+</header>

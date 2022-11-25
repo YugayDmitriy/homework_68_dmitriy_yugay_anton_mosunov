@@ -69,7 +69,7 @@ class ProfileView(LoginRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
         account = self.object
         resumes = Resume.objects.filter(author=account).exclude(is_deleted=True)
-        vacancies = Vacancy.objects.filter(author=account)
+        vacancies = Vacancy.objects.filter(author=account).exclude(is_deleted=True)
         context['resumes'] = resumes
         context['vacancies'] = vacancies
         return context
