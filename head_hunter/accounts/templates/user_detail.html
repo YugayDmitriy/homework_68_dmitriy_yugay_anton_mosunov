@@ -162,6 +162,7 @@
           </div>
         </div>
       </div>
+      {% if user_obj == request.user %}
       <div class="column column--2of3">
         <div class="settings">
           <h3 class="settings__title">Отклики</h3>
@@ -170,6 +171,7 @@
           <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'to_vacancies_responses' user_obj.pk %}"><i
               class="im im-plus"></i>Посмотреть отклик на вакансию</a>
         </div>
+      {% endif %}
 
         <table class="settings__table">
           {% for skill in skills %}
@@ -180,6 +182,7 @@
                 {{skill.description}}
               </p>
             </td>
+          {% if user_obj == request.user %}
             <td class="settings__tableActions">
               <a class="tag tag--pill tag--main settings__btn" href="#"><i
                   class="im im-edit"></i> Изменить</a>
@@ -187,15 +190,17 @@
                   class="im im-x-mark-circle-o"></i>
                 Удалить</a>
             </td>
+          {% endif %}
           </tr>
           {% endfor %}
         </table>
-
+        {% if user_obj == request.user %}
         <div class="settings">
           <h3 class="settings__title">Резюме</h3>
           <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'resume_create' user_obj.pk %}"><i
               class="im im-plus"></i> Добавить резюме</a>
         </div>
+        {% endif %}
 
         <table class="settings__table">
           {% for resume in resumes %}
@@ -208,6 +213,7 @@
               <p>{{resume.job_title|slice:"150"}}</p>
               <p>{{resume.changed_at}}</p>
             </td>
+          {% if user_obj == request.user %}
             <td class="settings__tableActions">
               <form action="{% url 'resume_public' resume.pk %}" method="POST">
                 {% csrf_token %}
@@ -227,6 +233,7 @@
                 href="{% url 'resume_delete' resume.pk %}"><i class="im im-x-mark-circle-o"></i>
                 Удалить</a>
             </td>
+          {% endif %}
           </tr>
           {% endfor %}
         </table>

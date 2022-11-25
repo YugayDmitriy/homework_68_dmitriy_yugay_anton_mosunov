@@ -9,7 +9,7 @@
             <div class="column column--1of3">
                 <h3 class="singleProject__subtitle">Информация о резюме</h3>
                 <div class="singleProject__toolStack">
-                <a href="#"
+                <a href="{% url 'profile' resume.author.pk %}"
                     class="singleProject__developer">Соискатель: {{ resume.author.username }}</a>
                 </div>
                 <div class="singleProject__toolStack">
