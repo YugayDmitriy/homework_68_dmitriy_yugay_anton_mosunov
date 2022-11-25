@@ -80,9 +80,7 @@
                 </div>
             </div>
         </div>
-</main>
-{% endif %}
-    <div id="modalResponse" class="modal" style="display: none; width: 100%; height: 100%; background-color: #bbbbbb; z-index: 1; overflow: auto">
+<div id="modalResponse" class="modal" style="display: none; width: 100%; height: 100%; background-color: #bbbbbb; z-index: 1; overflow: auto">
     <div class="modal-content" style="background-color: white; margin: 10% auto; padding: 40px; width: 80%; border: 1px solid#888">
         <h2 style="text-align: center">Можете оставить сообщение</h2><div>
             <form action="" method="POST" enctype="multipart/form-data">
@@ -95,6 +93,9 @@
             </form>
         </div>
     </div>
+</main>
+{% endif %}
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.js"></script>
 <script type="text/javascript" src="{% static 'js/add-response-to-resume.js' %}"></script>
 {% endblock %}

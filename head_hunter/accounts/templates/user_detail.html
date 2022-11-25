@@ -42,6 +42,7 @@
           </div>
         </div>
       </div>
+    {% if user_obj == request.user %}
       <div class="column column--2of3">
         <div class="settings">
           <h3 class="settings__title">Отклики</h3>
@@ -50,6 +51,7 @@
           <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'to_vacancies_responses' user_obj.pk %}"><i
               class="im im-plus"></i>Посмотреть отклик на вакансию</a>
         </div>
+      {% endif %}
 
         <table class="settings__table">
           {% for skill in skills %}
@@ -71,23 +73,26 @@
           {% endfor %}
         </table>
 
+        {% if user_obj == request.user %}
         <div class="settings">
           <h3 class="settings__title">Вакансии</h3>
           <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'create_vacancy' user_obj.pk %}"><i
               class="im im-plus"></i> Добавить вакансию</a>
         </div>
+        {% endif %}
 
         <table class="settings__table">
           {% for vacancy in vacancies %}
           <tr>
             <td class="settings__thumbnail">
-              <a href="#">Вакансия № {{ forloop.counter }}</a>
+              <a href="{% url 'vacancy_detail' vacancy.pk %}">Вакансия № {{ forloop.counter }}</a>
             </td>
             <td class="settings__tableInfo">
-              <a href="#">{{vacancy.title}}</a>
+              <a href="{% url 'vacancy_detail' vacancy.pk %}">{{vacancy.title}}</a>
               <p>{{vacancy.salary_level|slice:"150"}}</p>
               <p>{{vacancy.changed_at}}</p>
             </td>
+           {% if user_obj == request.user %}
             <td class="settings__tableActions">
               <form action="{% url 'vacancy_public' vacancy.pk %}" method="POST">
                 {% csrf_token %}
@@ -107,6 +112,7 @@
                 href="{% url 'vacancy_delete' vacancy.pk %}"><i class="im im-x-mark-circle-o"></i>
                 Удалить</a>
             </td>
+          {% endif %}
           </tr>
           {% endfor %}
         </table>
@@ -195,10 +201,10 @@
           {% for resume in resumes %}
           <tr>
             <td class="settings__thumbnail">
-              <a href="#">Резюме № {{ forloop.counter }}</a>
+              <a href="{% url 'resume_detail' resume.pk %}">Резюме № {{ forloop.counter }}</a>
             </td>
             <td class="settings__tableInfo">
-              <a href="#">{{resume.profession }}</a>
+              <a href="{% url 'resume_detail' resume.pk %}">{{resume.profession }}</a>
               <p>{{resume.job_title|slice:"150"}}</p>
               <p>{{resume.changed_at}}</p>
             </td>

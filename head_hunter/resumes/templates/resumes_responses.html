@@ -11,7 +11,7 @@
                         {% if response.author == request.user or response.resume.author == request.user %}
                             <div class="col-5">
 
-                                <div class="card" style="width: 30rem; margin-top: 20px;">
+                                <div class="card" style="width: 40rem; margin-top: 20px;">
                                     <img  src="{{ response.resume.author.avatar.url }}" style="height: 40px; width: 40px; margin: 15px" class="card-img-top" alt="...">
                                         <div class="card-body">
                                             <h5 class="card-title">Резюме: {{ response.resume.job_title }}</h5>
@@ -35,10 +35,10 @@
 
                                                         <hr>
                                                         <div>
-                                                            <p><img src="{{ response.author.avatar.url }}" style="height: 30px; width: 30px" alt="signuplogo "> {{ response.hello_message }}</p>
+                                                            <p><img src="{{ response.author.avatar.url }}" style="height: 30px; width: 30px" alt="signuplogo "> <strong>{{ response.created_at }} </strong>{{ response.hello_message }}</p>
                                                         </div>
                                                     {% for chat in response.chats.all %}
-                                                            <p><img src="{{ chat.author.avatar.url }}" style="height: 25px; width: 25px" alt="signuplogo "> {{ chat.message }}</p>
+                                                        <p><img src="{{ chat.author.avatar.url }}" style="height: 25px; width: 25px" alt="signuplogo "> <strong>{{ chat.created_at }} </strong><p>{{ chat.message }}</p>
                                                     {% endfor %}
 
                                                     <div class='commentsection'>

@@ -9,7 +9,7 @@
                     {% for response in vacancy.vacancy_responses.all %}
                         {% if response.author == request.user or response.vacancy.author == request.user %}
                             <div class="col-5">
-                                <div class="card" style="width: 30rem; margin-top: 20px;">
+                                <div class="card" style="width: 40rem; margin-top: 20px;">
                                     <img  src="{{ response.vacancy.author.avatar.url }}" style="height: 40px; width: 40px; margin: 15px" class="card-img-top" alt="...">
                                         <div class="card-body">
                                             <h5 class="card-title">Вакансия: <a href="{% url 'profile' response.author.pk %}">{{ response.vacancy.title }}</a></h5>
@@ -33,10 +33,10 @@
 
                                                         <hr>
                                                         <div>
-                                                            <p><img src="{{ response.author.avatar.url }}" style="height: 30px; width: 30px" alt="signuplogo "> {{ response.hello_message }}</p>
+                                                            <p><img src="{{ response.author.avatar.url }}" style="height: 30px; width: 30px" alt="signuplogo "> <strong>{{ response.created_at }} </strong>{{ response.hello_message }}</p>
                                                         </div>
                                                     {% for chat in response.vacancy_chats.all %}
-                                                            <p><img src="{{ chat.author.avatar.url }}" style="height: 25px; width: 25px" alt="signuplogo "> {{ chat.message }}</p>
+                                                            <p><img src="{{ chat.author.avatar.url }}" style="height: 25px; width: 25px" alt="signuplogo "><strong>{{ chat.created_at }} </strong></p><p>{{ chat.message }}</p></p>
                                                     {% endfor %}
 
                                                     <div class='commentsection'>
