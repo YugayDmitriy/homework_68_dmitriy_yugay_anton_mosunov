@@ -1,51 +1,85 @@
-<nav aria-label="...">
-    <ul class="pagination">
-        {% if page_obj.has_previous %}
-            <li class="page-item active">
-                <a class="page-link" href="?{% if query %}{{ query }}{% endif %}" tabindex="-1">Начало</a>
-            </li>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<style>
+    body {
+        color: #566787;
+		background: #f5f5f5;
+		font-family: 'Varela Round', sans-serif;
+		font-size: 13px;
+	}
+    .pagination {
+        float: right;
+        margin: 0 52px 5px;
+    }
+    .pagination li a {
+        border: none;
+        font-size: 15px;
+        min-width: 30px;
+        min-height: 30px;
+        color: #999;
+        margin: 0 2px;
+        line-height: 30px;
+        border-radius: 2px !important;
+        text-align: center;
+        padding: 0 6px;
+    }
+    .pagination li a:hover {
+        color: #666;
+    }
+    .pagination li.active a, .pagination li.active a.page-link {
+        background: #03A9F4;
+    }
+    .pagination li.active a:hover {
+        background: #0397d6;
+    }
+	.pagination li.disabled i {
+        color: #ccc;
+    }
+    .pagination li i {
+        font-size: 16px;
+        padding-top: 6px
+    }
+    .hint-text {
+        float: left;
+        margin: 0 10px 0 43px;
+        font-size: 15px;
+    }
+</style>
+<body>
 
-            <li class="page-item active">
-                <a class="page-link" href="?{% if query %}{{ query }}{% endif %}&page={{ page_obj.previous_page_number }}" tabindex="-1">Назад</a>
-            </li>
-        {% else %}
-            <li class="page-item">
-                <a class="page-link" href="#" tabindex="-1">Начало</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#" tabindex="-1">Назад</a>
-            </li>
-        {% endif %}
-
-        {% for p in paginator.page_range %}
-            {% if page_obj.number == p %}
-                <li class="page-item active">
-                    <a class="page-link" href="?page={{ p }}">{{ p }}</a>
-                </li>
-
+<div class="clearfix">
+    <ul class="text">
+    {% for i in paginator.page_range %}
+    {% if page_obj.number == i %}
+    <div class="hint-text">Showing <b>{{ i }}</b> out of <b>{{ paginator.num_pages }}</b> entries</div>
+    {% endif %}
+    {% endfor %}
+        </ul>
+	    <ul class="pagination">
+		    <li class="page-item"><a href="?{% if query %}{{ query }}{% endif %}&page=1" class="page-link">Первая</a></li>
+			{% for i in paginator.page_range %}
+            {% if page_obj.number == i %}
+            <li class="page-item active"><a href="#" class="page-link"> {{ i }} </a></li>
             {% else %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ p }}">{{ p }}</a>
-                </li>
+            <li class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
             {% endif %}
-        {% endfor %}
-
-        {% if page_obj.has_next %}
-            <li class="page-item active">
-                <a class="page-link" href="?{% if query %}{{ query }}{% endif %}page={{ page_obj.next_page_number }}">Далее</a>
-            </li>
-            <li class="page-item active">
-                <a class="page-link" href="?{% if query %}{{ query }}{% endif %}page={{ page_obj.paginator.num_pages }}" >Конец</a>
-            </li>
-        {% else %}
-            <li class="page-item ">
-                <a class="page-link" href="#">Далее</a>
-            </li>
-            <li class="page-item ">
-                <a class="page-link" href="#">Конец</a>
-            </li>
-        {% endif %}
-
-
-  </ul>
-</nav>
+            {% endfor %}
+            {% if page_obj.has_next %}
+            <li class="page-item"><a href="?{% if query %}{{ query }}{% endif %}&page={{ page_obj.next_page_number }}" class="page-link">Следующая</a></li>
+            {% endif %}
+            <li class="page-item"><a href="?{% if query %}{{ query }}{% endif %}&page={{ page_obj.paginator.num_pages }}" class="page-link">Последняя</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
