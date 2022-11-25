@@ -52,7 +52,8 @@
                         <h5 class="card-title">{{ resume.salary_level }}</h5>
                         <p class="card-text">{{ resume.changed_at }}</p>
                     <a href="{% url 'resume_detail' resume.pk %}" class="btn btn-primary">Подробности</a>
-                    <a href="{% url 'profile' resume.author.pk %}">{{ resume.author }}</a>
+                        <span style="padding-left: 20px">Перейти к профилю работника: </span>
+                    <a style="text-decoration: none" href="{% url 'profile' resume.author.pk %}">{{ resume.author.username }}</a>
                 </div>
             </div>
         {% endfor %}
@@ -61,7 +62,7 @@
 {% else %}
 <p>You must be authenticated</p>
 {% endif %}
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" style="margin-bottom: 60px; margin-top: 30px">
         <div class="col-5">
             {% if is_paginated %}
                 {% include 'partials/pagination.html' %}

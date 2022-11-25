@@ -50,16 +50,16 @@
                         <h5 class="card-title">{{ vacancy.salary_level | floatformat:-2 }}</h5>
                         <p class="card-text">{{ vacancy.text }}</p>
                         <p class="card-text">{{ vacancy.changed_at }}</p>
-                        <p class="card-text">{{ vacancy.is_public }}</p>
                     <a href="{% url 'vacancy_detail' vacancy.pk %}" class="btn btn-primary">Подробности о вакансии</a>
-                    <a href="{% url 'profile' vacancy.author.pk %}">Подробнее о {{ vacancy.author.username }}</a>
+                        <span style="padding-left: 20px">Перейти к профилю работодателя: </span>
+                    <a style="text-decoration: none" href="{% url 'profile' vacancy.author.pk %}">{{ vacancy.author.username }}</a>
                 </div>
             </div>
             {% endif %}
 
         {% endfor %}
         {% endif %}
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" style="margin-bottom: 80px; margin-top: 30px">
         <div class="col-5">
             {% if is_paginated %}
                 {% include 'partials/pagination.html' %}

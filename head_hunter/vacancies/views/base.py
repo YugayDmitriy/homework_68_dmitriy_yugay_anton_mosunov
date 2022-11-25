@@ -1,4 +1,6 @@
 from datetime import datetime
+
+from django.core.paginator import Paginator
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.http import HttpResponse
@@ -25,6 +27,8 @@ class VacanciesIndexView(ListView):
     template_name = 'index_vacancy.html'
     model = Vacancy
     context_object_name = 'vacancies'
+    paginate_by = 4
+    paginate_orphans = 0
 
     def get(self, request, *args, **kwargs):
         if self.request.user.user_category == 'employer' or self.request.user == 'root':
