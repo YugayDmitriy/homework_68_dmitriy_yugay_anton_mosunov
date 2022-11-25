@@ -65,6 +65,8 @@ class ResumesIndexView(ListView):
     template_name = 'index_resumes.html'
     model = Resume
     context_object_name = 'resumes'
+    paginate_by = 4
+    paginate_orphans = 0
 
     def get(self, request, *args, **kwargs):
         self.form = SearchForm(self.request.GET)
