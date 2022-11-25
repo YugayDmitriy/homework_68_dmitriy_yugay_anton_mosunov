@@ -1,7 +1,7 @@
 from django.urls import path
 from vacancies.views.base import VacanciesIndexView, VacancyCreateView, ResumesIndexView,\
     VacancyPublicView, VacancyEditView, VacancyUpdateDateView, VacancyDetailView, VacancyAddResponseView, \
-    ToVacanciesResponsesView, VacancyAddChatMessageView, vacancy_category_view, vacancy_salary_sort_view
+    ToVacanciesResponsesView, VacancyAddChatMessageView, vacancy_category_view, vacancy_salary_sort_view,\
     ToVacanciesResponsesView, VacancyAddChatMessageView, VacancyDeleteView
 
 

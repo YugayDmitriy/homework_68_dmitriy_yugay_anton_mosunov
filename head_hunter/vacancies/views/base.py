@@ -220,6 +220,7 @@ class VacancyDeleteView(DeleteView):
         vacancy.is_deleted = True
         vacancy.save()
         return redirect('profile', pk=self.request.user.pk)
+
 def vacancy_category_view(request, category):
     form = SearchForm(request.GET)
     search_value = get_search_value(form)
