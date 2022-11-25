@@ -76,3 +76,5 @@
 {% endblock %}
 
 
+<form action="{% url 'change' user_obj.pk %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
