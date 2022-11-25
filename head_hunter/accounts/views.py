@@ -2,30 +2,12 @@ from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.urls import reverse
-from django.db.models import Q
-from django.core.exceptions import PermissionDenied
 from django.views.generic import TemplateView, CreateView, DetailView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from accounts.forms import LoginForm
-from django.core.paginator import Paginator
 
-from accounts.forms import CustomUserCreationForm, UserChangeForm, PasswordChangeForm
-
-from accounts.models import Account
-
+from accounts.forms import LoginForm, CustomUserCreationForm, UserChangeForm, PasswordChangeForm
 from resumes.models import Resume
-
 from vacancies.models.vacancies import Vacancy
-
-
-# from accounts.forms import UserChangeForm
-# from posts.models import Post
-# from accounts.models import Account
-# from accounts.forms import PasswordChangeForm
-# from accounts.forms import SearchForm
-
-
-# from accounts.forms import ProfileChangeForm
 
 
 class LoginView(TemplateView):
@@ -93,11 +75,15 @@ class ProfileView(LoginRequiredMixin, DetailView):
         return context
 
 
-class UserChangeView(UpdateView):
+class UserChangeView(PermissionRequiredMixin, UpdateView):
     model = get_user_model()
     form_class = UserChangeForm
     template_name = 'user_change.html'
     context_object_name = 'user_obj'
+    permission_required = 'accounts.change_account'
+
+    def has_permission(self):
+        return self.get_object().username == self.request.user.username
 
     def get_context_data(self, **kwargs):
         context = super(UserChangeView, self).get_context_data(**kwargs)
@@ -131,11 +117,14 @@ class UserChangeView(UpdateView):
         return reverse('profile', kwargs={'pk': self.object.pk})
 
 
-class UserPasswordChangeView(UpdateView):
+class UserPasswordChangeView(PermissionRequiredMixin, UpdateView):
     model = get_user_model()
     template_name = 'user_password_change.html'
     form_class = PasswordChangeForm
     context_object_name = 'user_obj'
+    permission_required = 'accounts.change_account'
 
+    def has_permission(self):
+        return self.get_object().username == self.request.user.username
     def get_success_url(self):
         return reverse('login')
