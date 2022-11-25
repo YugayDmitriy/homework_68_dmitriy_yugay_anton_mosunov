@@ -44,7 +44,7 @@
             {% endif %}
             {% for vacancy in vacancies %}
                 <div class="card" style="margin-top: 25px; margin-bottom: 20px">
-                    <h5 class="card-header">{{ vacancy.title }}</h5>
+                    <h3 class="card-header">{{ vacancy.title }}</h3>
                         <div class="card-body">
                             <h5 class="card-title">{{ vacancy.salary_level | floatformat:-2 }}</h5>
                             <p class="card-text">{{ vacancy.text }}</p>
