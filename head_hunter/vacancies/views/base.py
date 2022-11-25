@@ -45,7 +45,7 @@ class VacanciesIndexView(ListView):
         return None
 
     def get_queryset(self):
-        queryset = super().get_queryset().exclude(is_deleted=True)
+        queryset = super().get_queryset().exclude(is_deleted=True).exclude(is_public=False).order_by('-changed_at')
         if self.search_value:
             queryset = Vacancy.objects.filter(title__icontains=self.search_value)
         return queryset
@@ -73,7 +73,7 @@ class ResumesIndexView(ListView):
         return None
 
     def get_queryset(self):
-        queryset = super().get_queryset().exclude(is_deleted=True).exclude(is_public=False).order_by('-created_at')
+        queryset = super().get_queryset().exclude(is_deleted=True).exclude(is_public=False).order_by('-changed_at')
         if self.search_value:
             queryset = Resume.objects.filter(Q(job_title__icontains=self.search_value))
         return queryset
@@ -232,4 +232,33 @@ def get_search_value(form):
     if form.is_valid():
         return form.cleaned_data.get('search')
     return None
+
+
+def vacancy_salary_sort_view(request, choice):
+    form = SearchForm(request.GET)
+    search_value = get_search_value(form)
+    specializations = Specialization.objects.all()
+
+    if search_value:
+        if choice == 1:
+            vacancies = Vacancy.objects.filter(Q(title__icontains=search_value)).order_by('salary_level')
+        elif choice == 0:
+            vacancies = Vacancy.objects.filter(Q(title__icontains=search_value)).order_by('-salary_level')
+        context = {
+            'form': SearchForm(),
+            'vacancies': vacancies,
+            'specializations': specializations
+        }
+        return render(request, 'index_vacancy.html', context)
+    if choice == 1:
+        vacancies = Vacancy.objects.filter(is_deleted=False).order_by('salary_level')
+    elif choice == 0:
+        vacancies = Vacancy.objects.filter(is_deleted=False).order_by('-salary_level')
+    find_form = SearchForm()
+    context = {
+        'form': find_form,
+        'vacancies': vacancies,
+        'specializations': specializations
+    }
+    return render(request, 'index_vacancy.html', context)
 

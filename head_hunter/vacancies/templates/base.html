@@ -20,10 +20,10 @@
     <title> HH</title>
     {% block styles%} {% bootstrap_css %} {% endblock %}
 </head>
-
-<body>
+{% include 'navbar.html' %}
+<body style="background-color: #e6e6ea">
     <div class="container">
-        {% include 'navbar.html' %}
+
 
         <div class="container-fluid" id="body">
             {% block content %}
