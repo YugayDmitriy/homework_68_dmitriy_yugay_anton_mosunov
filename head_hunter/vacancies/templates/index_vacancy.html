@@ -5,7 +5,7 @@
 {{block.super}}
 
 {% if request.user.is_authenticated %}
-
+<div class="container">
     <div class="row justify-content-center" style="background-color: #f8f9fa; border-radius: 10px; border-color: #d2d2d2; border-style: solid; border-width: thin"">
         <div class="col-6 text-center search-form" style="padding-top: 30px; padding-bottom: 30px;">
             {% include 'partials/search.html' %}
@@ -43,10 +43,10 @@
             <p>Вакансии не опубликованы</p>
         {% endif %}
         {% for vacancy in vacancies %}
-            <div class="card" style="margin-top: 25px; margin-bottom: 20px">
-                <h5 class="card-header">{{ vacancy.title }}</h5>
+            <div class="card" style="padding: 23px 23px 21px 30px;">
+                <h3 class="card-header">{{ vacancy.title }}</h3>
                     <div class="card-body">
-                        <h5 class="card-title">{{ vacancy.salary_level | floatformat:-2 }}</h5>
+                        <h4 class="card-title">{{ vacancy.salary_level | floatformat:-2 }}</h4>
                         <p class="card-text">{{ vacancy.text }}</p>
                         <p class="card-text">{{ vacancy.changed_at }}</p>
                     <a href="{% url 'vacancy_detail' vacancy.pk %}" class="btn btn-primary">Подробности о вакансии</a>
@@ -63,5 +63,6 @@
             {% endif %}
         </div>
     </div>
+</div>
     {% endif %}
 {% endblock %}
