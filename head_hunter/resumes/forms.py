@@ -29,7 +29,7 @@ class ExperienceForm(forms.ModelForm):
         label='Рабочие обязанности', required=False,
         widget=forms.Textarea(attrs={'name': 'body', 'rows': 5, 'cols': 21})
     )
-    work_begin = forms.DateField(label='Начало работы', widget=forms.SelectDateWidget)
+    work_begin = forms.DateField(label='Начало работы', widget=forms.SelectDateWidget(years=range(1930, 2011)))
     work_end = forms.DateField(label='Окончание работы', widget=forms.SelectDateWidget)
 
     class Meta:
@@ -42,7 +42,7 @@ class EducationForm(forms.ModelForm):
         label='Информация о себе',
         widget=forms.Textarea(attrs={'name': 'body', 'rows': 5, 'cols': 21})
     )
-    education_begin = forms.DateField(label='Начало обучения', widget=forms.SelectDateWidget)
+    education_begin = forms.DateField(label='Начало обучения', widget=forms.SelectDateWidget(years=range(1930, 2011)))
     education_end = forms.DateField(label='Окончание обучения', widget=forms.SelectDateWidget)
 
     class Meta:

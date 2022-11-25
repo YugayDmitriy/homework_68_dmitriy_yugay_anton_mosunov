@@ -49,7 +49,7 @@
             <div class="card" style="margin-top: 25px; margin-bottom: 20px">
                 <h5 class="card-header">{{ resume.job_title }}</h5>
                     <div class="card-body">
-                        <h5 class="card-title">{{ resume.salary_level }}</h5>
+                        <h5 class="card-title">{{ resume.salary_level | floatformat:-2 }}</h5>
                         <p class="card-text">{{ resume.changed_at }}</p>
                     <a href="{% url 'resume_detail' resume.pk %}" class="btn btn-primary">Подробности</a>
                         <span style="padding-left: 20px">Перейти к профилю работника: </span>
